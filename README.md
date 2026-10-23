@@ -1,5 +1,4 @@
 # PoStag-ujep
-# PoStag-ujep
 
 [![Target](https://img.shields.io/badge/target-portal.ujep.cz-89b4fa?style=flat-square)](https://portal.ujep.cz/)
 [![Palette](https://img.shields.io/badge/palette-Catppuccin_Mocha-cba6f7?style=flat-square)](https://github.com/catppuccin/catppuccin)
