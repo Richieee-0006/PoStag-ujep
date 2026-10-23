@@ -114,7 +114,8 @@ span.subinfo span,
 .xcw_info,
 .text-secondary,
 .text-body-secondary,
-.additionalInfo {
+.additionalInfo,
+.neprirazeno {
     font-size: 0.84rem !important;
     color: var(--s-sub0) !important;
 }
@@ -196,7 +197,13 @@ h2,
 h3,
 h4,
 h5,
-h6 {
+h6,
+.h1,
+.h2,
+.h3,
+.h4,
+.h5,
+.h6 {
     color: var(--s-txt) !important;
     font-weight: 600 !important;
 }
@@ -216,9 +223,16 @@ hr {
 *[style*="rgb(255, 255, 255)"],
 *[style*="rgb(255,255,255)"],
 *[style*="#F4F2F2" i],
+*[style*="#f4f4f4" i],
+*[style*="#f5f5f5" i],
+*[style*="#f8f8f8" i],
+*[style*="#f9f9f9" i],
+*[style*="#efefef" i],
+*[style*="#eeeeee" i],
 *[style*="#E4E4C9" i],
 *[style*="#DBD9D9" i],
-*[style*="#e8e8e8" i] {
+*[style*="#e8e8e8" i],
+*[style*="#e0e0e0" i] {
     background-color: var(--s-base) !important;
     border-color: var(--s-s0) !important;
     color: var(--s-txt) !important;
@@ -231,6 +245,28 @@ div[style*="background-color:#fff" i][style*="height"] {
     background-color: var(--s-mantle) !important;
     border: 1px solid var(--s-s0) !important;
     border-radius: var(--s-r-md) !important;
+}
+
+/* Inline upozornění na zrušenou výuku / přesun v tabulkovém rozvrhu (#FFDDDD) */
+div[style*="#FFDDDD" i],
+div[style*="#FDD" i],
+div[style*="rgb(255, 221, 221)"],
+div[style*="rgb(255,221,221)"] {
+    background-color: rgba(243, 139, 168, 0.16) !important;
+    border: 1px solid rgba(243, 139, 168, 0.4) !important;
+    color: var(--s-txt) !important;
+    border-radius: var(--s-r-sm) !important;
+    padding: 3px 6px !important;
+    margin-top: 3px !important;
+}
+
+/* Označený blok v předzápisu (#FFFFBE / aqua) */
+*[style*="#FFFFBE" i],
+*[style*="rgb(255, 255, 190)"],
+*[style*="rgb(255,255,190)"],
+#oznacenyBlok {
+    background-color: var(--s-s0) !important;
+    color: var(--s-yellow) !important;
 }
 
 *[style*="rgb(180, 180, 180)"],
@@ -320,14 +356,16 @@ div.app_header_center,
 }
 
 .app_portlet_head_icons img,
-.app_portlet_head_icons a img {
+.app_portlet_head_icons a img,
+img[src*="help_24.png"] {
     border: none !important;
     filter: invert(0.88) hue-rotate(180deg) !important;
     opacity: 0.85 !important;
     transition: opacity 0.15s ease !important;
 }
 
-.app_portlet_head_icons a:hover img {
+.app_portlet_head_icons a:hover img,
+a:hover img[src*="help_24.png"] {
     opacity: 1 !important;
 }
 
@@ -663,6 +701,7 @@ div.gpv_rozvrh_coat {
 
 /* Oprava oříznutého obsahu v portletu Praxe (S088) a skrytí zastaralých resize lišt */
 #seznamPraxiStudenta,
+#seznamMistPraxeKatalogSpravce,
 .pxTabResizer {
     height: auto !important;
     min-height: 60px !important;
@@ -703,7 +742,7 @@ div.resizeGrippie,
     box-shadow: var(--s-sh) !important;
     border-collapse: separate !important;
     border-spacing: 0 !important;
-    overflow: hidden !important;
+    overflow: visible !important;
     width: 100% !important;
     display: table !important;
     table-layout: fixed !important;
@@ -719,15 +758,20 @@ div.resizeGrippie,
     vertical-align: middle !important;
 }
 
-.portlet-header {
-    border: 1px solid var(--s-s0) !important;
-    border-bottom: none !important;
-    border-radius: var(--s-r-xl) var(--s-r-xl) 0 0 !important;
+.app_portlet_head_title {
+    border-top-left-radius: var(--s-r-xl) !important;
 }
 
 .app_portlet_head_icons {
     width: 46px !important;
     text-align: right !important;
+    border-top-right-radius: var(--s-r-xl) !important;
+}
+
+.portlet-header {
+    border: 1px solid var(--s-s0) !important;
+    border-bottom: none !important;
+    border-radius: var(--s-r-xl) var(--s-r-xl) 0 0 !important;
 }
 
 .app_portlet_head_title h2,
@@ -747,7 +791,8 @@ section.portlet,
     color: var(--s-txt) !important;
     padding: 16px !important;
     border-color: var(--s-s0) !important;
-    overflow-x: auto !important;
+    border-radius: 0 0 var(--s-r-xl) var(--s-r-xl) !important;
+    overflow: visible !important;
 }
 
 .text-bg-light.portlet,
@@ -966,6 +1011,12 @@ table.StudentInfoSubTab th {
     height: 30px !important;
 }
 
+#notif_opener.active,
+#notif_opener:hover {
+    background: rgba(243, 139, 168, 0.28) !important;
+    border-color: var(--s-red) !important;
+}
+
 #notif_opener img {
     width: auto !important;
     height: 16px !important;
@@ -1079,6 +1130,190 @@ span[style*="#CCF" i],
     font-weight: 700 !important;
     border: 1px solid var(--s-s1) !important;
     display: inline-block !important;
+}
+
+/* === ROZBALOVACÍ PANEL NOTIFIKACÍ (#ui_notif_div / #notifikaceContainer) === */
+#ui_notif_div {
+    margin-top: 12px !important;
+}
+
+#notifikaceContainer {
+    background: transparent !important;
+}
+
+#notifikaceSettingsDiv > div[style*="background-color"] {
+    background: var(--s-mantle) !important;
+    border: 1px solid var(--s-s0) !important;
+    border-radius: var(--s-r-lg) !important;
+    padding: 12px 16px !important;
+    margin-bottom: 10px !important;
+}
+
+#notifikaceSettingsDiv p.h5 {
+    margin: 0 0 10px 0 !important;
+    color: var(--s-blue) !important;
+    font-size: 1rem !important;
+    font-weight: 600 !important;
+}
+
+#notifikaceSettingsDiv .fake-table-row {
+    display: flex !important;
+    flex-wrap: wrap !important;
+    align-items: center !important;
+    gap: 10px 14px !important;
+}
+
+#notifikaceSettingsDiv .fake-table-cell {
+    display: inline-flex !important;
+    align-items: center !important;
+    padding: 0 !important;
+    border: none !important;
+}
+
+.elementTitle,
+td.elementTitle {
+    color: var(--s-txt) !important;
+    font-weight: 600 !important;
+}
+
+/* Oprava ggui.css chyby, kde .additionalInfo mělo display: inline-block i na <td> */
+td.additionalInfo,
+th.additionalInfo,
+td.elementTitle,
+th.elementTitle {
+    display: table-cell !important;
+}
+
+.inlineHeader {
+    color: var(--s-blue) !important;
+    font-weight: 600 !important;
+}
+
+#notifikace_seznam_notifikaci_a_kategorie > div[style*="inline-block"] {
+    display: block !important;
+    width: 100% !important;
+    max-width: 780px !important;
+}
+
+.b .list-group,
+.list-group {
+    background: transparent !important;
+    border-radius: var(--s-r-lg) !important;
+    margin-bottom: 8px !important;
+}
+
+.b .list-group-item,
+.b .list-group-item-action,
+.list-group-item,
+.list-group-item-action {
+    background-color: var(--s-mantle) !important;
+    color: var(--s-txt) !important;
+    border: 1px solid var(--s-s0) !important;
+    padding: 10px 14px !important;
+    transition: background-color 0.15s ease, border-color 0.15s ease !important;
+}
+
+/* Kategorie notifikací (rozklikávací odkazy) */
+a.list-group-item,
+a.list-group-item-action,
+.b a.list-group-item,
+.b a.list-group-item-action {
+    background-color: var(--s-crust) !important;
+    color: var(--s-blue) !important;
+    font-weight: 600 !important;
+    display: flex !important;
+    align-items: center !important;
+    text-decoration: none !important;
+    margin-bottom: 2px !important;
+    border-radius: var(--s-r-md) !important;
+}
+
+a.list-group-item:hover,
+a.list-group-item:focus,
+a.list-group-item-action:hover,
+a.list-group-item-action:focus,
+.b a.list-group-item:hover,
+.b a.list-group-item:focus {
+    background-color: var(--s-s0) !important;
+    color: var(--s-lav) !important;
+    text-decoration: none !important;
+}
+
+a.list-group-item .glyphicon {
+    color: var(--s-mauve) !important;
+}
+
+/* Položky jednotlivých notifikací s selectboxem vpravo */
+div.list-group-item,
+div.list-group-item-action,
+.b div.list-group-item,
+.b div.list-group-item-action {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    flex-wrap: wrap !important;
+    gap: 10px 16px !important;
+    background-color: var(--s-mantle) !important;
+    color: var(--s-txt) !important;
+}
+
+div.list-group-item:hover,
+.b div.list-group-item:hover {
+    background-color: var(--s-alt) !important;
+}
+
+div.list-group-item > div[style*="float:right"],
+div.list-group-item > div[style*="float: right"] {
+    float: none !important;
+    margin-left: auto !important;
+}
+
+.collapse .list-group,
+.collapse.in .list-group {
+    margin: 4px 0 10px 0 !important;
+    padding-left: 12px !important;
+    border-left: 3px solid var(--s-blue) !important;
+}
+
+/* GGui prvky (Seznam notifikací a Praxe) */
+.tableHeader {
+    background-color: var(--s-crust) !important;
+    color: var(--s-sub1) !important;
+    border-bottom: 1px solid var(--s-s0) !important;
+    border-radius: var(--s-r-md) var(--s-r-md) 0 0 !important;
+    padding: 6px 10px !important;
+}
+
+.pageElement {
+    background-color: var(--s-mantle) !important;
+    color: var(--s-txt) !important;
+    border: 1px solid var(--s-s0) !important;
+    border-radius: var(--s-r-md) !important;
+    padding: 10px 14px !important;
+    margin-bottom: 6px !important;
+}
+
+.pageElement.clickable:hover,
+.fake-table.ggTable .fake-table-row.selected,
+.zebra .fake-table.ggTable .fake-table-row.selected {
+    background-color: var(--s-s0) !important;
+}
+
+.zebra .fake-table-row:nth-child(even) {
+    background-color: var(--s-base) !important;
+}
+
+.fake-table-row.red {
+    background-color: rgba(243, 139, 168, 0.16) !important;
+}
+
+.fake-table-row.green {
+    background-color: rgba(166, 227, 161, 0.16) !important;
+}
+
+.fake-table.ggTable .fake-table-cell {
+    border-bottom: 1px solid var(--s-sub) !important;
+    color: var(--s-txt) !important;
 }
 }
 
@@ -1413,6 +1648,25 @@ table.ng_tab_ext td {
     background: var(--s-mantle) !important;
 }
 
+table.table tr,
+table.table tr.selected {
+    background-color: var(--s-mantle) !important;
+}
+
+table.table tr.selected td {
+    background-color: var(--s-s0) !important;
+}
+
+/* Tenké oddělovací řádky v tabulkách (např. Registered: ZS / LS) */
+table.xg_tab_c_S td[style*="height: 1px"],
+table.xg_tab_c_S td[style*="height:1px"] {
+    padding: 0 !important;
+    height: 4px !important;
+    line-height: 4px !important;
+    font-size: 0 !important;
+    background: var(--s-crust) !important;
+}
+
 table.xg_tab_c tr:nth-child(even) td,
 table.xg_tab tr:nth-child(even) td,
 table.podminky_abs tr:nth-child(even) td,
@@ -1558,11 +1812,20 @@ div.cr_info img {
     margin-right: 14px !important;
 }
 
-/* Graf postupnosti studií (S023) – čitelné popisky bez přetékání */
-div[style*="position: relative"][style*="height"] div[style*="position: absolute"],
-div[style*="position:relative"][style*="height"] div[style*="position:absolute"] {
-    font-size: 10px !important;
-    line-height: 1.15 !important;
+/* Graf postupnosti studií (S023 – StudiaImageServlet PNG) */
+.table-scroll:has(> img[src*="StudiaImageServlet"]) {
+    width: 100% !important;
+    max-width: 100% !important;
+}
+
+img[src*="StudiaImageServlet"] {
+    filter: invert(0.92) hue-rotate(180deg) brightness(1.06) contrast(1.06) !important;
+    mix-blend-mode: lighten !important;
+    border-radius: var(--s-r-lg) !important;
+    border: 1px solid var(--s-s0) !important;
+    max-width: 100% !important;
+    height: auto !important;
+    display: block !important;
 }
 
 /* Studentské žádosti (S048) a Konzultace (S110) */
@@ -2375,7 +2638,7 @@ div.gpv-bublina-blok-zapsan div {
     border-radius: var(--s-r-xs) !important;
 }
 
-/* Klasický Předzápis (#mainSirka) – plynulé rozložení bez horizontálního posuvníku */
+/* Klasický Předzápis (#mainSirka) – plynulé rozložení a zarovnané sloupce Min. | Acq. | Reg. */
 #obalMe {
     overflow-x: hidden !important;
     overflow-y: auto !important;
@@ -2395,23 +2658,40 @@ div#mainSirka {
 #mainSirka .oznacenyRadek {
     width: 100% !important;
     display: flex !important;
-    align-items: center !important;
+    align-items: stretch !important;
     background: var(--s-base) !important;
     border-top: 1px solid var(--s-s0) !important;
     color: var(--s-txt) !important;
 }
 
 #mainSirka .hlavicka,
-#mainSirka a {
+#mainSirka .radek > div:nth-child(2),
+#mainSirka .oznacenyRadek > div:nth-child(2) {
     flex: 1 1 auto !important;
+    min-width: 0 !important;
     width: auto !important;
     float: none !important;
-    padding: 4px 8px !important;
+    display: flex !important;
+    align-items: center !important;
+}
+
+#mainSirka .hlavicka {
+    padding: 5px 10px !important;
 }
 
 #mainSirka a {
+    display: flex !important;
+    align-items: center !important;
+    width: 100% !important;
+    height: 100% !important;
+    float: none !important;
+    padding: 5px 10px !important;
     background: var(--s-base) !important;
     color: var(--s-blue) !important;
+}
+
+#mainSirka a:hover {
+    background: var(--s-alt) !important;
 }
 
 #mainSirka .min,
@@ -2420,10 +2700,13 @@ div#mainSirka {
 #mainSirka .minHlav,
 #mainSirka .ziskHlav,
 #mainSirka .cekaHlav {
-    flex: 0 0 48px !important;
-    width: 48px !important;
+    flex: 0 0 50px !important;
+    width: 50px !important;
     float: none !important;
-    padding: 4px 2px !important;
+    padding: 5px 4px !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
     text-align: center !important;
     background: var(--s-base) !important;
     border-left: 1px solid var(--s-s0) !important;
@@ -2442,10 +2725,13 @@ div#mainSirka {
 #mainSirka .typ-a,
 #mainSirka .typ-b,
 #mainSirka .typ-c {
-    flex: 0 0 22px !important;
-    width: 22px !important;
+    flex: 0 0 24px !important;
+    width: 24px !important;
     float: none !important;
-    padding: 4px 0 !important;
+    padding: 5px 0 !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
     border-radius: 2px !important;
 }
 
@@ -2518,6 +2804,7 @@ ul.lightbox {
 /* === 8. FORMULÁŘE, VSTUPY, TLAČÍTKA, ZÁLOŽKY A STRÁNKOVÁNÍ === */
 .prohlizeniEntitaFormMain,
 .prohlizeniEntitaFormExt,
+.praxeSearchForm,
 .xg_pane,
 .cy_pane,
 table.reminder_filtr_form,
@@ -2640,7 +2927,10 @@ table.ng_form_tab td input[type="password"],
 table.ng_form_tab td input[type="email"],
 table.ng_form_tab td input[type="number"],
 table.ng_form_tab td textarea,
-table.ng_form_tab td select {
+table.ng_form_tab td select,
+.chosen-container-single .chosen-search input[type="text"],
+table.ng_form_tab td .chosen-container-single .chosen-search input[type="text"],
+input.chosen-search-input {
     background: var(--s-crust) !important;
     background-image: none !important;
     color: var(--s-txt) !important;
@@ -2744,11 +3034,18 @@ table.ng_form_tab td .chosen-container-single .chosen-single span {
 
 .chosen-drop,
 table.ng_form_tab td .chosen-container .chosen-drop,
-form.ng_form .chosen-container .chosen-drop,
+form.ng_form .chosen-container .chosen-drop {
+    background: var(--s-base) !important;
+    color: var(--s-txt) !important;
+    border: 1px solid var(--s-s1) !important;
+    border-radius: 0 0 var(--s-r-md) var(--s-r-md) !important;
+    box-shadow: var(--s-sh) !important;
+    z-index: 9999 !important;
+}
+
 .chosen-results li {
     background: var(--s-base) !important;
     color: var(--s-txt) !important;
-    border-color: var(--s-s1) !important;
 }
 
 .chosen-results li.highlighted {
@@ -2781,6 +3078,8 @@ button,
 .btn-default,
 .btn-secondary,
 .btn-outline-primary,
+.newButton,
+.b .newButton,
 #dCExtendedForm_id_h,
 [class*="prExtBut_DCHeading"] {
     background: var(--s-s0) !important;
@@ -2805,6 +3104,7 @@ button:hover,
 .btn:hover,
 .btn-default:hover,
 .btn-outline-primary:hover,
+.newButton:hover,
 #dCExtendedForm_id_h:hover {
     background: var(--s-s1) !important;
     color: #fff !important;
@@ -2817,6 +3117,8 @@ button.btn-primary,
 a.btn-primary,
 .btn.btn-primary,
 .btn-primary,
+.newButton.common,
+.newButton.edit,
 input[type="submit"] {
     background: var(--s-blue) !important;
     color: var(--s-crust) !important;
@@ -2834,13 +3136,29 @@ button.btn-primary:hover,
 a.btn-primary:hover,
 .btn.btn-primary:hover,
 .btn-primary:hover,
+.newButton.common:hover,
+.newButton.edit:hover,
 input[type="submit"]:hover {
     background: var(--s-lav) !important;
     border-color: var(--s-lav) !important;
     color: var(--s-crust) !important;
 }
 
-/* Záložky (Tabs) */
+.newButton.new {
+    background: var(--s-green) !important;
+    border-color: var(--s-green) !important;
+    color: var(--s-crust) !important;
+    font-weight: 700 !important;
+}
+
+.newButton.red {
+    background: var(--s-red) !important;
+    border-color: var(--s-red) !important;
+    color: var(--s-crust) !important;
+    font-weight: 700 !important;
+}
+
+/* Záložky (Tabs) – včetně opravy pro vnořený .prohlizeniEntitaSubdetailPanesCoat (např. S023, S040) */
 .nav-tabs,
 ul.prohlizeniEntitaSubdetailTabRow,
 div.prohlizeniEntitaSubdetailTabRow {
@@ -2850,6 +3168,14 @@ div.prohlizeniEntitaSubdetailTabRow {
     border-bottom: 1px solid var(--s-s0) !important;
     padding: 0 !important;
     list-style: none !important;
+}
+
+div.prohlizeniEntitaSubdetailTabRow > .prohlizeniEntitaSubdetailPanesCoat,
+div.prohlizeniEntitaSubdetailTabRow > .prohlizeniEntitaSubdetailCoat {
+    flex: 0 0 100% !important;
+    width: 100% !important;
+    min-width: 0 !important;
+    margin-top: 0 !important;
 }
 
 .nav-tabs > li > a,
@@ -2895,7 +3221,7 @@ span.prohlizeniEntitaSubdetailTabSelected {
     padding: 12px !important;
     color: var(--s-txt) !important;
     height: auto !important;
-    overflow-x: auto !important;
+    overflow: visible !important;
 }
 
 .pagination .page-link {
@@ -2913,7 +3239,7 @@ span.prohlizeniEntitaSubdetailTabSelected {
 }
 
 @-moz-document url-prefix("https://portal.ujep.cz/") {
-/* === 9. HLÁŠKY, MODÁLNÍ OKNA, PATIČKA A OPRAVY === */
+/* === 9. HLÁŠKY, MODÁLNÍ OKNA, SYLABUS, NAŠEPTÁVAČ A PATIČKA === */
 div.xg_msgFromServerInfo,
 .alert-info,
 .prohlizeniEntitaSearchNoSearched,
@@ -2991,12 +3317,15 @@ div.xg_msgFromServerDefault {
 
 .ui-dialog,
 .modal-content,
-.gpv-bublina-coat {
+.gpv-bublina-coat,
+div.gpv-fucking-sylabus-coat,
+div.gpv-fucking-RAtab-coat {
     background: var(--s-base) !important;
     border: 1px solid var(--s-s1) !important;
     border-radius: var(--s-r-xl) !important;
     box-shadow: var(--s-sh) !important;
     color: var(--s-txt) !important;
+    overflow: hidden !important;
 }
 
 .ui-dialog .ui-dialog-titlebar,
@@ -3004,11 +3333,139 @@ div.xg_msgFromServerDefault {
     background: var(--s-crust) !important;
     border-bottom: 1px solid var(--s-s0) !important;
     color: var(--s-blue) !important;
+    padding: 8px 14px !important;
+    height: auto !important;
 }
 
 .modal-footer {
     background: var(--s-mantle) !important;
     border-top: 1px solid var(--s-s0) !important;
+}
+
+/* Modální okno Sylabu předmětu (.gpv-fucking-sylabus-coat) */
+div.gpv-fucking-medium-sylabus-coat {
+    display: none !important;
+}
+
+div.gpv-sylab-head {
+    background: var(--s-crust) !important;
+    color: var(--s-blue) !important;
+    border: none !important;
+    border-bottom: 1px solid var(--s-s0) !important;
+    padding: 10px 16px !important;
+    font-size: 0.95rem !important;
+    font-weight: 700 !important;
+    display: flex !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+}
+
+div.gpv-sylab-head:last-child {
+    border-bottom: none !important;
+    border-top: 1px solid var(--s-s0) !important;
+}
+
+div.gpv-sylab-head .ui-dialog-titlebar-close-button {
+    float: none !important;
+    color: var(--s-sub0) !important;
+    font-size: 0.8rem !important;
+    padding-top: 0 !important;
+}
+
+#sylabus div.xg_portletCoat,
+div.gpv-fucking-sylabus-coat > div.xg_portletCoat {
+    float: none !important;
+    width: 100% !important;
+    height: auto !important;
+    max-height: 75vh !important;
+    overflow-y: auto !important;
+    border: none !important;
+    border-radius: 0 !important;
+    padding: 12px 16px !important;
+}
+
+/* Našeptávač (.naseptavacDialog / div.xg_naseptavac) */
+.naseptavacDialog {
+    background: var(--s-base) !important;
+    padding: 0 !important;
+}
+
+.naseptavacDialog .ui-dialog-titlebar {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    height: auto !important;
+    padding: 8px 12px !important;
+}
+
+.naseptavacDialog .ui-dialog-titlebar-close {
+    position: static !important;
+    margin: 0 !important;
+    width: 24px !important;
+    height: 24px !important;
+    padding: 0 !important;
+    background-color: var(--s-s0) !important;
+    border: 1px solid var(--s-s1) !important;
+    border-radius: var(--s-r-sm) !important;
+}
+
+#naseptavacDialog {
+    height: auto !important;
+    max-height: 420px !important;
+    padding: 10px 12px !important;
+    background: var(--s-base) !important;
+    overflow: hidden !important;
+}
+
+div.naseptavacHead {
+    color: var(--s-blue) !important;
+    font-size: 0.82rem !important;
+    font-weight: 600 !important;
+    padding: 6px 4px !important;
+}
+
+div.xg_naseptavac {
+    background-color: var(--s-mantle) !important;
+    border: 1px solid var(--s-s0) !important;
+    border-radius: var(--s-r-md) !important;
+    max-width: 100% !important;
+    max-height: 250px !important;
+    overflow-y: auto !important;
+    padding: 4px !important;
+}
+
+div.xg_naseptavac ul {
+    background-color: transparent !important;
+    padding: 0 !important;
+    margin: 0 !important;
+}
+
+div.xg_naseptavac li {
+    border-bottom: 1px solid var(--s-sub) !important;
+}
+
+div.xg_naseptavac li:last-child {
+    border-bottom: none !important;
+}
+
+div.xg_naseptavac li a {
+    display: block !important;
+    padding: 5px 8px !important;
+    border-radius: var(--s-r-xs) !important;
+    color: var(--s-blue) !important;
+    font-size: 0.84rem !important;
+}
+
+div.xg_naseptavac li a:hover {
+    background-color: var(--s-s0) !important;
+    color: var(--s-lav) !important;
+    text-decoration: none !important;
+}
+
+div.naseptavacFoot {
+    color: var(--s-sub0) !important;
+    font-size: 0.8rem !important;
+    padding: 8px 4px 2px !important;
 }
 
 ul.ui-autocomplete,
@@ -3048,10 +3505,21 @@ ul.ui-menu,
 #mobile_nav_menu .modal-content,
 #mobile_nav_menu_accordion,
 #mobile_nav_menu_accordion .panel,
-#portal-offcanvas-nav {
+#portal-offcanvas-nav,
+.b .panel,
+.b .panel-default,
+.b .panel-body {
     background: var(--s-mantle) !important;
     color: var(--s-txt) !important;
-    border: none !important;
+    border-color: var(--s-s0) !important;
+}
+
+.b .panel-heading,
+.ng_portletCoat .panel-heading {
+    background: var(--s-crust) !important;
+    background-image: none !important;
+    color: var(--s-blue) !important;
+    border-color: var(--s-s0) !important;
 }
 
 .app_footer,
