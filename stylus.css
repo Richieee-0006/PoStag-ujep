@@ -1579,12 +1579,12 @@ a.xg_stag_a_rozvrhToolB,
     padding-right: 0 !important;
     padding-left: 0 !important;
 }
-
+/* 
 a.xg_stag_a_rozvrhToolB[style*="comment.png"],
 .rozvrhRoakPredmSpacer img[src*="ico_ra_small"],
 .rozvrhRoakMistnostSpacer img[src*="ucitel"] {
     display: none !important;
-}
+} */
 }
 
 @-moz-document url-prefix("https://portal.ujep.cz/") {
