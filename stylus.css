@@ -1319,79 +1319,90 @@ div.list-group-item > div[style*="float: right"] {
 
 @-moz-document url-prefix("https://portal.ujep.cz/") {
 /* === 5. ROZVRH HODIN === */
+/* Zabránění roztažení nadřazených flex/tabulkových obalů nad 100 % šířky */
+.app_page_content :has(table.rozvrhMainTable),
+.app_page_content :has(table.gpv_rozvrhMainTable),
+#rozvrhMain,
+#rozvrhMain > table,
+#rozvrhMain > table > tbody,
+#rozvrhMain > table > tbody > tr {
+	min-width: 0 !important;
+	max-width: 100% !important;
+}
 
-/* Kontejnery rozvrhu – zapnutí horizontálního scrollování */
-div:has(> table.rozvrhMainTable),
-td:has(> table.rozvrhMainTable),
-div:has(> table.gpv_rozvrhMainTable),
+/* Zapnutí horizontálního scrollování na přímém rodiči tabulky rozvrhu */
 #rozvrhMain > table > tbody > tr > td:last-child,
+*:has(> table.rozvrhMainTable),
+*:has(> table.gpv_rozvrhMainTable),
 div.gpv_rozvrh_coat {
-    overflow-x: auto !important;
-    max-width: 100% !important;
-    min-width: 0 !important;
-    padding-bottom: 8px !important;
+	display: block !important;
+	width: 100% !important;
+	max-width: 100% !important;
+	min-width: 0 !important;
+	overflow-x: auto !important;
+	padding-bottom: 8px !important;
 }
 
 table.rozvrhMainTable,
 table.gpv_rozvrhMainTable {
-    width: 100% !important;
-    min-width: 1650px !important; /* Zvětšeno z 860px – rozšíří 1h bloky a vynutí scrollbar */
-    table-layout: fixed !important;
-    background: var(--s-mantle) !important;
-    border-collapse: collapse !important;
-    border: 1px solid var(--s-s0) !important;
-    border-radius: var(--s-r-lg) !important;
-    box-shadow: var(--s-sh) !important;
-    margin-bottom: 6px !important;
+	display: table !important;
+	width: 1650px !important;
+	min-width: 1650px !important;
+	table-layout: fixed !important;
+	background: var(--s-mantle) !important;
+	border-collapse: collapse !important;
+	border: 1px solid var(--s-s0) !important;
+	border-radius: var(--s-r-lg) !important;
+	box-shadow: var(--s-sh) !important;
+	margin-bottom: 6px !important;
 }
 
 tr.rozvrhCasRadaCellspacer {
-    height: 0 !important;
-    border: none !important;
-    background: transparent !important;
+	height: 0 !important;
+	border: none !important;
+	background: transparent !important;
 }
 
 tr.rozvrhCasRadaCellspacer td {
-    width: 0.53% !important;
-    height: 0 !important;
-    padding: 0 !important;
-    margin: 0 !important;
-    border: none !important;
-    font-size: 0 !important;
-    line-height: 0 !important;
-    background: transparent !important;
+	width: 0.53% !important;
+	height: 0 !important;
+	padding: 0 !important;
+	margin: 0 !important;
+	border: none !important;
+	font-size: 0 !important;
+	line-height: 0 !important;
+	background: transparent !important;
 }
 
 table.rozvrhMainTable thead tr:first-child th:first-child,
 td.rozvrhLeftHeadingDenName,
 table.gpv_rozvrhMainTable td.rozvrhLeftHeadingDenName {
-    width: 46px !important;
-    min-width: 46px !important;
-    max-width: 46px !important;
-    background: var(--s-crust) !important;
-    color: var(--s-blue) !important;
-    border: 1px solid var(--s-s0) !important;
-    font-weight: 700 !important;
-    font-size: 0.88rem !important;
-    padding: 8px 2px !important;
-    text-align: center !important;
-    vertical-align: middle !important;
-    /* Připnutí sloupce se dny (Po–Pá) při scrollování do strany */
-    position: sticky !important;
-    left: 0 !important;
-    z-index: 3 !important;
-    box-shadow: 2px 0 6px rgba(0, 0, 0, 0.45) !important;
+	width: 46px !important;
+	min-width: 46px !important;
+	max-width: 46px !important;
+	background: var(--s-crust) !important;
+	color: var(--s-blue) !important;
+	border: 1px solid var(--s-s0) !important;
+	font-weight: 700 !important;
+	font-size: 0.88rem !important;
+	padding: 8px 2px !important;
+	text-align: center !important;
+	vertical-align: middle !important;
+	position: sticky !important;
+	left: 0 !important;
+	z-index: 3 !important;
+	box-shadow: 2px 0 6px rgba(0, 0, 0, 0.45) !important;
 }
 
-/* Zvýraznění aktuálního dne (#fffbb5) – neprůhledné pozadí kvůli sticky sloupci */
-td.rozvrhLeftHeadingDenName[style*="fffbb5" i] {
-    background: color-mix(in srgb, var(--s-yellow) 16%, var(--s-crust)) !important;
-    color: var(--s-yellow) !important;
-    border-left: 3px solid var(--s-yellow) !important;
+/* Zvýraznění aktuálního dne (#fffbb5) */
+td.rozvrhLeftHeadingDenName[style *= "fffbb5" i] {
+	background: color-mix(in srgb, var(--s-yellow) 16%, var(--s-crust)) !important;
+	color: var(--s-yellow) !important;
+	border-left: 3px solid var(--s-yellow) !important;
 }
 
-td.rozvrhVolno[style*="fffbb5" i] {
-    background: rgba(249, 226, 175, 0.04) !important;
+td.rozvrhVolno[style *= "fffbb5" i] {
+	background: rgba(249, 226, 175, 0.04) !important;
 }
 
 .rozvrhCasRadaHodina,
@@ -1399,190 +1410,198 @@ td.rozvrhVolno[style*="fffbb5" i] {
 .rozvrhCasRadaEnding,
 table.gpv_rozvrhMainTable th.rozvrhCasRadaHodina,
 table.gpv_rozvrhMainTable th.rozvrhCasRadaPrestavka {
-    background: var(--s-crust) !important;
-    color: var(--s-sub1) !important;
-    border: 1px solid var(--s-s0) !important;
-    padding: 3px 2px !important;
-    vertical-align: middle !important;
-    overflow: hidden !important;
+	background: var(--s-crust) !important;
+	color: var(--s-sub1) !important;
+	border: 1px solid var(--s-s0) !important;
+	padding: 3px 2px !important;
+	vertical-align: middle !important;
+	overflow: hidden !important;
 }
 
 .rozvrhCasRadaZacatek,
 .rozvrhCasRadaKonec,
 .rozvrhCasRadaCisHodiny {
-    background: transparent !important;
-    border: none !important;
-    padding: 0 2px !important;
-    float: none !important;
-    clear: both !important;
-    display: block !important;
+	background: transparent !important;
+	border: none !important;
+	padding: 0 2px !important;
+	float: none !important;
+	clear: both !important;
+	display: block !important;
 }
 
 .rozvrhCasRadaZacatek {
-    font-size: 0.66rem !important;
-    color: var(--s-sub0) !important;
-    text-align: left !important;
-    line-height: 1 !important;
+	font-size: 0.66rem !important;
+	color: var(--s-sub0) !important;
+	text-align: left !important;
+	line-height: 1 !important;
 }
 
 .rozvrhCasRadaCisHodiny {
-    font-size: 0.86rem !important;
-    color: var(--s-blue) !important;
-    font-weight: 700 !important;
-    text-align: center !important;
-    margin: 2px 0 !important;
-    line-height: 1.1 !important;
+	font-size: 0.86rem !important;
+	color: var(--s-blue) !important;
+	font-weight: 700 !important;
+	text-align: center !important;
+	margin: 2px 0 !important;
+	line-height: 1.1 !important;
 }
 
 .rozvrhCasRadaKonec {
-    font-size: 0.66rem !important;
-    color: var(--s-sub0) !important;
-    text-align: right !important;
-    line-height: 1 !important;
+	font-size: 0.66rem !important;
+	color: var(--s-sub0) !important;
+	text-align: right !important;
+	line-height: 1 !important;
 }
 
 td.rozvrhVolno,
 table.gpv_rozvrhMainTable td.rozvrhVolno {
-    background: var(--s-mantle) !important;
-    border: 1px solid var(--s-sub) !important;
-    padding: 0 !important;
+	background: var(--s-mantle) !important;
+	border: 1px solid var(--s-sub) !important;
+	padding: 0 !important;
 }
 
-td[class*="rozvrhRoakSkin_"] {
-    padding: 0 !important;
-    vertical-align: top !important;
-    border-radius: var(--s-r-sm) !important;
-    overflow: hidden !important;
+td[class *= "rozvrhRoakSkin_"] {
+	padding: 0 !important;
+	vertical-align: top !important;
+	border-radius: var(--s-r-sm) !important;
+	overflow: hidden !important;
 }
 
 td.rozvrhRoakSkin_prednaska,
 .scss-pred {
-    background: var(--s-gl) !important;
-    border: 1.5px solid var(--s-mauve) !important;
-    color: #fff !important;
+	background: var(--s-gl) !important;
+	border: 1.5px solid var(--s-mauve) !important;
+	color: #fff !important;
 }
 
 td.rozvrhRoakSkin_cviceni,
 .scss-cvic {
-    background: var(--s-glb) !important;
-    border: 1.5px solid var(--s-blue) !important;
-    color: #fff !important;
+	background: var(--s-glb) !important;
+	border: 1.5px solid var(--s-blue) !important;
+	color: #fff !important;
 }
 
 td.rozvrhRoakSkin_seminar,
 .scss-sem {
-    background: var(--s-gs) !important;
-    border: 1.5px solid var(--s-green) !important;
-    color: #fff !important;
+	background: var(--s-gs) !important;
+	border: 1.5px solid var(--s-green) !important;
+	color: #fff !important;
 }
 
 td.rozvrhRoakSkin_blokova,
 td.rozvrhRoakSkin_zkouska,
 td.rozvrhRoakSkin_blokace_zkouska,
 td.rozvrhRoakSkin_vyuk_jedakce {
-    background: var(--s-ge) !important;
-    border: 1.5px solid var(--s-peach) !important;
-    color: #fff !important;
+	background: var(--s-ge) !important;
+	border: 1.5px solid var(--s-peach) !important;
+	color: #fff !important;
 }
 
 /* Legenda pod rozvrhem – čitelný světlý text */
-div[class*="rozvrhRoakOdDoDSpacer_"],
+div[class *= "rozvrhRoakOdDoDSpacer_"],
 span.rozvrhLegenda {
-    color: var(--s-txt) !important;
-    font-size: 0.78rem !important;
-    font-weight: 600 !important;
+	color: var(--s-txt) !important;
+	font-size: 0.78rem !important;
+	font-weight: 600 !important;
 }
 
-td[class*="rozvrhRoakSkin_"] > div[class*="rozvrhRoakOdDoDSpacer_"]:has(> span.rozvrhLegenda) {
-    padding: 3px 10px !important;
+td[class *= "rozvrhRoakSkin_"] > div[class *= "rozvrhRoakOdDoDSpacer_"]:has(> span.rozvrhLegenda) {
+	padding: 3px 10px !important;
 }
 
 .rozvrhRoakOdDoHSpacer {
-    display: flex !important;
-    justify-content: space-between !important;
-    align-items: center !important;
-    background: rgba(0, 0, 0, 0.38) !important;
-    padding: 2px 3px !important;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important;
-    height: auto !important;
-    min-height: 15px !important;
+	display: flex !important;
+	justify-content: space-between !important;
+	align-items: center !important;
+	background: rgba(0, 0, 0, 0.38) !important;
+	padding: 2px 3px !important;
+	border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important;
+	height: auto !important;
+	min-height: 15px !important;
 }
 
-[class*="rozvrhRoakZacatek_"],
-[class*="rozvrhRoakKonec_"] {
-    float: none !important;
-    background: transparent !important;
-    padding: 0 !important;
-    color: var(--s-sub1) !important;
-    font-weight: 600 !important;
-    font-size: 0.65rem !important;
+[class *= "rozvrhRoakZacatek_"],
+[class *= "rozvrhRoakKonec_"] {
+	float: none !important;
+	background: transparent !important;
+	padding: 0 !important;
+	color: var(--s-sub1) !important;
+	font-weight: 600 !important;
+	font-size: 0.65rem !important;
 }
 
 .rozvrhRoakPredmSpacer {
-    padding: 3px 2px 1px !important;
-    text-align: center !important;
-    line-height: 1.15 !important;
+	padding: 3px 2px 1px !important;
+	text-align: center !important;
+	line-height: 1.15 !important;
 }
 
 .rozvrhRoakPredmSpacer a.xg_stag_a_ent_S {
-    font-size: 0.82rem !important;
-    font-weight: 800 !important;
-    color: #fff !important;
-    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.7) !important;
+	font-size: 0.82rem !important;
+	font-weight: 800 !important;
+	color: #fff !important;
+	text-shadow: 0 1px 3px rgba(0, 0, 0, 0.7) !important;
 }
 
 .rozvrhRoakMistnostSpacer {
-    padding: 2px !important;
-    text-align: center !important;
+	padding: 2px !important;
+	text-align: center !important;
 }
 
 .rozvrhRoakMistnostSpacer a {
-    background: rgba(17, 17, 27, 0.65) !important;
-    color: var(--s-blue) !important;
-    border: 1px solid rgba(137, 180, 250, 0.35) !important;
-    border-radius: var(--s-r-sm) !important;
-    padding: 1px 4px !important;
-    font-size: 0.72rem !important;
-    font-weight: 700 !important;
-    display: inline-block !important;
+	background: rgba(17, 17, 27, 0.65) !important;
+	color: var(--s-blue) !important;
+	border: 1px solid rgba(137, 180, 250, 0.35) !important;
+	border-radius: var(--s-r-sm) !important;
+	padding: 1px 4px !important;
+	font-size: 0.72rem !important;
+	font-weight: 700 !important;
+	display: inline-block !important;
 }
 
 .rozvrhItemLineObsazeni {
-    color: var(--s-sub0) !important;
-    font-size: 0.68rem !important;
-    font-weight: 500 !important;
-    text-align: center !important;
-    padding: 1px !important;
+	color: var(--s-sub0) !important;
+	font-size: 0.68rem !important;
+	font-weight: 500 !important;
+	text-align: center !important;
+	padding: 1px !important;
 }
 
 .rozvrhItemLineUcitel {
-    background: rgba(0, 0, 0, 0.28) !important;
-    color: #fff !important;
-    font-size: 0.73rem !important;
-    font-weight: 600 !important;
-    text-align: center !important;
-    padding: 2px 3px !important;
-    margin-top: 2px !important;
-    overflow: hidden !important;
-    text-overflow: ellipsis !important;
+	background: rgba(0, 0, 0, 0.28) !important;
+	color: #fff !important;
+	font-size: 0.73rem !important;
+	font-weight: 600 !important;
+	text-align: center !important;
+	padding: 2px 3px !important;
+	margin-top: 2px !important;
+	overflow: hidden !important;
+	text-overflow: ellipsis !important;
 }
 
+/* Růžový box změny výuky / zrušení – povolení zalamování textu a automatické výšky */
 div.rozvrhItemLineNekonaSe,
 div.rozvrhItemLineNekonaSe[style] {
-    background: var(--s-red) !important;
-    border-radius: var(--s-r-xs) !important;
-    padding: 2px 3px !important;
-    margin: 2px !important;
-    text-align: center !important;
-    white-space: normal !important;
+	background: var(--s-red) !important;
+	border-radius: var(--s-r-xs) !important;
+	padding: 3px 4px !important;
+	margin: 2px !important;
+	text-align: center !important;
+	white-space: normal !important;
+	height: auto !important;
+	max-height: none !important;
+	overflow: visible !important;
 }
 
 div.rozvrhItemLineNekonaSe span {
-    color: var(--s-crust) !important;
-    font-weight: 800 !important;
-    font-size: 0.65rem !important;
-    line-height: 1.1 !important;
-    display: block !important;
+	color: var(--s-crust) !important;
+	font-weight: 800 !important;
+	font-size: 0.65rem !important;
+	line-height: 1.15 !important;
+	display: block !important;
+	white-space: normal !important;
+	overflow-wrap: anywhere !important;
+	height: auto !important;
+	overflow: visible !important;
 }
 
 a.xg_stag_a_rozvrhToolB,
@@ -1592,17 +1611,53 @@ a.xg_stag_a_rozvrhToolB,
 .xg_tooltip_right,
 .xg_tooltip_right-b,
 .xg_tooltip_right-c,
-[style*="bubble_yellow"] {
-    background-image: none !important;
-    padding-right: 0 !important;
-    padding-left: 0 !important;
+[style *= "bubble_yellow"] {
+	background-image: none !important;
+	padding-right: 0 !important;
+	padding-left: 0 !important;
 }
-/* 
-a.xg_stag_a_rozvrhToolB[style*="comment.png"],
-.rozvrhRoakPredmSpacer img[src*="ico_ra_small"],
-.rozvrhRoakMistnostSpacer img[src*="ucitel"] {
-    display: none !important;
-} */
+
+/* Vykreslení textu komentáře z atributu title i oldtitle */
+a.xg_stag_a_rozvrhToolB[title]:not([title = ""]),
+a.xg_stag_a_rozvrhToolB[oldtitle]:not([oldtitle = ""]) {
+	background: none !important;
+	font-size: 0 !important;
+	line-height: 1.15 !important;
+	text-decoration: none !important;
+	display: block !important;
+	width: auto !important;
+	height: auto !important;
+	min-width: 0 !important;
+	min-height: 0 !important;
+	overflow: visible !important;
+	text-indent: 0 !important;
+	margin-top: 1px !important;
+}
+
+a.xg_stag_a_rozvrhToolB[title]:not([title = ""])::after {
+	content: attr(title) !important;
+}
+
+a.xg_stag_a_rozvrhToolB[oldtitle]:not([oldtitle = ""])::after {
+	content: attr(oldtitle) !important;
+}
+
+a.xg_stag_a_rozvrhToolB[title]:not([title = ""])::after,
+a.xg_stag_a_rozvrhToolB[oldtitle]:not([oldtitle = ""])::after {
+	display: block !important;
+	font-size: 0.65rem !important;
+	font-weight: 800 !important;
+	line-height: 1.15 !important;
+	color: var(--s-peach) !important;
+	white-space: normal !important;
+	overflow-wrap: anywhere !important;
+	text-align: center !important;
+}
+
+/* Pokud je komentář uvnitř růžového boxu (rozvrhItemLineNekonaSe), použije tmavé písmo jako "Cancelled" */
+div.rozvrhItemLineNekonaSe a.xg_stag_a_rozvrhToolB::after {
+	color: var(--s-crust) !important;
+}
 }
 
 @-moz-document url-prefix("https://portal.ujep.cz/") {
