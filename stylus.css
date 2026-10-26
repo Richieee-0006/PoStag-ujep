@@ -1319,17 +1319,30 @@ div.list-group-item > div[style*="float: right"] {
 
 @-moz-document url-prefix("https://portal.ujep.cz/") {
 /* === 5. ROZVRH HODIN === */
+
+/* Kontejnery rozvrhu – zapnutí horizontálního scrollování */
+div:has(> table.rozvrhMainTable),
+td:has(> table.rozvrhMainTable),
+div:has(> table.gpv_rozvrhMainTable),
+#rozvrhMain > table > tbody > tr > td:last-child,
+div.gpv_rozvrh_coat {
+    overflow-x: auto !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+    padding-bottom: 8px !important;
+}
+
 table.rozvrhMainTable,
 table.gpv_rozvrhMainTable {
     width: 100% !important;
-    min-width: 860px !important;
+    min-width: 1650px !important; /* Zvětšeno z 860px – rozšíří 1h bloky a vynutí scrollbar */
     table-layout: fixed !important;
     background: var(--s-mantle) !important;
     border-collapse: collapse !important;
     border: 1px solid var(--s-s0) !important;
     border-radius: var(--s-r-lg) !important;
     box-shadow: var(--s-sh) !important;
-    margin-bottom: 14px !important;
+    margin-bottom: 6px !important;
 }
 
 tr.rozvrhCasRadaCellspacer {
@@ -1363,11 +1376,16 @@ table.gpv_rozvrhMainTable td.rozvrhLeftHeadingDenName {
     padding: 8px 2px !important;
     text-align: center !important;
     vertical-align: middle !important;
+    /* Připnutí sloupce se dny (Po–Pá) při scrollování do strany */
+    position: sticky !important;
+    left: 0 !important;
+    z-index: 3 !important;
+    box-shadow: 2px 0 6px rgba(0, 0, 0, 0.45) !important;
 }
 
-/* Zvýraznění aktuálního dne (#fffbb5) */
+/* Zvýraznění aktuálního dne (#fffbb5) – neprůhledné pozadí kvůli sticky sloupci */
 td.rozvrhLeftHeadingDenName[style*="fffbb5" i] {
-    background: rgba(249, 226, 175, 0.14) !important;
+    background: color-mix(in srgb, var(--s-yellow) 16%, var(--s-crust)) !important;
     color: var(--s-yellow) !important;
     border-left: 3px solid var(--s-yellow) !important;
 }
@@ -1579,12 +1597,12 @@ a.xg_stag_a_rozvrhToolB,
     padding-right: 0 !important;
     padding-left: 0 !important;
 }
-
+/* 
 a.xg_stag_a_rozvrhToolB[style*="comment.png"],
 .rozvrhRoakPredmSpacer img[src*="ico_ra_small"],
 .rozvrhRoakMistnostSpacer img[src*="ucitel"] {
     display: none !important;
-}
+} */
 }
 
 @-moz-document url-prefix("https://portal.ujep.cz/") {
@@ -2766,7 +2784,7 @@ span.podminky_abs_predmet {
     gap: 4px !important;
 }
 
-span.podminky_abs_predmet a.xg_stag_a_rozvrhToolB {
+span.podminky_abs_predmet a.xg_stag_a_rozvrhToolB{
     display: none !important;
 }
 
@@ -2994,7 +3012,7 @@ input[type="file"]::file-selector-button {
     cursor: pointer !important;
 }
 
-input[type="file"]::file-selector-button:hover {
+input[type="file"]:hover::file-selector-button{
     background: var(--s-s1) !important;
 }
 
