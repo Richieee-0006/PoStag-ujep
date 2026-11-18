@@ -6,8 +6,6 @@
 
 Tmavý userstyle a modernizace rozhraní pro portál **IS/STAG na UJEP** (`portal.ujep.cz`).
 
----
-
 ## Přehled úprav
 
 | Oblast | Změny |
@@ -18,8 +16,6 @@ Tmavý userstyle a modernizace rozhraní pro portál **IS/STAG na UJEP** (`porta
 | **Předzápis** | 16barevná paleta akcí, odlišení bloků `A` / `B` / `C`, oprava překrývajících se tlačítek a posuvníků. |
 | **Tabulky** | Zebra řádkování, barevné stavy plateb, výsledků studia, žádostí (`S048`) a konzultací (`S110`). |
 | **Responzivita** | Přizpůsobení pro menší monitory (`< 1200px`) a transformace tabulek na karty pro mobily (`< 768px`). |
-
----
 
 ## Barevná paleta
 
@@ -35,14 +31,10 @@ Styl využívá nativní CSS proměnné definované v `:root`:
 | `--s-blue` / `--s-mauve` | `#89b4fa` / `#cba6f7` | Odkazy, primární tlačítka, nadpisy sekcí |
 | `--s-green` / `--s-yellow` / `--s-red` | `#a6e3a1` / `#f9e2af` / `#f38ba8` | Stavy, notifikace, bloky předmětů a platby |
 
----
-
 ## Instalace
 
 1. Nainstaluj rozšíření **Stylus** pro [Firefox](https://addons.mozilla.org/cs/firefox/addon/styl-us/) nebo [Chromium](https://chromewebstore.google.com/detail/stylus/clngdbkpkpeebahjckkjfobafhncgmne).
 2. Otevři [`stylus.css`](raw/main/stylus.css) v režimu **Raw** (Stylus nabídne přímou instalaci), případně zkopíruj obsah souboru do nového stylu pro URL začínající na `https://portal.ujep.cz/`.
-
----
 
 ## Konfigurace
 
