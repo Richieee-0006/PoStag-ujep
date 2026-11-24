@@ -4,7 +4,7 @@
 @homepageURL    https://github.com/Richieee-0006/PoStag-ujep
 @supportURL     https://github.com/Richieee-0006/PoStag-ujep/issues
 @updateURL      https://raw.githubusercontent.com/Richieee-0006/PoStag-ujep/main/stylus.user.css
-@version        2.3.0
+@version        2.3.1
 @description    Tmavý userstyle (Unslop, WCAG 2.1 AA, Modern Web Guidance) s přepínačem palet, akcentu a barvy odkazů pro IS/STAG na UJEP
 @author         Richieee-0006
 @license        MIT
@@ -2360,6 +2360,172 @@ div.rozvrhItemLineNekonaSe a.xg_stag_a_rozvrhToolB[oldtitle]:not([oldtitle = ""]
 	overflow-wrap: break-word !important;
 	overflow: hidden !important;
 	text-align: left !important;
+}
+
+/* Plné zobrazení dlouhé poznámky i u širších (2h+) bloků po najetí/fokusu */
+td[class *= "rozvrhRoakSkin_"]:not([colspan="10"]) div.rozvrhItemLineNekonaSe:is(:hover, :focus-within) span,
+td[class *= "rozvrhRoakSkin_"]:not([colspan="10"]) div.rozvrhItemLineNekonaSe:is(:hover, :focus-within) a.xg_stag_a_rozvrhToolB::after {
+	display: block !important;
+	-webkit-line-clamp: unset !important;
+	overflow: visible !important;
+}
+
+/* === 1-HODINOVÉ BLOKY (colspan="10"): kompaktní 1řádkový štítek + plně čitelný popover na hover/focus === */
+td[class *= "rozvrhRoakSkin_"][colspan="10"]:has(> div.rozvrhItemLineNekonaSe) {
+	overflow: visible !important;
+}
+
+td[class *= "rozvrhRoakSkin_"][colspan="10"]:has(> div.rozvrhItemLineNekonaSe) .rozvrhRoakOdDoHSpacer {
+	border-radius: var(--s-r-xs) var(--s-r-xs) 0 0 !important;
+}
+
+td[class *= "rozvrhRoakSkin_"][colspan="10"]:has(> div.rozvrhItemLineNekonaSe):not(:has(> div.rozvrhItemLineNekonaSe ~ div.rozvrhItemLineNekonaSe)) {
+	padding-bottom: 3.7rem !important;
+}
+
+td[class *= "rozvrhRoakSkin_"][colspan="10"]:has(> div.rozvrhItemLineNekonaSe):is(:hover, :focus-within) {
+	z-index: 40 !important;
+	filter: none !important;
+}
+
+td[class *= "rozvrhRoakSkin_"][colspan="10"] > div.rozvrhItemLineNekonaSe {
+	display: flex !important;
+	align-items: center !important;
+	justify-content: space-between !important;
+	gap: 2px !important;
+	height: 1.55rem !important;
+	padding: 0 4px !important;
+	margin: 3px 3px !important;
+	cursor: help !important;
+	overflow: hidden !important;
+}
+
+td[class *= "rozvrhRoakSkin_"][colspan="10"]:not(:has(> div.rozvrhItemLineNekonaSe ~ div.rozvrhItemLineNekonaSe)) > div.rozvrhItemLineNekonaSe {
+	position: absolute !important;
+	left: 3px !important;
+	right: 3px !important;
+	bottom: 2.05rem !important;
+	margin: 0 !important;
+}
+
+td[class *= "rozvrhRoakSkin_"][colspan="10"] > div.rozvrhItemLineNekonaSe::after {
+	content: "▸" !important;
+	flex: 0 0 auto !important;
+	color: var(--s-red) !important;
+	font-size: 0.72rem !important;
+	line-height: 1 !important;
+}
+
+td[class *= "rozvrhRoakSkin_"][colspan="10"] > div.rozvrhItemLineNekonaSe > span:first-of-type {
+	display: block !important;
+	-webkit-line-clamp: unset !important;
+	flex: 1 1 auto !important;
+	min-width: 0 !important;
+	white-space: nowrap !important;
+	overflow: hidden !important;
+	text-overflow: ellipsis !important;
+	font-size: 0.75rem !important;
+	font-variant-numeric: tabular-nums !important;
+	letter-spacing: -0.02em !important;
+	line-height: 1.4 !important;
+}
+
+td[class *= "rozvrhRoakSkin_"][colspan="10"] > div.rozvrhItemLineNekonaSe > span:nth-of-type(n+2),
+td[class *= "rozvrhRoakSkin_"][colspan="10"] > div.rozvrhItemLineNekonaSe > a.xg_stag_a_rozvrhToolB,
+td[class *= "rozvrhRoakSkin_"][colspan="10"] > div.rozvrhItemLineNekonaSe > a.xg_stag_a_rozvrhToolB[title]:not([title = ""]):not([title ^= "<b>"]),
+td[class *= "rozvrhRoakSkin_"][colspan="10"] > div.rozvrhItemLineNekonaSe > a.xg_stag_a_rozvrhToolB[oldtitle]:not([oldtitle = ""]):not([oldtitle ^= "<b>"]) {
+	display: none !important;
+}
+
+/* Rozbalená čitelná karta poznámky (220–270px) – neblokuje název předmětu ani učebnu nad sebou */
+td[class *= "rozvrhRoakSkin_"][colspan="10"]:not(:has(> div.rozvrhItemLineNekonaSe ~ div.rozvrhItemLineNekonaSe)):is(:hover, :focus-within) > div.rozvrhItemLineNekonaSe,
+td[class *= "rozvrhRoakSkin_"][colspan="10"] > div.rozvrhItemLineNekonaSe:is(:hover, :focus-within) {
+	position: absolute !important;
+	left: 4px !important;
+	right: auto !important;
+	top: calc(100% - 3.6rem) !important;
+	bottom: auto !important;
+	width: max-content !important;
+	min-width: 220px !important;
+	max-width: 270px !important;
+	height: auto !important;
+	max-height: none !important;
+	padding: 8px 10px !important;
+	margin: 0 !important;
+	display: flex !important;
+	flex-direction: column !important;
+	align-items: stretch !important;
+	gap: 4px !important;
+	background: var(--s-crust) !important;
+	border: 1px solid var(--s-s1) !important;
+	border-left: 3px solid var(--s-red) !important;
+	border-radius: var(--s-r-sm) !important;
+	box-shadow: 0 10px 28px rgba(0, 0, 0, 0.55) !important;
+	overflow: visible !important;
+	z-index: 60 !important;
+}
+
+/* U pravého okraje rozvrhu otevírat doleva, u posledního řádku nahoru, aby se karta nikdy neořízla */
+td[class *= "rozvrhRoakSkin_"][colspan="10"]:nth-last-child(-n+4):is(:hover, :focus-within) > div.rozvrhItemLineNekonaSe,
+td[class *= "rozvrhRoakSkin_"][colspan="10"]:nth-last-child(-n+4) > div.rozvrhItemLineNekonaSe:is(:hover, :focus-within) {
+	left: auto !important;
+	right: 4px !important;
+}
+
+table.rozvrhMainTable tbody tr:last-child td[class *= "rozvrhRoakSkin_"][colspan="10"]:is(:hover, :focus-within) > div.rozvrhItemLineNekonaSe,
+table.rozvrhMainTable tbody tr:last-child td[class *= "rozvrhRoakSkin_"][colspan="10"] > div.rozvrhItemLineNekonaSe:is(:hover, :focus-within) {
+	top: auto !important;
+	bottom: 2.05rem !important;
+}
+
+td[class *= "rozvrhRoakSkin_"][colspan="10"]:not(:has(> div.rozvrhItemLineNekonaSe ~ div.rozvrhItemLineNekonaSe)):is(:hover, :focus-within) > div.rozvrhItemLineNekonaSe::after,
+td[class *= "rozvrhRoakSkin_"][colspan="10"] > div.rozvrhItemLineNekonaSe:is(:hover, :focus-within)::after {
+	display: none !important;
+}
+
+td[class *= "rozvrhRoakSkin_"][colspan="10"]:not(:has(> div.rozvrhItemLineNekonaSe ~ div.rozvrhItemLineNekonaSe)):is(:hover, :focus-within) > div.rozvrhItemLineNekonaSe > span,
+td[class *= "rozvrhRoakSkin_"][colspan="10"] > div.rozvrhItemLineNekonaSe:is(:hover, :focus-within) > span {
+	display: block !important;
+	-webkit-line-clamp: unset !important;
+	white-space: normal !important;
+	overflow: visible !important;
+	text-overflow: clip !important;
+	overflow-wrap: break-word !important;
+	color: #fecaca !important;
+	font-size: 0.82rem !important;
+	font-weight: 500 !important;
+	letter-spacing: normal !important;
+	line-height: 1.35 !important;
+}
+
+td[class *= "rozvrhRoakSkin_"][colspan="10"]:not(:has(> div.rozvrhItemLineNekonaSe ~ div.rozvrhItemLineNekonaSe)):is(:hover, :focus-within) > div.rozvrhItemLineNekonaSe > a.xg_stag_a_rozvrhToolB,
+td[class *= "rozvrhRoakSkin_"][colspan="10"]:not(:has(> div.rozvrhItemLineNekonaSe ~ div.rozvrhItemLineNekonaSe)):is(:hover, :focus-within) > div.rozvrhItemLineNekonaSe > a.xg_stag_a_rozvrhToolB[title]:not([title = ""]):not([title ^= "<b>"]),
+td[class *= "rozvrhRoakSkin_"][colspan="10"]:not(:has(> div.rozvrhItemLineNekonaSe ~ div.rozvrhItemLineNekonaSe)):is(:hover, :focus-within) > div.rozvrhItemLineNekonaSe > a.xg_stag_a_rozvrhToolB[oldtitle]:not([oldtitle = ""]):not([oldtitle ^= "<b>"]),
+td[class *= "rozvrhRoakSkin_"][colspan="10"] > div.rozvrhItemLineNekonaSe:is(:hover, :focus-within) > a.xg_stag_a_rozvrhToolB,
+td[class *= "rozvrhRoakSkin_"][colspan="10"] > div.rozvrhItemLineNekonaSe:is(:hover, :focus-within) > a.xg_stag_a_rozvrhToolB[title]:not([title = ""]):not([title ^= "<b>"]),
+td[class *= "rozvrhRoakSkin_"][colspan="10"] > div.rozvrhItemLineNekonaSe:is(:hover, :focus-within) > a.xg_stag_a_rozvrhToolB[oldtitle]:not([oldtitle = ""]):not([oldtitle ^= "<b>"]) {
+	display: block !important;
+	pointer-events: none !important;
+	margin-top: 2px !important;
+	padding-top: 4px !important;
+	border-top: 1px solid var(--s-sub) !important;
+}
+
+td[class *= "rozvrhRoakSkin_"][colspan="10"]:not(:has(> div.rozvrhItemLineNekonaSe ~ div.rozvrhItemLineNekonaSe)):is(:hover, :focus-within) > div.rozvrhItemLineNekonaSe > a.xg_stag_a_rozvrhToolB::after,
+td[class *= "rozvrhRoakSkin_"][colspan="10"]:not(:has(> div.rozvrhItemLineNekonaSe ~ div.rozvrhItemLineNekonaSe)):is(:hover, :focus-within) > div.rozvrhItemLineNekonaSe > a.xg_stag_a_rozvrhToolB[title]:not([title = ""]):not([title ^= "<b>"])::after,
+td[class *= "rozvrhRoakSkin_"][colspan="10"]:not(:has(> div.rozvrhItemLineNekonaSe ~ div.rozvrhItemLineNekonaSe)):is(:hover, :focus-within) > div.rozvrhItemLineNekonaSe > a.xg_stag_a_rozvrhToolB[oldtitle]:not([oldtitle = ""]):not([oldtitle ^= "<b>"])::after,
+td[class *= "rozvrhRoakSkin_"][colspan="10"] > div.rozvrhItemLineNekonaSe:is(:hover, :focus-within) > a.xg_stag_a_rozvrhToolB::after,
+td[class *= "rozvrhRoakSkin_"][colspan="10"] > div.rozvrhItemLineNekonaSe:is(:hover, :focus-within) > a.xg_stag_a_rozvrhToolB[title]:not([title = ""]):not([title ^= "<b>"])::after,
+td[class *= "rozvrhRoakSkin_"][colspan="10"] > div.rozvrhItemLineNekonaSe:is(:hover, :focus-within) > a.xg_stag_a_rozvrhToolB[oldtitle]:not([oldtitle = ""]):not([oldtitle ^= "<b>"])::after {
+	display: block !important;
+	-webkit-line-clamp: unset !important;
+	white-space: normal !important;
+	overflow: visible !important;
+	overflow-wrap: break-word !important;
+	color: var(--s-txt) !important;
+	font-size: 0.82rem !important;
+	font-weight: 400 !important;
+	line-height: 1.35 !important;
 }
 }
 
