@@ -1,0 +1,25 @@
+name: Validate UserCSS
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Check UserCSS header and balanced braces
+        run: |
+          python3 - <<'EOF'
+          import pathlib, sys
+          css = pathlib.Path("stylus.user.css").read_text(encoding="utf-8")
+          for field in ("==UserStyle==", "@name", "@namespace", "@version", "==/UserStyle=="):
+              if field not in css:
+                  sys.exit(f"Missing UserCSS metadata field: {field}")
+          opens, closes = css.count("{"), css.count("}")
+          if opens != closes:
+              sys.exit(f"Unbalanced CSS braces: {opens} != {closes}")
+          print(f"OK: {opens} balanced CSS blocks")
+          EOF

@@ -1,57 +1,109 @@
+/* ==UserStyle==
+@name           PoStag-ujep (Graphite v2)
+@namespace      https://github.com/Richieee-0006/PoStag-ujep
+@homepageURL    https://github.com/Richieee-0006/PoStag-ujep
+@supportURL     https://github.com/Richieee-0006/PoStag-ujep/issues
+@version        2.0.0
+@description    Klidný tmavý userstyle (Graphite + Cobalt, WCAG 2.1 AA) a modernizace rozhraní pro portál IS/STAG na UJEP (portal.ujep.cz)
+@author         Richieee-0006
+@license        MIT
+==/UserStyle== */
+
 @-moz-document url-prefix("https://portal.ujep.cz/") {
 /* === 1. PROMĚNNÉ, RESET, TYPOGRAFIE A GLOBÁLNÍ PŘEPISY === */
 :root {
     color-scheme: dark !important;
-    --s-crust: #11111b;
-    --s-mantle: #181825;
-    --s-base: #1e1e2e;
-    --s-alt: #252636;
-    --s-s0: #313244;
-    --s-s1: #45475a;
-    --s-sub: #2b2c3f;
-    --s-alt2: #3b3d54;
-    --s-dis: #14141f;
-    --s-txt: #f0f4ff;
-    --s-sub1: #dce2f7;
-    --s-sub0: #a6adc8;
-    --s-ov: #7f849c;
-    --s-blue: #89b4fa;
-    --s-lav: #b4befe;
-    --s-mauve: #cba6f7;
-    --s-red: #f38ba8;
-    --s-green: #a6e3a1;
-    --s-yellow: #f9e2af;
-    --s-peach: #fab387;
-    --s-teal: #94e2d5;
-    --s-gl: linear-gradient(145deg, #32224d, #201730);
-    --s-glb: linear-gradient(145deg, #1c355e, #132236);
-    --s-gs: linear-gradient(145deg, #1b3d2f, #13271e);
-    --s-ge: linear-gradient(145deg, #472b1e, #2e1c15);
-    --s-rep: #3d1c33;
-    --s-fs: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
-    --s-fm: ui-monospace, "JetBrains Mono", monospace;
-    --s-r-xs: 3px;
+    --s-crust: #0f0f11;
+    --s-mantle: #141416;
+    --s-base: #19191c;
+    --s-alt: #1f1f23;
+    --s-s0: #2a2a2e;
+    --s-s1: #52525b;
+    --s-sub: rgba(237, 237, 239, 0.08);
+    --s-alt2: #34343a;
+    --s-dis: #121214;
+    --s-txt: #ededef;
+    --s-sub1: #a1a1aa;
+    --s-sub0: #a1a1aa;
+    --s-ov: #94949e;
+    --s-blue: #5b9bf8;
+    --s-lav: #7cb0fa;
+    --s-mauve: #5b9bf8;
+    --s-red: #f26469;
+    --s-green: #4cc38a;
+    --s-yellow: #f0c451;
+    --s-peach: #eb8e52;
+    --s-teal: #45b8ac;
+    --s-gl: #1b2230;
+    --s-glb: #172427;
+    --s-gs: #18251e;
+    --s-ge: #281f17;
+    --s-rep: #2b1a22;
+    --s-fs: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+    --s-fm: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+    --s-r-xs: 4px;
     --s-r-sm: 4px;
-    --s-r-md: 6px;
-    --s-r-lg: 8px;
-    --s-r-xl: 10px;
-    --s-sw: 230px;
+    --s-r-md: 8px;
+    --s-r-lg: 12px;
+    --s-r-xl: 16px;
+    --s-sw: 240px;
     --s-gap: 20px;
-    --s-mw: 1850px;
-    --s-sh: 0 4px 14px rgba(0, 0, 0, 0.35);
+    --s-mw: 1600px;
+    --s-sh: none;
+    --s-sh-sm: none;
+    --s-sh-in: inset 0 1px 0 rgba(255, 255, 255, 0.06);
+    --s-tr: 150ms cubic-bezier(0.22, 1, 0.36, 1);
     --bs-body-bg: var(--s-mantle) !important;
     --bs-body-color: var(--s-txt) !important;
     --bs-card-bg: var(--s-base) !important;
     --bs-card-color: var(--s-txt) !important;
     --bs-border-color: var(--s-s0) !important;
     --bs-link-color: var(--s-blue) !important;
-    --bs-primary-rgb: 137, 180, 250 !important;
+    --bs-primary-rgb: 91, 155, 248 !important;
 }
 
 *,
 *::before,
 *::after {
     box-sizing: border-box;
+    scrollbar-width: thin;
+    scrollbar-color: var(--s-s1) var(--s-crust);
+}
+
+::selection {
+    background: rgba(91, 155, 248, 0.28) !important;
+    color: #fff !important;
+}
+
+:where(a:any-link, button, input, select, textarea, summary, [tabindex]:not([tabindex="-1"])):focus-visible {
+    outline: 2px solid var(--s-blue) !important;
+    outline-offset: 2px !important;
+}
+
+:where(a:any-link, button, input, select, textarea, summary, [tabindex]):focus:not(:focus-visible) {
+    outline: none !important;
+}
+
+.table-scroll:focus-visible,
+div.gpv_rozvrh_coat:focus-visible,
+#PLNENI_TP_coat:focus-visible {
+    outline: 2px solid var(--s-blue) !important;
+    outline-offset: -2px !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+}
+
+@media (forced-colors: active) {
+    :where(a:any-link, button, input, select, textarea, [tabindex]:not([tabindex="-1"])):focus-visible {
+        outline: 2px solid Highlight !important;
+        outline-offset: 2px !important;
+    }
 }
 
 html,
@@ -60,6 +112,8 @@ body {
     font-size: 14px !important;
     line-height: 1.5 !important;
     text-rendering: optimizeLegibility !important;
+    -webkit-font-smoothing: antialiased !important;
+    -moz-osx-font-smoothing: grayscale !important;
 }
 
 html,
@@ -97,9 +151,13 @@ label,
 input,
 select,
 button,
-span,
+span:not(.glyphicon):not([class*="bi-"]):not([class*="fa-"]):not([class*="ui-icon"]),
 div {
     font-family: var(--s-fs);
+}
+
+.glyphicon {
+    font-family: "Glyphicons Halflings" !important;
 }
 
 .small,
@@ -171,7 +229,19 @@ a.stag_S,
 .b a {
     color: var(--s-blue) !important;
     text-decoration: none !important;
-    transition: color 0.15s ease !important;
+    transition: color var(--s-tr) !important;
+}
+
+/* WCAG 1.4.1: Odkazy uvnitř souvislého textu a smíšených buněk nesmí spoléhat pouze na barvu */
+p a:not([class*="btn"]):not(.newButton):not([class*="xg_ro_"]),
+div[id^="cpa_"] div > a:not([class*="btn"]):not(.newButton):not([class*="xg_ro_"]):not([class*="xg_stag_a_rozvrhToolB"]),
+td > a.xg_stag_a_ent,
+a[href=""],
+h4 > a:not([class*="btn"]) {
+    text-decoration: underline !important;
+    text-underline-offset: 3px !important;
+    text-decoration-thickness: 1px !important;
+    text-decoration-color: color-mix(in oklab, var(--s-blue) 65%, transparent) !important;
 }
 
 a:hover,
@@ -189,7 +259,6 @@ a.pv_a_impossible,
 a[style*="not-allowed"] {
     color: var(--s-ov) !important;
     cursor: not-allowed !important;
-    opacity: 0.65 !important;
 }
 
 h1,
@@ -205,7 +274,7 @@ h6,
 .h5,
 .h6 {
     color: var(--s-txt) !important;
-    font-weight: 600 !important;
+    font-weight: 500 !important;
 }
 
 hr {
@@ -330,8 +399,26 @@ span.dGreen {
 
 *[style*="rgb(169, 169, 169)"],
 *[style*="rgb(169,169,169)"],
-*[style*="#A9A9A9" i] {
+*[style*="#A9A9A9" i],
+*[style*="rgb(51, 51, 51)"],
+*[style*="rgb(51,51,51)"],
+*[style*="#333333" i],
+*[style*="color: #333" i],
+*[style*="color:#333" i] {
     color: var(--s-sub0) !important;
+}
+
+*[style*="rgb(0, 102, 255)"],
+*[style*="rgb(0,102,255)"],
+*[style*="#0066ff" i],
+*[style*="rgb(51, 102, 255)"],
+*[style*="rgb(51,102,255)"],
+*[style*="#3366ff" i],
+*[style*="rgb(7, 130, 193)"],
+*[style*="rgb(7,130,193)"],
+*[style*="color: blue" i],
+*[style*="color:blue" i] {
+    color: var(--s-blue) !important;
 }
 
 span[style*="#D975BC" i] {
@@ -359,9 +446,11 @@ div.app_header_center,
 .app_portlet_head_icons a img,
 img[src*="help_24.png"] {
     border: none !important;
-    filter: invert(0.88) hue-rotate(180deg) !important;
-    opacity: 0.85 !important;
-    transition: opacity 0.15s ease !important;
+    filter: invert(0.92) hue-rotate(180deg) brightness(1.08) !important;
+    mix-blend-mode: lighten !important;
+    border-radius: var(--s-r-xs) !important;
+    opacity: 0.82 !important;
+    transition: opacity var(--s-tr) !important;
 }
 
 .app_portlet_head_icons a:hover img,
@@ -409,12 +498,181 @@ div.app_header,
 header {
     background: var(--s-crust) !important;
     border-bottom: 1px solid var(--s-s0) !important;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.35) !important;
+    box-shadow: none !important;
     color: var(--s-txt) !important;
 }
 
-div.app_header {
-    padding: 10px 20px !important;
+.app_header_wrapper.hideForMobile > div.app_header {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: flex-start !important;
+    flex-wrap: wrap !important;
+    gap: 10px 24px !important;
+    max-width: var(--s-mw) !important;
+    margin: 0 auto !important;
+    padding: 10px 24px !important;
+    border: none !important;
+    box-shadow: none !important;
+    background: transparent !important;
+}
+
+.app_header_wrapper.hideForMobile > div.app_header > .clear {
+    display: none !important;
+}
+
+.app_header_wrapper.hideForMobile .app_header_center {
+    float: none !important;
+    order: 1 !important;
+    margin: 0 !important;
+}
+
+.app_header_wrapper.hideForMobile .app_header_left {
+    float: none !important;
+    order: 2 !important;
+    margin: 0 !important;
+}
+
+.app_header_wrapper.hideForMobile .app_header_right {
+    float: none !important;
+    order: 3 !important;
+    margin: 0 0 0 auto !important;
+    padding: 0 !important;
+}
+
+.app_header_wrapper.hideForMobile .app_header_right .upper {
+    display: flex !important;
+    align-items: center !important;
+    flex-wrap: wrap !important;
+    gap: 8px 12px !important;
+}
+
+.app_header_wrapper.hideForMobile .app_header_right .lower {
+    display: none !important;
+}
+
+#portal-search-form-desktop {
+    margin: 0 !important;
+    height: auto !important;
+}
+
+/* Mobilní hlavička (#myAffix) – sticky místo fixed, nikdy nepřekrývá obsah ani menu */
+#myAffix,
+#myAffix.affix {
+    position: sticky !important;
+    top: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    width: 100% !important;
+    z-index: 1030 !important;
+}
+
+#myAffix > .app_header_wrapper {
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+    padding: 0 !important;
+    margin: 0 !important;
+}
+
+#myAffix div.app_header {
+    display: flex !important;
+    flex-wrap: wrap !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    gap: 8px 10px !important;
+    padding: 8px 12px !important;
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+    min-height: 0 !important;
+}
+
+#myAffix div.app_header > .clear,
+#myAffix .app_header_right .lower {
+    display: none !important;
+}
+
+#myAffix .app_header_cell.pull-left {
+    float: none !important;
+    flex: 0 0 auto !important;
+    margin: 0 !important;
+}
+
+#myAffix .hamburgerBtn,
+#myAffix .mobileNav button {
+    margin: 0 !important;
+}
+
+#mobile_menu_display_btn,
+.b .mobileNav #mobile_menu_display_btn {
+    width: 36px !important;
+    height: 36px !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    border-radius: var(--s-r-md) !important;
+    background: var(--s-s0) !important;
+    border: 1px solid var(--s-s1) !important;
+    color: var(--s-blue) !important;
+    box-shadow: var(--s-sh-in), 0 2px 5px rgba(0, 0, 0, 0.25) !important;
+}
+
+#mobile_menu_display_btn:hover,
+#mobile_menu_display_btn:focus {
+    background: var(--s-blue) !important;
+    border-color: var(--s-blue) !important;
+    color: var(--s-crust) !important;
+}
+
+#mobile_menu_display_btn .glyphicon {
+    display: block !important;
+    width: 18px !important;
+    height: 14px !important;
+    font-size: 0 !important;
+    top: 0 !important;
+    margin: 0 !important;
+    background: linear-gradient(
+        to bottom,
+        currentColor 0%, currentColor 2px,
+        transparent 2px, transparent 6px,
+        currentColor 6px, currentColor 8px,
+        transparent 8px, transparent 12px,
+        currentColor 12px, currentColor 14px
+    ) !important;
+}
+
+#mobile_menu_display_btn .glyphicon::before {
+    content: none !important;
+}
+
+#myAffix span.app_header_center {
+    float: none !important;
+    flex: 1 1 120px !important;
+    min-width: 0 !important;
+    padding: 0 4px !important;
+    margin: 0 !important;
+    font-size: 1.02rem !important;
+    font-weight: 700 !important;
+    color: var(--s-txt) !important;
+    white-space: nowrap !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+    display: block !important;
+}
+
+#myAffix .app_header_cell.pull-right,
+#myAffix .app_header_right,
+#myAffix .app_header_right .upper {
+    display: contents !important;
+}
+
+#portal-search-form-mobile {
+    flex: 1 1 100% !important;
+    margin: 0 !important;
+    height: 32px !important;
+    text-align: left !important;
 }
 
 .app_header_center,
@@ -453,33 +711,46 @@ div.app_header {
     color: var(--s-sub1) !important;
     border: 1px solid var(--s-s0) !important;
     border-radius: var(--s-r-md) !important;
-    padding: 4px 10px !important;
-    font-size: 0.85rem !important;
+    padding: 4px 12px !important;
+    font-size: 0.86rem !important;
     font-weight: 500 !important;
     display: inline-flex !important;
     align-items: center !important;
-    gap: 4px !important;
+    gap: 6px !important;
+    box-shadow: none !important;
+    transition: background var(--s-tr), color var(--s-tr), border-color var(--s-tr) !important;
 }
 
 .app_header_right .upper a:hover {
     background: var(--s-s0) !important;
-    color: var(--s-blue) !important;
+    border-color: var(--s-s1) !important;
+    color: var(--s-txt) !important;
     text-decoration: none !important;
 }
 
 #portal-search-form-desktop > #portal-search-text,
 #portal-search-form-mobile > #portal-search-text {
-    padding-left: 36px !important;
+    padding-left: 34px !important;
     background-color: var(--s-base) !important;
     background-position: 10px center !important;
     background-size: 14px !important;
     color: var(--s-txt) !important;
     border: 1px solid var(--s-s1) !important;
-    border-radius: var(--s-r-lg) !important;
-    height: 34px !important;
-    font-size: 0.9rem !important;
+    border-radius: var(--s-r-md) !important;
+    height: 36px !important;
+    font-size: 0.88rem !important;
     width: 100% !important;
-    min-width: 210px !important;
+    min-width: 190px !important;
+    box-shadow: none !important;
+    transition: border-color var(--s-tr), background-color var(--s-tr) !important;
+}
+
+#portal-search-form-desktop > #portal-search-text:focus-visible,
+#portal-search-form-mobile > #portal-search-text:focus-visible {
+    background-color: var(--s-crust) !important;
+    border-color: var(--s-blue) !important;
+    outline: 2px solid var(--s-blue) !important;
+    outline-offset: 1px !important;
 }
 
 /* Skrytí prázdných vymezovacích lišt v BS5 Zebra šabloně */
@@ -502,7 +773,7 @@ nav.portal-top-nav {
     padding: 6px 24px !important;
     display: flex !important;
     flex-wrap: wrap !important;
-    gap: 4px !important;
+    gap: 5px !important;
     margin: 0 !important;
 }
 
@@ -513,7 +784,7 @@ nav.portal-top-nav ul.portal-top-navbar-nav {
     margin: 0 !important;
     display: flex !important;
     flex-wrap: wrap !important;
-    gap: 4px !important;
+    gap: 5px !important;
 }
 
 ul.app_menubar li {
@@ -535,6 +806,7 @@ ul.app_menubar li a,
     font-weight: 500 !important;
     border: none !important;
     display: inline-block !important;
+    transition: background var(--s-tr), color var(--s-tr), box-shadow var(--s-tr) !important;
 }
 
 ul.app_menubar li a:hover,
@@ -547,16 +819,16 @@ ul.app_menubar li a:hover,
 ul.app_menubar li.selected,
 .portal-top-navbar-nav .nav-link.active {
     background: var(--s-s0) !important;
-    color: var(--s-blue) !important;
+    color: var(--s-txt) !important;
     border-radius: var(--s-r-md) !important;
-    font-weight: 600 !important;
-    box-shadow: inset 0 -2px 0 var(--s-blue) !important;
+    font-weight: 500 !important;
+    box-shadow: inset 0 -2px 0 var(--s-blue), var(--s-sh-in) !important;
 }
 
 ul.app_menubar li.selected a {
     background: transparent !important;
-    color: var(--s-blue) !important;
-    font-weight: 600 !important;
+    color: var(--s-txt) !important;
+    font-weight: 500 !important;
 }
 
 .app_page_multi {
@@ -564,14 +836,14 @@ ul.app_menubar li.selected a {
     flex-direction: row !important;
     align-items: flex-start !important;
     gap: var(--s-gap) !important;
-    padding: 18px 24px !important;
+    padding: 20px 24px !important;
     max-width: var(--s-mw) !important;
     width: 100% !important;
     margin: 0 auto !important;
 }
 
 .app_page_single {
-    padding: 18px 24px !important;
+    padding: 20px 24px !important;
     max-width: var(--s-mw) !important;
     width: 100% !important;
     margin: 0 auto !important;
@@ -584,13 +856,15 @@ aside.side-nav,
     width: var(--s-sw) !important;
     float: none !important;
     margin: 0 !important;
-    background: var(--s-mantle) !important;
+    background: var(--s-base) !important;
     border: 1px solid var(--s-s0) !important;
     border-radius: var(--s-r-xl) !important;
-    padding: 10px !important;
-    box-shadow: var(--s-sh) !important;
+    padding: 8px !important;
+    box-shadow: none !important;
     position: sticky !important;
-    top: 15px !important;
+    top: 16px !important;
+    max-height: calc(100vh - 32px) !important;
+    overflow-y: auto !important;
     z-index: 10 !important;
 }
 
@@ -599,6 +873,10 @@ aside.side-nav,
     width: 190px !important;
     margin-right: 16px !important;
     background: var(--s-crust) !important;
+}
+
+aside.side-nav {
+    margin: 12px 0 18px 20px !important;
 }
 
 aside.side-nav .navbar {
@@ -615,7 +893,7 @@ aside.side-nav .navbar-nav,
     margin: 0 !important;
     display: flex !important;
     flex-direction: column !important;
-    gap: 3px !important;
+    gap: 2px !important;
     width: 100% !important;
     background: transparent !important;
 }
@@ -627,7 +905,7 @@ aside.side-nav .nav-item,
     padding: 0 !important;
     border: none !important;
     background: transparent !important;
-    line-height: 1.4 !important;
+    line-height: 1.35 !important;
 }
 
 .prohlizeni_portlet .prohlizeni_nav_wrapper li.empty {
@@ -642,11 +920,12 @@ aside.side-nav .nav-link,
     background: transparent !important;
     color: var(--s-sub1) !important;
     border-radius: var(--s-r-md) !important;
-    padding: 8px 12px !important;
+    padding: 6px 11px !important;
     border: none !important;
     display: block !important;
-    font-size: 0.9rem !important;
-    font-weight: 500 !important;
+    font-size: 0.93rem !important;
+    font-weight: 400 !important;
+    transition: background var(--s-tr), color var(--s-tr) !important;
 }
 
 .app_page_menu ul li a:hover,
@@ -659,7 +938,7 @@ aside.side-nav .nav-link:hover,
 
 .app_page_menu ul li.selected,
 .prohlizeni_portlet .prohlizeni_nav_wrapper li.selected {
-    background: var(--s-s0) !important;
+    background: transparent !important;
     border-radius: var(--s-r-md) !important;
 }
 
@@ -667,10 +946,11 @@ aside.side-nav .nav-link:hover,
 aside.side-nav .nav-link.active,
 .prohlizeni_portlet .prohlizeni_nav_wrapper li.selected a {
     background: var(--s-s0) !important;
-    color: var(--s-blue) !important;
-    font-weight: 600 !important;
-    border-left: 4px solid var(--s-blue) !important;
-    border-radius: 0 var(--s-r-md) var(--s-r-md) 0 !important;
+    color: var(--s-txt) !important;
+    font-weight: 500 !important;
+    border-left: 3px solid var(--s-blue) !important;
+    border-radius: var(--s-r-md) !important;
+    box-shadow: var(--s-sh-in) !important;
 }
 }
 
@@ -739,7 +1019,7 @@ div.resizeGrippie,
     border: 1px solid var(--s-s0) !important;
     border-radius: var(--s-r-xl) !important;
     margin-bottom: 24px !important;
-    box-shadow: var(--s-sh) !important;
+    box-shadow: var(--s-sh), var(--s-sh-in) !important;
     border-collapse: separate !important;
     border-spacing: 0 !important;
     overflow: visible !important;
@@ -754,7 +1034,7 @@ div.resizeGrippie,
 .portlet-header {
     background: var(--s-crust) !important;
     border-bottom: 1px solid var(--s-s0) !important;
-    padding: 12px 16px !important;
+    padding: 12px 20px !important;
     vertical-align: middle !important;
 }
 
@@ -777,8 +1057,9 @@ div.resizeGrippie,
 .app_portlet_head_title h2,
 .portlet-header .h6 {
     color: var(--s-blue) !important;
-    font-size: 1.1rem !important;
-    font-weight: 600 !important;
+    font-size: 1.08rem !important;
+    font-weight: 650 !important;
+    letter-spacing: 0.01em !important;
     margin: 0 !important;
     padding: 0 !important;
 }
@@ -789,7 +1070,7 @@ section.portlet,
 .portlet-content-with-top-nav {
     background: var(--s-base) !important;
     color: var(--s-txt) !important;
-    padding: 16px !important;
+    padding: 18px !important;
     border-color: var(--s-s0) !important;
     border-radius: 0 0 var(--s-r-xl) var(--s-r-xl) !important;
     overflow: visible !important;
@@ -799,8 +1080,8 @@ section.portlet,
 section.portlet {
     border: 1px solid var(--s-s0) !important;
     border-radius: 0 0 var(--s-r-xl) var(--s-r-xl) !important;
-    box-shadow: var(--s-sh) !important;
-    margin-bottom: 16px !important;
+    box-shadow: var(--s-sh), var(--s-sh-in) !important;
+    margin-bottom: 18px !important;
 }
 
 .ng_portletContentCoat h3,
@@ -815,10 +1096,12 @@ h3.newHeader,
     color: var(--s-mauve) !important;
     border: none !important;
     border-bottom: 1px solid var(--s-s0) !important;
-    padding: 8px 0 6px !important;
-    margin: 14px 0 10px !important;
-    font-size: 1.05rem !important;
-    font-weight: 600 !important;
+    border-left: 3px solid var(--s-mauve) !important;
+    padding: 4px 0 6px 10px !important;
+    margin: 16px 0 12px !important;
+    font-size: 1.04rem !important;
+    font-weight: 650 !important;
+    letter-spacing: 0.01em !important;
     display: block !important;
     clear: both !important;
 }
@@ -829,16 +1112,19 @@ h3.newHeader,
     align-items: center !important;
     background: var(--s-crust) !important;
     border: 1px solid var(--s-s0) !important;
+    border-left: 3px solid var(--s-blue) !important;
     border-radius: var(--s-r-md) !important;
-    padding: 8px 14px !important;
+    padding: 8px 16px !important;
     margin-bottom: 12px !important;
+    box-shadow: none !important;
     position: relative !important;
 }
 
 .prohlizeniEntitaHead_left,
 .prohlizeniEntitaHead_right,
 .prohlizeniLinkBarAffix,
-.prohlizeniEntitaHead_exp {
+.prohlizeniEntitaHead_exp,
+.prohlizeniEntitaHead_right small.pull-right {
     float: none !important;
     position: static !important;
     background: transparent !important;
@@ -847,9 +1133,25 @@ h3.newHeader,
     padding: 0 !important;
     display: inline-flex !important;
     align-items: center !important;
-    gap: 6px !important;
-    color: var(--s-mauve) !important;
-    font-weight: 600 !important;
+    gap: 8px !important;
+    color: var(--s-txt) !important;
+    font-weight: 500 !important;
+}
+
+.prohlizeniEntitaHead_right a.xg_ro_31,
+.prohlizeniEntitaHead_right a.xg_ro_21 {
+    float: none !important;
+    margin: 0 !important;
+    border-radius: var(--s-r-xs) !important;
+    filter: invert(0.9) hue-rotate(180deg) !important;
+    mix-blend-mode: lighten !important;
+    opacity: 0.85 !important;
+    transition: opacity var(--s-tr) !important;
+}
+
+.prohlizeniEntitaHead_right a.xg_ro_31:hover,
+.prohlizeniEntitaHead_right a.xg_ro_21:hover {
+    opacity: 1 !important;
 }
 
 .prohlizeniEntitaHead_exp {
@@ -892,12 +1194,15 @@ span.span_titulka {
 }
 
 div[class^="xg_portletCoat"],
+.ng_portletContentCoat,
+.ng_portletCoat,
+.cy_portletCoat,
 fieldset {
     background: var(--s-mantle) !important;
     border: 1px solid var(--s-s0) !important;
     border-radius: var(--s-r-lg) !important;
     color: var(--s-txt) !important;
-    padding: 12px !important;
+    padding: 14px 16px !important;
 }
 
 legend {
@@ -946,11 +1251,12 @@ main.z-epr-welcome {
     display: flex !important;
     flex-wrap: wrap !important;
     align-items: center !important;
-    gap: 10px 16px !important;
-    padding: 10px 14px !important;
-    background: var(--s-mantle) !important;
+    gap: 12px 16px !important;
+    padding: 12px 16px !important;
+    background: var(--s-base) !important;
     border: 1px solid var(--s-s0) !important;
     border-radius: var(--s-r-lg) !important;
+    box-shadow: none !important;
     margin: 0 !important;
     width: 100% !important;
 }
@@ -1001,37 +1307,41 @@ table.StudentInfoSubTab th {
 }
 
 #notif_opener {
-    background: rgba(243, 139, 168, 0.16) !important;
-    border: 1px solid rgba(243, 139, 168, 0.4) !important;
+    background: rgba(242, 100, 105, 0.12) !important;
+    border: 1px solid rgba(242, 100, 105, 0.35) !important;
     border-radius: var(--s-r-md) !important;
-    padding: 4px 10px !important;
+    padding: 4px 12px !important;
     display: inline-flex !important;
     align-items: center !important;
-    gap: 6px !important;
-    height: 30px !important;
+    gap: 8px !important;
+    height: 32px !important;
+    transition: background var(--s-tr), border-color var(--s-tr) !important;
 }
 
 #notif_opener.active,
 #notif_opener:hover {
-    background: rgba(243, 139, 168, 0.28) !important;
+    background: rgba(242, 100, 105, 0.2) !important;
     border-color: var(--s-red) !important;
+    box-shadow: none !important;
 }
 
 #notif_opener img {
     width: auto !important;
     height: 16px !important;
     object-fit: contain !important;
-    filter: brightness(1.35) saturate(1.2) !important;
+    filter: brightness(1.35) saturate(1.1) !important;
 }
 
 #notif_opener span.badge {
     background: var(--s-red) !important;
     color: var(--s-crust) !important;
-    font-weight: 700 !important;
-    font-size: 0.76rem !important;
+    font-family: var(--s-fm) !important;
+    font-variant-numeric: tabular-nums !important;
+    font-weight: 600 !important;
+    font-size: 11px !important;
     padding: 2px 6px !important;
-    border-radius: var(--s-r-xl) !important;
-    line-height: 1 !important;
+    border-radius: var(--s-r-xs) !important;
+    line-height: 1.2 !important;
 }
 
 a[title*="další nepřečtené oznámení"],
@@ -1346,15 +1656,29 @@ div.gpv_rozvrh_coat {
 table.rozvrhMainTable,
 table.gpv_rozvrhMainTable {
 	display: table !important;
-	width: 1650px !important;
-	min-width: 1650px !important;
+	width: 100% !important;
+	min-width: 1440px !important;
 	table-layout: fixed !important;
 	background: var(--s-mantle) !important;
 	border-collapse: collapse !important;
 	border: 1px solid var(--s-s0) !important;
 	border-radius: var(--s-r-lg) !important;
-	box-shadow: var(--s-sh) !important;
-	margin-bottom: 6px !important;
+	box-shadow: none !important;
+	margin-bottom: 8px !important;
+	font-variant-numeric: tabular-nums !important;
+}
+
+/* Oprava rozpadu sloupců v režimu Combined: skrytí prázdného oddělovače s přestřeleným colspan (500–1000) */
+table.rozvrhMainTable tbody tr:has(> td:only-child),
+table.rozvrhMainTable tr:has(> td[colspan="500"]),
+table.rozvrhMainTable tr:has(> td[colspan="700"]),
+table.rozvrhMainTable tr:has(> td[colspan="999"]),
+table.rozvrhMainTable tr:has(> td[colspan="1000"]) {
+	display: none !important;
+}
+
+table.rozvrhMainTable tbody tr:has(> td:only-child) + tr > td {
+	border-top: 2px solid var(--s-s1) !important;
 }
 
 tr.rozvrhCasRadaCellspacer {
@@ -1364,7 +1688,7 @@ tr.rozvrhCasRadaCellspacer {
 }
 
 tr.rozvrhCasRadaCellspacer td {
-	width: 0.53% !important;
+	width: 0.55% !important;
 	height: 0 !important;
 	padding: 0 !important;
 	margin: 0 !important;
@@ -1375,34 +1699,50 @@ tr.rozvrhCasRadaCellspacer td {
 }
 
 table.rozvrhMainTable thead tr:first-child th:first-child,
+table.gpv_rozvrhMainTable thead tr:first-child th:first-child,
+table.gpv_rozvrhMainTable tr:first-child > th:first-child,
 td.rozvrhLeftHeadingDenName,
 table.gpv_rozvrhMainTable td.rozvrhLeftHeadingDenName {
-	width: 46px !important;
-	min-width: 46px !important;
-	max-width: 46px !important;
+	width: 80px !important;
+	min-width: 80px !important;
+	max-width: 80px !important;
 	background: var(--s-crust) !important;
-	color: var(--s-blue) !important;
+	color: var(--s-txt) !important;
 	border: 1px solid var(--s-s0) !important;
-	font-weight: 700 !important;
-	font-size: 0.88rem !important;
-	padding: 8px 2px !important;
-	text-align: center !important;
+	font-weight: 500 !important;
+	font-size: 12px !important;
+	line-height: 1.3 !important;
+	padding: 8px 6px !important;
+	text-align: left !important;
 	vertical-align: middle !important;
 	position: sticky !important;
 	left: 0 !important;
 	z-index: 3 !important;
-	box-shadow: 2px 0 6px rgba(0, 0, 0, 0.45) !important;
+	box-shadow: 1px 0 0 var(--s-s0) !important;
+}
+
+/* Explicitní šířky přímo na prvním řádku hlavičky (table-layout: fixed počítá šířky výhradně z row[0]) */
+table.rozvrhMainTable thead tr:first-child th.rozvrhCasRadaHodina,
+table.gpv_rozvrhMainTable thead tr:first-child th.rozvrhCasRadaHodina {
+	width: calc((100% - 80px) * 10 / 182) !important;
+}
+
+table.rozvrhMainTable thead tr:first-child th.rozvrhCasRadaPrestavka[colspan="2"],
+table.rozvrhMainTable thead tr:first-child td.rozvrhCasRadaEnding,
+table.gpv_rozvrhMainTable thead tr:first-child th.rozvrhCasRadaPrestavka[colspan="2"],
+table.gpv_rozvrhMainTable thead tr:first-child td.rozvrhCasRadaEnding {
+	width: calc((100% - 80px) * 2 / 182) !important;
 }
 
 /* Zvýraznění aktuálního dne (#fffbb5) */
 td.rozvrhLeftHeadingDenName[style *= "fffbb5" i] {
-	background: color-mix(in srgb, var(--s-yellow) 16%, var(--s-crust)) !important;
-	color: var(--s-yellow) !important;
-	border-left: 3px solid var(--s-yellow) !important;
+	background: color-mix(in oklab, var(--s-blue) 14%, var(--s-crust)) !important;
+	color: var(--s-blue) !important;
+	border-left: 3px solid var(--s-blue) !important;
 }
 
 td.rozvrhVolno[style *= "fffbb5" i] {
-	background: rgba(249, 226, 175, 0.04) !important;
+	background: rgba(91, 155, 248, 0.03) !important;
 }
 
 .rozvrhCasRadaHodina,
@@ -1413,7 +1753,7 @@ table.gpv_rozvrhMainTable th.rozvrhCasRadaPrestavka {
 	background: var(--s-crust) !important;
 	color: var(--s-sub1) !important;
 	border: 1px solid var(--s-s0) !important;
-	padding: 3px 2px !important;
+	padding: 4px 4px !important;
 	vertical-align: middle !important;
 	overflow: hidden !important;
 }
@@ -1427,29 +1767,31 @@ table.gpv_rozvrhMainTable th.rozvrhCasRadaPrestavka {
 	float: none !important;
 	clear: both !important;
 	display: block !important;
+	font-family: var(--s-fm) !important;
+	font-variant-numeric: tabular-nums !important;
 }
 
 .rozvrhCasRadaZacatek {
-	font-size: 0.66rem !important;
-	color: var(--s-sub0) !important;
+	font-size: 11px !important;
+	color: var(--s-ov) !important;
 	text-align: left !important;
-	line-height: 1 !important;
+	line-height: 1.15 !important;
 }
 
 .rozvrhCasRadaCisHodiny {
-	font-size: 0.86rem !important;
-	color: var(--s-blue) !important;
-	font-weight: 700 !important;
+	font-size: 12px !important;
+	color: var(--s-txt) !important;
+	font-weight: 500 !important;
 	text-align: center !important;
 	margin: 2px 0 !important;
-	line-height: 1.1 !important;
+	line-height: 1.15 !important;
 }
 
 .rozvrhCasRadaKonec {
-	font-size: 0.66rem !important;
-	color: var(--s-sub0) !important;
+	font-size: 11px !important;
+	color: var(--s-ov) !important;
 	text-align: right !important;
-	line-height: 1 !important;
+	line-height: 1.15 !important;
 }
 
 td.rozvrhVolno,
@@ -1462,29 +1804,38 @@ table.gpv_rozvrhMainTable td.rozvrhVolno {
 td[class *= "rozvrhRoakSkin_"] {
 	padding: 0 !important;
 	vertical-align: top !important;
-	border-radius: var(--s-r-sm) !important;
+	border-radius: var(--s-r-xs) !important;
 	overflow: hidden !important;
+	box-shadow: none !important;
+	transition: background-color var(--s-tr), border-color var(--s-tr) !important;
+}
+
+td[class *= "rozvrhRoakSkin_"]:hover {
+	filter: brightness(1.08) !important;
 }
 
 td.rozvrhRoakSkin_prednaska,
 .scss-pred {
 	background: var(--s-gl) !important;
-	border: 1.5px solid var(--s-mauve) !important;
-	color: #fff !important;
+	border: 1px solid rgba(91, 155, 248, 0.24) !important;
+	border-left: 3px solid var(--s-blue) !important;
+	color: var(--s-txt) !important;
 }
 
 td.rozvrhRoakSkin_cviceni,
 .scss-cvic {
 	background: var(--s-glb) !important;
-	border: 1.5px solid var(--s-blue) !important;
-	color: #fff !important;
+	border: 1px solid rgba(69, 184, 172, 0.24) !important;
+	border-left: 3px solid var(--s-teal) !important;
+	color: var(--s-txt) !important;
 }
 
 td.rozvrhRoakSkin_seminar,
 .scss-sem {
 	background: var(--s-gs) !important;
-	border: 1.5px solid var(--s-green) !important;
-	color: #fff !important;
+	border: 1px solid rgba(76, 195, 138, 0.24) !important;
+	border-left: 3px solid var(--s-green) !important;
+	color: var(--s-txt) !important;
 }
 
 td.rozvrhRoakSkin_blokova,
@@ -1492,31 +1843,33 @@ td.rozvrhRoakSkin_zkouska,
 td.rozvrhRoakSkin_blokace_zkouska,
 td.rozvrhRoakSkin_vyuk_jedakce {
 	background: var(--s-ge) !important;
-	border: 1.5px solid var(--s-peach) !important;
-	color: #fff !important;
+	border: 1px solid rgba(235, 142, 82, 0.28) !important;
+	border-left: 3px solid var(--s-peach) !important;
+	color: var(--s-txt) !important;
 }
 
 /* Legenda pod rozvrhem – čitelný světlý text */
 div[class *= "rozvrhRoakOdDoDSpacer_"],
 span.rozvrhLegenda {
 	color: var(--s-txt) !important;
-	font-size: 0.78rem !important;
-	font-weight: 600 !important;
+	font-size: 12px !important;
+	font-weight: 500 !important;
 }
 
 td[class *= "rozvrhRoakSkin_"] > div[class *= "rozvrhRoakOdDoDSpacer_"]:has(> span.rozvrhLegenda) {
-	padding: 3px 10px !important;
+	padding: 4px 12px !important;
 }
 
 .rozvrhRoakOdDoHSpacer {
 	display: flex !important;
 	justify-content: space-between !important;
 	align-items: center !important;
-	background: rgba(0, 0, 0, 0.38) !important;
-	padding: 2px 3px !important;
-	border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important;
+	gap: 4px !important;
+	background: rgba(0, 0, 0, 0.26) !important;
+	padding: 2px 4px !important;
+	border-bottom: 1px solid var(--s-sub) !important;
 	height: auto !important;
-	min-height: 15px !important;
+	min-height: 18px !important;
 }
 
 [class *= "rozvrhRoakZacatek_"],
@@ -1525,83 +1878,105 @@ td[class *= "rozvrhRoakSkin_"] > div[class *= "rozvrhRoakOdDoDSpacer_"]:has(> sp
 	background: transparent !important;
 	padding: 0 !important;
 	color: var(--s-sub1) !important;
-	font-weight: 600 !important;
-	font-size: 0.65rem !important;
+	font-family: var(--s-fm) !important;
+	font-variant-numeric: tabular-nums !important;
+	font-weight: 400 !important;
+	font-size: 11px !important;
 }
 
+/* WCAG 1.4.1: Nebarevné rozlišení typu výuky (Přednáška / Cvičení / Seminář / Zkouška) */
+.rozvrhRoakZacatek_prednaska::before { content: "P·"; color: var(--s-blue); font-weight: 500; }
+.rozvrhRoakZacatek_cviceni::before { content: "C·"; color: var(--s-teal); font-weight: 500; }
+.rozvrhRoakZacatek_seminar::before { content: "S·"; color: var(--s-green); font-weight: 500; }
+.rozvrhRoakZacatek_zkouska::before,
+.rozvrhRoakZacatek_blokova::before { content: "Z·"; color: var(--s-peach); font-weight: 500; }
+
 .rozvrhRoakPredmSpacer {
-	padding: 3px 2px 1px !important;
-	text-align: center !important;
-	line-height: 1.15 !important;
+	padding: 4px 4px 2px !important;
+	text-align: left !important;
+	line-height: 1.2 !important;
 }
 
 .rozvrhRoakPredmSpacer a.xg_stag_a_ent_S {
-	font-size: 0.82rem !important;
-	font-weight: 800 !important;
-	color: #fff !important;
-	text-shadow: 0 1px 3px rgba(0, 0, 0, 0.7) !important;
+	font-size: 12px !important;
+	font-weight: 600 !important;
+	color: var(--s-txt) !important;
+	text-shadow: none !important;
 }
 
 .rozvrhRoakMistnostSpacer {
-	padding: 2px !important;
-	text-align: center !important;
+	padding: 2px 4px !important;
+	text-align: left !important;
+}
+
+/* U jednohodinových bloků (colspan="10") skrýt duplicitní koncový čas, aby se 12:50 neořezávalo na 12:... */
+td[colspan="10"] [class *= "rozvrhRoakKonec_"] {
+	display: none !important;
 }
 
 .rozvrhRoakMistnostSpacer a {
-	background: rgba(17, 17, 27, 0.65) !important;
-	color: var(--s-blue) !important;
-	border: 1px solid rgba(137, 180, 250, 0.35) !important;
-	border-radius: var(--s-r-sm) !important;
-	padding: 1px 4px !important;
-	font-size: 0.72rem !important;
-	font-weight: 700 !important;
+	background: var(--s-crust) !important;
+	color: var(--s-sub1) !important;
+	border: 1px solid var(--s-s0) !important;
+	border-radius: var(--s-r-xs) !important;
+	padding: 2px 5px !important;
+	font-family: var(--s-fm) !important;
+	font-variant-numeric: tabular-nums !important;
+	font-size: 11px !important;
+	font-weight: 500 !important;
+	white-space: nowrap !important;
 	display: inline-block !important;
 }
 
 .rozvrhItemLineObsazeni {
-	color: var(--s-sub0) !important;
-	font-size: 0.68rem !important;
-	font-weight: 500 !important;
-	text-align: center !important;
-	padding: 1px !important;
+	color: var(--s-ov) !important;
+	font-family: var(--s-fm) !important;
+	font-variant-numeric: tabular-nums !important;
+	font-size: 11px !important;
+	font-weight: 400 !important;
+	text-align: left !important;
+	padding: 2px 4px !important;
 }
 
 .rozvrhItemLineUcitel {
-	background: rgba(0, 0, 0, 0.28) !important;
-	color: #fff !important;
-	font-size: 0.73rem !important;
-	font-weight: 600 !important;
-	text-align: center !important;
-	padding: 2px 3px !important;
+	background: rgba(0, 0, 0, 0.2) !important;
+	color: var(--s-sub1) !important;
+	font-size: 11px !important;
+	font-weight: 500 !important;
+	text-align: left !important;
+	padding: 2px 4px !important;
 	margin-top: 2px !important;
+	white-space: nowrap !important;
 	overflow: hidden !important;
 	text-overflow: ellipsis !important;
 }
 
-/* Růžový box změny výuky / zrušení – povolení zalamování textu a automatické výšky */
+/* Kompaktní upozornění změny / zrušení výuky – max 2 řádky místo 800px svislého pásu */
 div.rozvrhItemLineNekonaSe,
 div.rozvrhItemLineNekonaSe[style] {
-	background: var(--s-red) !important;
+	background: rgba(242, 100, 105, 0.16) !important;
+	border: 1px solid rgba(242, 100, 105, 0.36) !important;
 	border-radius: var(--s-r-xs) !important;
-	padding: 3px 4px !important;
-	margin: 2px !important;
-	text-align: center !important;
+	padding: 2px 4px !important;
+	margin: 2px 4px !important;
+	text-align: left !important;
 	white-space: normal !important;
 	height: auto !important;
 	max-height: none !important;
-	overflow: visible !important;
+	overflow: hidden !important;
 }
 
 div.rozvrhItemLineNekonaSe span {
-	color: var(--s-crust) !important;
-	font-weight: 800 !important;
-	font-size: 0.65rem !important;
-	line-height: 1.15 !important;
-	display: block !important;
+	color: #fecaca !important;
+	font-weight: 500 !important;
+	font-size: 11px !important;
+	line-height: 1.25 !important;
+	display: -webkit-box !important;
+	-webkit-line-clamp: 2 !important;
+	-webkit-box-orient: vertical !important;
 	white-space: normal !important;
-	overflow-wrap: anywhere !important;
-	height: auto !important;
-	overflow: visible !important;
+	overflow-wrap: break-word !important;
+	overflow: hidden !important;
 }
 
 a.xg_stag_a_rozvrhToolB,
@@ -1615,11 +1990,29 @@ a.xg_stag_a_rozvrhToolB,
 	background-image: none !important;
 	padding-right: 0 !important;
 	padding-left: 0 !important;
+	font-size: 11px !important;
 }
 
-/* Vykreslení textu komentáře z atributu title i oldtitle */
-a.xg_stag_a_rozvrhToolB[title]:not([title = ""]),
-a.xg_stag_a_rozvrhToolB[oldtitle]:not([oldtitle = ""]) {
+/* Skrytí obecných qTip ikon v hlavičce předmětu, které mají v title/oldtitle syrové HTML (<b>...) */
+div.rozvrhRoakPredmSpacer a.xg_stag_a_rozvrhToolB[title]:not([title = ""]),
+div.rozvrhRoakPredmSpacer a.xg_stag_a_rozvrhToolB[oldtitle]:not([oldtitle = ""]),
+.rozvrhRoakPredmSpacer a.xg_stag_a_rozvrhToolB,
+.rozvrhRoakPredmSpacer a[href*="raInfo"],
+.rozvrhRoakPredmSpacer a:has(img[src*="ico_ra_small"]),
+.rozvrhRoakMistnostSpacer a.qtip_click {
+	display: none !important;
+}
+
+div.rozvrhRoakPredmSpacer a.xg_stag_a_rozvrhToolB[title]:not([title = ""])::after,
+div.rozvrhRoakPredmSpacer a.xg_stag_a_rozvrhToolB[oldtitle]:not([oldtitle = ""])::after,
+.rozvrhRoakPredmSpacer a.xg_stag_a_rozvrhToolB::after {
+	content: none !important;
+	display: none !important;
+}
+
+/* Vykreslení čistého textu komentáře z atributu title i oldtitle (vyloučení syrového HTML začínajícího na <b>) */
+div.rozvrhItemLineNekonaSe a.xg_stag_a_rozvrhToolB[title]:not([title = ""]):not([title ^= "<b>"]),
+div.rozvrhItemLineNekonaSe a.xg_stag_a_rozvrhToolB[oldtitle]:not([oldtitle = ""]):not([oldtitle ^= "<b>"]) {
 	background: none !important;
 	font-size: 0 !important;
 	line-height: 1.15 !important;
@@ -1634,29 +2027,27 @@ a.xg_stag_a_rozvrhToolB[oldtitle]:not([oldtitle = ""]) {
 	margin-top: 1px !important;
 }
 
-a.xg_stag_a_rozvrhToolB[title]:not([title = ""])::after {
+div.rozvrhItemLineNekonaSe a.xg_stag_a_rozvrhToolB[title]:not([title = ""]):not([title ^= "<b>"])::after {
 	content: attr(title) !important;
 }
 
-a.xg_stag_a_rozvrhToolB[oldtitle]:not([oldtitle = ""])::after {
+div.rozvrhItemLineNekonaSe a.xg_stag_a_rozvrhToolB[oldtitle]:not([oldtitle = ""]):not([oldtitle ^= "<b>"])::after {
 	content: attr(oldtitle) !important;
 }
 
-a.xg_stag_a_rozvrhToolB[title]:not([title = ""])::after,
-a.xg_stag_a_rozvrhToolB[oldtitle]:not([oldtitle = ""])::after {
-	display: block !important;
-	font-size: 0.65rem !important;
-	font-weight: 800 !important;
-	line-height: 1.15 !important;
-	color: var(--s-peach) !important;
+div.rozvrhItemLineNekonaSe a.xg_stag_a_rozvrhToolB[title]:not([title = ""]):not([title ^= "<b>"])::after,
+div.rozvrhItemLineNekonaSe a.xg_stag_a_rozvrhToolB[oldtitle]:not([oldtitle = ""]):not([oldtitle ^= "<b>"])::after {
+	display: -webkit-box !important;
+	-webkit-line-clamp: 2 !important;
+	-webkit-box-orient: vertical !important;
+	font-size: 11px !important;
+	font-weight: 400 !important;
+	line-height: 1.25 !important;
+	color: #fecaca !important;
 	white-space: normal !important;
-	overflow-wrap: anywhere !important;
-	text-align: center !important;
-}
-
-/* Pokud je komentář uvnitř růžového boxu (rozvrhItemLineNekonaSe), použije tmavé písmo jako "Cancelled" */
-div.rozvrhItemLineNekonaSe a.xg_stag_a_rozvrhToolB::after {
-	color: var(--s-crust) !important;
+	overflow-wrap: break-word !important;
+	overflow: hidden !important;
+	text-align: left !important;
 }
 }
 
@@ -1676,8 +2067,9 @@ table.ng_tab_ext {
     border-collapse: collapse !important;
     border: 1px solid var(--s-s0) !important;
     border-radius: var(--s-r-lg) !important;
+    box-shadow: var(--s-sh-sm) !important;
     width: 100% !important;
-    margin-bottom: 12px !important;
+    margin-bottom: 14px !important;
 }
 
 table.podminky_abs {
@@ -1698,9 +2090,11 @@ table.gpv-spectab2 th {
     background-image: none !important;
     color: var(--s-sub1) !important;
     border: 1px solid var(--s-s0) !important;
-    padding: 9px 11px !important;
-    font-weight: 600 !important;
-    font-size: 0.85rem !important;
+    border-bottom: 1px solid var(--s-s1) !important;
+    padding: 10px 12px !important;
+    font-weight: 500 !important;
+    font-size: 0.86rem !important;
+    letter-spacing: 0.015em !important;
     text-align: left !important;
 }
 
@@ -1715,10 +2109,11 @@ table.ng_tab td,
 table.ng_tab_c td,
 table.ng_tab_ext td {
     border: 1px solid var(--s-sub) !important;
-    padding: 8px 11px !important;
+    padding: 8px 12px !important;
     color: var(--s-txt) !important;
     font-size: 0.88rem !important;
     background: var(--s-mantle) !important;
+    transition: background-color 0.12s ease !important;
 }
 
 table.table tr,
@@ -1753,7 +2148,7 @@ table.xg_tab tr:hover td,
 table.table tbody tr:hover td,
 table.podminky_abs tr:hover td,
 table.ng_tab tr:hover td {
-    background: var(--s-s0) !important;
+    background: color-mix(in srgb, var(--s-blue) 10%, var(--s-s0)) !important;
 }
 
 table.xg_tab_c td[style*="darkgray" i],
@@ -1867,7 +2262,31 @@ div.ng_fire_pale {
     border-color: var(--s-s0) !important;
 }
 
-/* Info panely (např. GDPR štít v Osobních údajích) */
+/* Info panely (např. GDPR štít v Osobních údajích) a prázdné tabulky */
+.xg_tab_empty {
+    color: var(--s-sub0) !important;
+    background: var(--s-crust) !important;
+    border: 1px dashed var(--s-s0) !important;
+    border-radius: var(--s-r-md) !important;
+    padding: 10px 14px !important;
+    margin-bottom: 12px !important;
+    font-style: italic !important;
+}
+
+.pulse {
+    box-shadow: none !important;
+    animation: none !important;
+    background: var(--s-mantle) !important;
+    border: 1px solid var(--s-s0) !important;
+    border-radius: var(--s-r-lg) !important;
+    padding: 14px 16px !important;
+    margin-top: 10px !important;
+}
+
+table.ng_form_tab.pull-left {
+    margin-right: 16px !important;
+}
+
 div.cr_info,
 div.cr_default,
 div.cr_warning,
@@ -2029,9 +2448,9 @@ div.gpv-form-block-2 input[type="submit"],
     color: var(--s-blue) !important;
     border: 1px solid var(--s-s1) !important;
     border-radius: var(--s-r-sm) !important;
-    padding: 3px 8px !important;
-    font-size: 0.78rem !important;
-    font-weight: 600 !important;
+    padding: 4px 8px !important;
+    font-size: 11px !important;
+    font-weight: 500 !important;
     height: 24px !important;
     min-height: 24px !important;
     line-height: 1 !important;
@@ -2040,15 +2459,15 @@ div.gpv-form-block-2 input[type="submit"],
 
 div.gpv-form-block-2 input[type="button"]:hover,
 div.gpv-form-block-2 input[type="submit"]:hover {
-    background: var(--s-s1) !important;
-    color: var(--s-lav) !important;
+    background: var(--s-alt2) !important;
+    color: var(--s-txt) !important;
 }
 
 div.gpv-form-block-2 select {
     padding: 2px 6px !important;
-    font-size: 0.8rem !important;
-    height: 25px !important;
-    min-height: 25px !important;
+    font-size: 11px !important;
+    height: 24px !important;
+    min-height: 24px !important;
 }
 
 /* Oprava rozhozených checkboxů a popisků v pravém sloupci gpv-form-block-2-1d */
@@ -2069,8 +2488,8 @@ div.gpv-form-block-2-1d input.gpv-fb3-input {
 }
 
 div.gpv-form-block-2-1d label.gpv-fb3-label {
-    font-size: 10.5px !important;
-    line-height: 13px !important;
+    font-size: 11px !important;
+    line-height: 14px !important;
     margin: 1px 0 1px 1px !important;
     padding-left: 4px !important;
     white-space: nowrap !important;
@@ -2143,6 +2562,12 @@ div.gpv-strom-planXpredCoat div.gpv-strom-planSkupSegmentOpenedRight {
     margin: 0 2px 0 0 !important;
 }
 
+div.gpv-strom-planXpredCoat div.gpv-strom-planCounter-A:empty,
+div.gpv-strom-planXpredCoat div.gpv-strom-planCounter-B:empty,
+div.planXpredCoat-stat:empty {
+    display: none !important;
+}
+
 div.gpv-strom-planXpredCoat div.gpv-strom-planCounter-A,
 div.gpv-strom-planXpredCoat div.gpv-strom-planCounter-B,
 div.planXpredCoat-stat {
@@ -2160,12 +2585,14 @@ div.gpv-strom-SegmentCounterHead {
     background: var(--s-crust) !important;
     background-image: none !important;
     color: var(--s-sub0) !important;
-    height: 21px !important;
-    width: 102px !important;
+    height: 22px !important;
+    width: 104px !important;
     padding: 2px 4px !important;
     float: none !important;
     text-align: right !important;
-    font-size: 10.5px !important;
+    font-family: var(--s-fm) !important;
+    font-variant-numeric: tabular-nums !important;
+    font-size: 11px !important;
     border-left: 1px solid var(--s-s0) !important;
 }
 
@@ -2204,9 +2631,9 @@ div.gpv-strom-blok > :first-child {
     background: var(--s-base) !important;
     border: 1px solid var(--s-s0) !important;
     border-radius: var(--s-r-xs) !important;
-    padding: 1px 0 1px 3px !important;
+    padding: 2px 4px !important;
     color: var(--s-txt) !important;
-    font-size: 0.76rem !important;
+    font-size: 11px !important;
     line-height: 1.25 !important;
     cursor: pointer !important;
 }
@@ -2588,6 +3015,14 @@ div.gpv-legenda-RA-nemaRozvrh {
     color: var(--s-red) !important;
 }
 
+div.gpv-legenda-RA-nemaRozvrh.blackOnYellow {
+    background-color: rgba(249, 226, 175, 0.14) !important;
+    color: var(--s-yellow) !important;
+    border: 1px solid rgba(249, 226, 175, 0.35) !important;
+    border-radius: var(--s-r-xs) !important;
+    padding: 1px 6px !important;
+}
+
 div.gpv-legenda-RA-foot {
     border-top: 1px solid var(--s-s0) !important;
     color: var(--s-sub1) !important;
@@ -2831,12 +3266,19 @@ span.podminky_abs_predmet {
     background: var(--s-alt) !important;
     border: 1px solid var(--s-alt2) !important;
     border-radius: var(--s-r-sm) !important;
-    padding: 2px 7px !important;
+    padding: 3px 8px !important;
     margin: 3px 6px 3px 0 !important;
     color: var(--s-txt) !important;
     display: inline-flex !important;
     align-items: center !important;
-    gap: 4px !important;
+    gap: 5px !important;
+    box-shadow: none !important;
+    transition: border-color var(--s-tr), background-color var(--s-tr) !important;
+}
+
+span.podminky_abs_predmet:hover {
+    background: var(--s-s0) !important;
+    border-color: var(--s-blue) !important;
 }
 
 span.podminky_abs_predmet a.xg_stag_a_rozvrhToolB{
@@ -2844,10 +3286,12 @@ span.podminky_abs_predmet a.xg_stag_a_rozvrhToolB{
 }
 
 span.podminky_abs_kredity {
-    color: var(--s-blue) !important;
-    font-weight: 700 !important;
-    border-left: 1px solid var(--s-s1) !important;
-    padding-left: 5px !important;
+    color: var(--s-sub1) !important;
+    font-family: var(--s-fm) !important;
+    font-variant-numeric: tabular-nums !important;
+    font-weight: 500 !important;
+    border-left: 1px solid var(--s-s0) !important;
+    padding-left: 6px !important;
     margin-left: 2px !important;
 }
 
@@ -2899,12 +3343,20 @@ div.prohlizeniEntitaFormMain,
     gap: 10px 16px !important;
 }
 
+/* Zploštění filtru nad rozvrhem – žádné vnořené krabičky v krabičkách */
+.rozvrhFiltrForm.form-small-inline,
+.rozvrhFiltrForm.form-small-inline .prohlizeniEntitaFormMain > .pull-left {
+    border: none !important;
+    background: transparent !important;
+    padding: 4px 0 !important;
+}
+
 .prohlizeniEntitaFormMain .pull-left {
     float: none !important;
     display: inline-flex !important;
     flex-wrap: wrap !important;
     align-items: center !important;
-    gap: 8px 12px !important;
+    gap: 8px 16px !important;
 }
 
 .form-vertical input[type="submit"] {
@@ -3009,12 +3461,13 @@ input.chosen-search-input {
     color: var(--s-txt) !important;
     border: 1px solid var(--s-s1) !important;
     border-radius: var(--s-r-md) !important;
-    padding: 5px 10px !important;
-    font-size: 0.88rem !important;
+    padding: 6px 12px !important;
+    font-size: 0.93rem !important;
     height: auto !important;
-    min-height: 32px !important;
+    min-height: 36px !important;
     line-height: 1.4 !important;
     box-shadow: none !important;
+    transition: border-color var(--s-tr), background-color var(--s-tr) !important;
 }
 
 /* Checkboxy a radiobuttony – kompaktní čtverečky/kolečka */
@@ -3135,14 +3588,14 @@ form.ng_form .chosen-container .chosen-drop {
     box-shadow: none !important;
 }
 
-input:focus,
-select:focus,
-textarea:focus,
-.form-control:focus,
-.form-select:focus {
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible,
+.form-control:focus-visible,
+.form-select:focus-visible {
     border-color: var(--s-blue) !important;
-    box-shadow: 0 0 0 3px rgba(137, 180, 250, 0.2) !important;
-    outline: none !important;
+    outline: 2px solid var(--s-blue) !important;
+    outline-offset: 1px !important;
 }
 
 /* Sekundární a obecná tlačítka UVEDENA PŘED primárními tlačítky */
@@ -3159,14 +3612,17 @@ button,
     color: var(--s-txt) !important;
     border: 1px solid var(--s-s1) !important;
     border-radius: var(--s-r-md) !important;
-    padding: 6px 12px !important;
-    font-size: 0.86rem !important;
+    padding: 6px 16px !important;
+    min-height: 36px !important;
+    font-size: 0.93rem !important;
     font-weight: 500 !important;
     cursor: pointer !important;
     display: inline-flex !important;
     align-items: center !important;
     justify-content: center !important;
-    gap: 6px !important;
+    gap: 8px !important;
+    box-shadow: var(--s-sh-in) !important;
+    transition: background var(--s-tr), border-color var(--s-tr), color var(--s-tr) !important;
 }
 
 #dCExtendedForm_id_img {
@@ -3179,11 +3635,12 @@ button:hover,
 .btn-outline-primary:hover,
 .newButton:hover,
 #dCExtendedForm_id_h:hover {
-    background: var(--s-s1) !important;
+    background: var(--s-alt2) !important;
+    border-color: var(--s-ov) !important;
     color: #fff !important;
 }
 
-/* Primární a odesílací tlačítka (modrá) */
+/* Primární a odesílací tlačítka (Unslop dark primary: off-white s tmavým textem, 15.4:1 kontrast) */
 input.submit,
 button.submit,
 button.btn-primary,
@@ -3193,14 +3650,17 @@ a.btn-primary,
 .newButton.common,
 .newButton.edit,
 input[type="submit"] {
-    background: var(--s-blue) !important;
+    background: var(--s-txt) !important;
     color: var(--s-crust) !important;
-    border: 1px solid var(--s-blue) !important;
+    border: 1px solid var(--s-txt) !important;
     border-radius: var(--s-r-md) !important;
-    padding: 6px 14px !important;
-    font-size: 0.88rem !important;
-    font-weight: 700 !important;
+    padding: 6px 16px !important;
+    min-height: 36px !important;
+    font-size: 0.93rem !important;
+    font-weight: 500 !important;
     cursor: pointer !important;
+    box-shadow: none !important;
+    transition: background var(--s-tr), border-color var(--s-tr), opacity var(--s-tr) !important;
 }
 
 input.submit:hover,
@@ -3212,8 +3672,8 @@ a.btn-primary:hover,
 .newButton.common:hover,
 .newButton.edit:hover,
 input[type="submit"]:hover {
-    background: var(--s-lav) !important;
-    border-color: var(--s-lav) !important;
+    background: #ffffff !important;
+    border-color: #ffffff !important;
     color: var(--s-crust) !important;
 }
 
@@ -3255,13 +3715,13 @@ div.prohlizeniEntitaSubdetailTabRow > .prohlizeniEntitaSubdetailCoat {
 .nav-tabs .nav-link,
 ul.prohlizeniEntitaSubdetailTabRow li,
 div.prohlizeniEntitaSubdetailTab {
-    background: var(--s-crust) !important;
+    background: transparent !important;
     color: var(--s-sub1) !important;
-    border: 1px solid var(--s-s0) !important;
-    border-bottom: none !important;
+    border: 1px solid transparent !important;
+    border-bottom: 2px solid transparent !important;
     border-radius: var(--s-r-md) var(--s-r-md) 0 0 !important;
-    padding: 7px 14px !important;
-    font-weight: 500 !important;
+    padding: 8px 16px !important;
+    font-weight: 400 !important;
     float: none !important;
     display: inline-flex !important;
     align-items: center !important;
@@ -3273,12 +3733,12 @@ ul.prohlizeniEntitaSubdetailTabRow li.current,
 div.prohlizeniEntitaSubdetailTabSelected,
 span.prohlizeniEntitaSubdetailTabSelected {
     background: var(--s-s0) !important;
-    color: var(--s-blue) !important;
-    border: 1px solid var(--s-s1) !important;
+    color: var(--s-txt) !important;
+    border: 1px solid var(--s-s0) !important;
     border-bottom: 2px solid var(--s-blue) !important;
     border-radius: var(--s-r-md) var(--s-r-md) 0 0 !important;
-    padding: 7px 14px !important;
-    font-weight: 700 !important;
+    padding: 8px 16px !important;
+    font-weight: 500 !important;
     float: none !important;
     display: inline-flex !important;
     align-items: center !important;
@@ -3287,14 +3747,22 @@ span.prohlizeniEntitaSubdetailTabSelected {
 .prohlizeniEntitaSubdetailCoat,
 .prohlizeniEntitaSubdetailPanesCoat,
 .prohlizeniEntitaSearchedCoat,
-.prohlizeniEntitaSearched {
+.prohlizeniEntitaSearched,
+.stag_tab_page_content {
     background: var(--s-mantle) !important;
     border: 1px solid var(--s-s0) !important;
     border-radius: 0 0 var(--s-r-lg) var(--s-r-lg) !important;
-    padding: 12px !important;
+    padding: 14px !important;
     color: var(--s-txt) !important;
     height: auto !important;
     overflow: visible !important;
+    display: flow-root !important;
+}
+
+.stag_tab_page_content {
+    border: none !important;
+    padding: 4px 0 0 0 !important;
+    background: transparent !important;
 }
 
 .pagination .page-link {
@@ -3574,8 +4042,6 @@ ul.ui-menu,
 }
 
 .b.mobile_menu,
-#mobile_nav_menu,
-#mobile_nav_menu .modal-content,
 #mobile_nav_menu_accordion,
 #mobile_nav_menu_accordion .panel,
 #portal-offcanvas-nav,
@@ -3585,6 +4051,162 @@ ul.ui-menu,
     background: var(--s-mantle) !important;
     color: var(--s-txt) !important;
     border-color: var(--s-s0) !important;
+}
+
+/* Mobilní modální navigace (#mobile_nav_menu) a BS5 Offcanvas (#portal-offcanvas-nav) */
+#mobile_nav_menu {
+    background: rgba(17, 17, 27, 0.78) !important;
+    backdrop-filter: blur(6px) !important;
+    padding-top: 90px !important;
+    z-index: 1025 !important;
+}
+
+#mobile_nav_menu .modal-dialog {
+    margin: 8px 12px 16px !important;
+    width: auto !important;
+    max-width: calc(100% - 24px) !important;
+}
+
+#mobile_nav_menu .modal-content {
+    background: var(--s-mantle) !important;
+    border: 1px solid var(--s-s1) !important;
+    border-radius: var(--s-r-xl) !important;
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.65) !important;
+    max-height: calc(100vh - 108px) !important;
+    display: flex !important;
+    flex-direction: column !important;
+    overflow: hidden !important;
+    margin: 0 !important;
+}
+
+#mobile_nav_menu .modal-body {
+    display: flex !important;
+    flex-direction: column !important;
+    max-height: calc(100vh - 110px) !important;
+    overflow: hidden !important;
+    padding: 0 !important;
+}
+
+#mobile_nav_menu_toplinks {
+    background: var(--s-crust) !important;
+    border-bottom: 1px solid var(--s-s0) !important;
+    padding: 10px 12px !important;
+    flex-shrink: 0 !important;
+}
+
+#mobile_nav_menu_toplinks ul {
+    display: flex !important;
+    flex-wrap: wrap !important;
+    gap: 6px !important;
+    background: transparent !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    list-style: none !important;
+}
+
+#mobile_nav_menu_toplinks ul li {
+    display: inline-flex !important;
+    margin: 0 !important;
+}
+
+#mobile_nav_menu_toplinks ul li a,
+#mobile_nav_menu_toplinks ul li a:visited,
+#mobile_nav_menu_toplinks ul li a.collapsed,
+#mobile_nav_menu_toplinks ul li a.collapsed:visited {
+    background: var(--s-base) !important;
+    color: var(--s-sub1) !important;
+    border: 1px solid var(--s-s0) !important;
+    border-radius: var(--s-r-md) !important;
+    padding: 6px 12px !important;
+    font-size: 0.85rem !important;
+    font-weight: 600 !important;
+    text-decoration: none !important;
+    transition: background var(--s-tr), color var(--s-tr), border-color var(--s-tr) !important;
+}
+
+#mobile_nav_menu_toplinks ul li a:not(.collapsed) {
+    background: rgba(137, 180, 250, 0.16) !important;
+    color: var(--s-blue) !important;
+    border-color: var(--s-blue) !important;
+    box-shadow: 0 2px 8px rgba(137, 180, 250, 0.15) !important;
+}
+
+#mobile_nav_menu_accordion {
+    padding: 10px !important;
+    overflow-y: auto !important;
+    max-height: calc(100vh - 195px) !important;
+    background: var(--s-mantle) !important;
+    border: none !important;
+    margin: 0 !important;
+}
+
+#mobile_nav_menu_accordion .panel {
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+#mobile_nav_menu_accordion .panel-collapse.in,
+#mobile_nav_menu_accordion .panel-collapse.collapsing {
+    display: grid !important;
+    grid-template-columns: repeat(auto-fill, minmax(185px, 1fr)) !important;
+    gap: 5px 8px !important;
+}
+
+#mobile_nav_menu_accordion .panel-collapse:not(.in) {
+    display: none !important;
+}
+
+#mobile_nav_menu_accordion a,
+#mobile_nav_menu_accordion a:visited,
+#mobile_nav_menu_accordion a.page {
+    background: var(--s-base) !important;
+    color: var(--s-sub1) !important;
+    border: 1px solid var(--s-s0) !important;
+    border-radius: var(--s-r-md) !important;
+    padding: 7px 11px !important;
+    margin: 0 !important;
+    font-size: 0.86rem !important;
+    font-weight: 500 !important;
+    line-height: 1.3 !important;
+    display: flex !important;
+    align-items: center !important;
+    text-decoration: none !important;
+    transition: background var(--s-tr), color var(--s-tr), border-color var(--s-tr) !important;
+}
+
+#mobile_nav_menu_accordion a:hover {
+    background: var(--s-s0) !important;
+    color: var(--s-txt) !important;
+    border-color: var(--s-s1) !important;
+}
+
+#mobile_nav_menu_accordion a.selected {
+    background: var(--s-s0) !important;
+    color: var(--s-txt) !important;
+    border: 1px solid var(--s-s0) !important;
+    border-left: 3px solid var(--s-blue) !important;
+    font-weight: 500 !important;
+}
+
+#portal-offcanvas-nav .btn-toggle-nav .btn {
+    justify-content: flex-start !important;
+    text-align: left !important;
+    background: var(--s-base) !important;
+    border: 1px solid var(--s-s0) !important;
+    color: var(--s-sub1) !important;
+    padding: 7px 12px !important;
+    box-shadow: none !important;
+}
+
+#portal-offcanvas-nav .nav-item-inner.active > .btn,
+#portal-offcanvas-nav .nav-item-inner.active > div > .btn {
+    background: rgba(137, 180, 250, 0.16) !important;
+    border-color: var(--s-blue) !important;
+    color: var(--s-blue) !important;
+    font-weight: 700 !important;
 }
 
 .b .panel-heading,
@@ -3618,6 +4240,25 @@ ul.ui-menu,
     height: auto !important;
 }
 
+.app_footer:has(> a[href*="play.google.com"]),
+.app_footer_tertiary > .app_footer {
+    display: flex !important;
+    flex-wrap: wrap !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 16px !important;
+    max-width: var(--s-mw) !important;
+    margin: 0 auto !important;
+    padding: 14px 24px !important;
+}
+
+.app_footer:has(> a[href*="play.google.com"]) > p,
+.app_footer_tertiary > .app_footer > p {
+    margin: 0 !important;
+    color: var(--s-sub0) !important;
+    font-size: 0.88rem !important;
+}
+
 .footer_header {
     display: none !important;
 }
@@ -3640,48 +4281,37 @@ ul.ui-menu,
 
 @-moz-document url-prefix("https://portal.ujep.cz/") {
 /* === 10. RESPONZIVITA (MEDIA QUERIES) === */
+/* Poloviční obrazovka / menší notebook (901px – 1200px): zachování levého bočního menu v kompaktní šířce */
 @media screen and (max-width: 1200px) {
     .app_page_multi {
-        flex-direction: column !important;
-        padding: 12px 14px !important;
+        flex-direction: row !important;
+        padding: 14px 16px !important;
         gap: 14px !important;
     }
 
     .app_page_menu,
     aside.side-nav {
-        position: static !important;
-        flex: none !important;
-        width: 100% !important;
-        padding: 8px !important;
+        position: sticky !important;
+        flex: 0 0 200px !important;
+        width: 200px !important;
+        padding: 7px !important;
     }
 
     .app_page_menu ul,
     aside.side-nav .navbar-nav {
-        flex-direction: row !important;
-        flex-wrap: wrap !important;
-        gap: 6px !important;
-    }
-
-    .app_page_menu ul li,
-    aside.side-nav .nav-item {
-        flex: 1 1 auto !important;
+        flex-direction: column !important;
+        flex-wrap: nowrap !important;
+        gap: 2px !important;
     }
 
     .app_page_menu ul li a,
     aside.side-nav .nav-link {
-        text-align: center !important;
-        padding: 6px 10px !important;
-        font-size: 0.85rem !important;
-        background: var(--s-base) !important;
-        border: 1px solid var(--s-s0) !important;
-        white-space: nowrap !important;
-    }
-
-    .app_page_menu ul li.selected a,
-    aside.side-nav .nav-link.active {
-        border-left: 1px solid var(--s-blue) !important;
-        border-bottom: 2px solid var(--s-blue) !important;
-        border-radius: var(--s-r-md) !important;
+        text-align: left !important;
+        padding: 5px 9px !important;
+        font-size: 0.84rem !important;
+        background: transparent !important;
+        border: none !important;
+        white-space: normal !important;
     }
 
     [id*="extended_info_div"] {
@@ -3690,14 +4320,101 @@ ul.ui-menu,
     }
 }
 
-@media screen and (max-width: 768px) {
-    .app_content {
-        margin-top: 56px !important;
+/* Tablet a úzké okno (769px – 960px): ještě kompaktnější levý sloupec (178px) místo rozbité zdi tlačítek */
+@media screen and (max-width: 960px) {
+    .app_page_multi {
+        padding: 10px 12px !important;
+        gap: 12px !important;
     }
 
-    .app_page_multi {
+    .app_page_menu,
+    aside.side-nav {
+        flex: 0 0 178px !important;
+        width: 178px !important;
+        padding: 6px !important;
+    }
+
+    .app_page_menu ul li a,
+    aside.side-nav .nav-link {
+        padding: 5px 8px !important;
+        font-size: 0.81rem !important;
+    }
+
+    .prohlizeni_portlet {
+        flex-direction: column !important;
+    }
+
+    .prohlizeni_portlet .prohlizeni_nav_wrapper {
+        position: static !important;
+        flex: none !important;
+        width: 100% !important;
+        max-height: none !important;
+        margin: 0 0 12px 0 !important;
+    }
+
+    .prohlizeni_portlet .prohlizeni_main_nav {
+        flex-direction: row !important;
+        flex-wrap: wrap !important;
+        gap: 4px !important;
+    }
+
+    .prohlizeni_portlet .prohlizeni_nav_wrapper li.empty {
+        display: none !important;
+    }
+}
+
+/* Mobilní zobrazení (<= 768px) */
+@media screen and (max-width: 768px) {
+    .app_content,
+    #app_content {
+        margin-top: 0 !important;
+    }
+
+    .hideForMobile,
+    .app_header_right .upper .hideForMobile,
+    .prohlizeniEntitaFormMain .pull-left.hideForMobile,
+    .prohlizeniEntitaHead_exp.hideForMobile {
+        display: none !important;
+    }
+
+    table.hideForDesktop:not(.table-reflow) {
+        display: table !important;
+        width: 100% !important;
+    }
+
+    .app_page_multi,
+    .app_page_single,
+    .portlet-container {
         padding: 8px !important;
         gap: 10px !important;
+    }
+
+    .app_portlet_frame_in {
+        margin-bottom: 14px !important;
+    }
+
+    .app_portlet_head_title,
+    .app_portlet_head_icons,
+    .portlet-header {
+        padding: 10px 14px !important;
+    }
+
+    .app_portlet_coat,
+    section.portlet,
+    .text-bg-light.portlet,
+    .portlet-content-with-top-nav,
+    div[class^="xg_portletCoat"],
+    .ng_portletContentCoat,
+    .ng_portletCoat,
+    .cy_portletCoat,
+    .prohlizeniEntitaSubdetailCoat,
+    .prohlizeniEntitaSubdetailPanesCoat {
+        padding: 10px 12px !important;
+    }
+
+    .rozvrhFiltrForm.form-small-inline .prohlizeniEntitaFormMain > .pull-left {
+        width: 100% !important;
+        padding: 6px 10px !important;
     }
 
     table.table-reflow,
@@ -3735,9 +4452,9 @@ ul.ui-menu,
     table.table-reflow tbody td::before {
         content: attr(data-header) !important;
         display: block !important;
-        font-size: 0.75rem !important;
+        font-size: 11px !important;
         color: var(--s-sub0) !important;
-        font-weight: 600 !important;
+        font-weight: 500 !important;
     }
 }
 }

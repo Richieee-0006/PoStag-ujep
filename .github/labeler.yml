@@ -1,0 +1,8 @@
+styles:
+  - '*.css'
+
+documentation:
+  - '*.md'
+
+ci:
+  - '.github/**/*'

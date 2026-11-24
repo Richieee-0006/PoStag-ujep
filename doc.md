@@ -1,4 +1,4 @@
-# Technická dokumentace (`stylus.css`)
+# Technická dokumentace (`stylus.user.css`)
 
 Detailní rozbor architektury, CSS proměnných, selektorů a oprav pro portál IS/STAG na UJEP (`https://portal.ujep.cz/`). Styl je rozdělen do 10 samostatných bloků `@-moz-document url-prefix("https://portal.ujep.cz/")`.
 
@@ -21,18 +21,18 @@ Detailní rozbor architektury, CSS proměnných, selektorů a oprav pro portál 
 
 ## 1. Proměnné, reset, typografie a globální přepisy
 
-První sekce definuje kompletní design systém v `:root`, sjednocuje vykreslování písma a řeší nativní inline styly, které IS/STAG generuje přímo do HTML atributů `style="..."`.
+První sekce definuje design systém v `:root` (Graphite + Cobalt, WCAG 2.1 AA), sjednocuje vykreslování písma, klávesnicový `:focus-visible` a přepisuje nativní inline styly generované přímo do atributů `style="..."`.
 
 ### Design tokeny (`:root`)
 
 | Kategorie | Proměnné | Hodnoty / Popis |
 | :--- | :--- | :--- |
-| **Pozadí (Catppuccin)** | `--s-crust`, `--s-mantle`, `--s-base`, `--s-alt`, `--s-dis` | Od nejtmavší `#11111b` (hlavičky, vstupy) přes `#181825` (pozadí) po `#1e1e2e` (karty) a `#14141f` (neaktivní prvky). |
-| **Povrchy a hrany** | `--s-s0`, `--s-s1`, `--s-sub`, `--s-alt2` | Odstíny `#313244` až `#45475a` pro rámečky, oddělovače a hover stavy. |
-| **Text** | `--s-txt`, `--s-sub1`, `--s-sub0`, `--s-ov` | Hlavní text `#f0f4ff`, sekundární `#dce2f7`, tlumený `#a6adc8` a neaktivní `#7f849c`. |
-| **Akcenty** | `--s-blue`, `--s-lav`, `--s-mauve`, `--s-red`, `--s-green`, `--s-yellow`, `--s-peach`, `--s-teal` | Sémantické barvy pro odkazy, stavy, bloky předmětů a notifikace. |
-| **Přechody rozvrhu** | `--s-gl`, `--s-glb`, `--s-gs`, `--s-ge` | Lineární gradienty (`145deg`) pro přednášky, cvičení, semináře a zkoušky. |
-| **Rozměry a zaoblení** | `--s-r-xs` až `--s-r-xl`, `--s-sw`, `--s-gap`, `--s-mw` | Zaoblení `3px`–`10px`, šířka sidebaru `230px`, mezera `20px`, max. šířka `1850px`. |
+| **Pozadí (Graphite)** | `--s-crust`, `--s-mantle`, `--s-base`, `--s-alt`, `--s-dis` | Neutrální škála od `#0f0f11` (hlavičky, vstupy) přes `#141416` (pozadí) po `#19191c` (karty) a `#121214` (neaktivní buňky). |
+| **Povrchy a hrany** | `--s-s0`, `--s-s1`, `--s-sub`, `--s-alt2` | Zvýšené povrchy `#2a2a2e`–`#34343a`, jemné linky `rgba(237,237,239,0.08)` a okraje vstupů `#52525b` (kontrast ≥ 3 : 1). |
+| **Text (3 role)** | `--s-txt`, `--s-sub1`, `--s-ov` | Primární `#ededef`, sekundární `#a1a1aa` a meta text `#94949e` (vše ≥ 4.5 : 1). |
+| **Akcenty** | `--s-blue`, `--s-green`, `--s-yellow`, `--s-red`, `--s-peach`, `--s-teal` | Kobaltový akcent `#5b9bf8` a tlumené sémantické barvy pro stavy a notifikace. |
+| **Povrchy rozvrhu** | `--s-gl`, `--s-glb`, `--s-gs`, `--s-ge` | Klidné tónované plochy (`#1b2230`, `#172427`, `#18251e`, `#281f17`) doplněné 3px levým proužkem a prefixem typu výuky. |
+| **Rozměry a zaoblení** | `--s-r-xs` až `--s-r-xl`, `--s-sw`, `--s-gap`, `--s-mw` | 4px mřížka (`4px`–`16px`), boční panel `240px`, mezera `20px`, max. šířka `1600px`. |
 | **Bootstrap 5 přepisy** | `--bs-body-bg`, `--bs-body-color`, `--bs-card-bg`, `--bs-border-color`, `--bs-link-color` | Přímé napojení proměnných z nové šablony STAGu (Zebra / BS5) na lokální paletu. |
 
 ### De-tabulkování hlavních obalů
