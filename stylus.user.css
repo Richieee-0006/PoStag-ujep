@@ -4,10 +4,40 @@
 @homepageURL    https://github.com/Richieee-0006/PoStag-ujep
 @supportURL     https://github.com/Richieee-0006/PoStag-ujep/issues
 @updateURL      https://raw.githubusercontent.com/Richieee-0006/PoStag-ujep/main/stylus.user.css
-@version        2.2.0
-@description    Klidný tmavý userstyle (Graphite + Warm Amber accent + Verdigris links, WCAG 2.1 AA, Modern Web Guidance) pro portál IS/STAG na UJEP (portal.ujep.cz)
+@version        2.3.0
+@description    Tmavý userstyle (Unslop, WCAG 2.1 AA, Modern Web Guidance) s přepínačem palet, akcentu a barvy odkazů pro IS/STAG na UJEP
 @author         Richieee-0006
 @license        MIT
+@preprocessor   uso
+
+@var select palette "Barevná paleta" {
+    "graphite_mono:Graphite Mono (bílý akcent + pískové odkazy)*": "--s-crust:#0f0f11;--s-mantle:#141416;--s-base:#19191c;--s-alt:#1f1f23;--s-s0:#2a2a2e;--s-s1:#64646d;--s-alt2:#34343a;--s-dis:#121214;--s-txt:#ededef;--s-sub1:#a8a8b2;--s-sub0:#a8a8b2;--s-ov:#90909a;--s-blue:#ededef;--s-lav:#ffffff;--s-link:#dfb464;--s-link-hover:#eed093;--s-primary-rgb:237,237,239;",
+    "obsidian_terracotta:Warm Obsidian (terakota akcent + šampaňské odkazy)": "--s-crust:#100f0e;--s-mantle:#151412;--s-base:#1b1917;--s-alt:#211f1c;--s-s0:#2b2824;--s-s1:#666058;--s-alt2:#36322d;--s-dis:#131210;--s-txt:#f0ebe3;--s-sub1:#aba398;--s-sub0:#aba398;--s-ov:#938b80;--s-blue:#e09658;--s-lav:#edb07b;--s-link:#e6c289;--s-link-hover:#f2d7aa;--s-primary-rgb:224,150,88;",
+    "graphite_sage:Graphite Sage (šalvěj akcent + ledové odkazy)": "--s-crust:#0f1110;--s-mantle:#141615;--s-base:#191c1b;--s-alt:#1f2321;--s-s0:#2a2f2d;--s-s1:#5f6b66;--s-alt2:#343a38;--s-dis:#121413;--s-txt:#ecf0ee;--s-sub1:#a2aca7;--s-sub0:#a2aca7;--s-ov:#8a9690;--s-blue:#6ec49c;--s-lav:#8fd4b3;--s-link:#8ab4d8;--s-link-hover:#a9cae6;--s-primary-rgb:110,196,156;",
+    "nord_slate:Nord Slate (arktická břidlice + mrazivé odkazy)": "--s-crust:#191d24;--s-mantle:#1e232b;--s-base:#242933;--s-alt:#2a303c;--s-s0:#333a47;--s-s1:#616e84;--s-alt2:#3d4656;--s-dis:#1b1f27;--s-txt:#eceff4;--s-sub1:#b0b8c5;--s-sub0:#b0b8c5;--s-ov:#939ead;--s-blue:#88c0d0;--s-lav:#a3d1de;--s-link:#96b8db;--s-link-hover:#b3cee8;--s-primary-rgb:136,192,208;",
+    "catppuccin_mocha:Catppuccin Mocha (klidná v2 bez gradientů)": "--s-crust:#11111b;--s-mantle:#181825;--s-base:#1e1e2e;--s-alt:#242536;--s-s0:#313244;--s-s1:#6c7086;--s-alt2:#3c3e54;--s-dis:#14141f;--s-txt:#cdd6f4;--s-sub1:#a6adc8;--s-sub0:#a6adc8;--s-ov:#9399b2;--s-blue:#b4befe;--s-lav:#cdd6f4;--s-link:#89dceb;--s-link-hover:#a6e6f2;--s-primary-rgb:180,190,254;",
+    "tokyo_night:Tokyo Night (hluboký inkoust + zlaté odkazy)": "--s-crust:#11121a;--s-mantle:#16161e;--s-base:#1a1b26;--s-alt:#202230;--s-s0:#292e42;--s-s1:#5c668a;--s-alt2:#343b54;--s-dis:#13141c;--s-txt:#c0caf5;--s-sub1:#9aa5ce;--s-sub0:#9aa5ce;--s-ov:#828bb8;--s-blue:#7aa2f7;--s-lav:#9db9fa;--s-link:#e0af68;--s-link-hover:#ecc68c;--s-primary-rgb:122,162,247;"
+}
+
+@var select accentColor "Vlastní barva akcentu (UI prvky)" {
+    "auto:Podle palety*": "",
+    "white:Čistě bílá (#ededef)": "--s-blue:#ededef;--s-lav:#ffffff;",
+    "amber:Teplý jantar (#dfb464)": "--s-blue:#dfb464;--s-lav:#eed093;",
+    "terracotta:Terakota (#e09658)": "--s-blue:#e09658;--s-lav:#edb07b;",
+    "sage:Šalvěj (#6ec49c)": "--s-blue:#6ec49c;--s-lav:#8fd4b3;",
+    "ice:Ledová břidlice (#8ab4d8)": "--s-blue:#8ab4d8;--s-lav:#a9cae6;",
+    "lavender:Levandule (#b4befe)": "--s-blue:#b4befe;--s-lav:#cdd6f4;"
+}
+
+@var select linkColor "Vlastní barva odkazů" {
+    "auto:Podle palety*": "",
+    "sand:Pískově zlatá (#dfb464)": "--s-link:#dfb464;--s-link-hover:#eed093;",
+    "champagne:Šampaňská (#e6c289)": "--s-link:#e6c289;--s-link-hover:#f2d7aa;",
+    "ice:Tlumená ledová (#8ab4d8)": "--s-link:#8ab4d8;--s-link-hover:#a9cae6;",
+    "sage:Jemná šalvěj (#7bc9a6)": "--s-link:#7bc9a6;--s-link-hover:#9adbc0;",
+    "teal:Klidná tyrkysová (#75c2c0)": "--s-link:#75c2c0;--s-link-hover:#9ad6d4;",
+    "sky:Sapphire (#89dceb)": "--s-link:#89dceb;--s-link-hover:#a6e6f2;"
+}
 ==/UserStyle== */
 
 @-moz-document url-prefix("https://portal.ujep.cz/") {
@@ -29,18 +59,18 @@
     --s-sub1: #a8a8b2;
     --s-sub0: #a8a8b2;
     --s-ov: #90909a;
-    /* Oddělené tokeny: UI akcent = Warm Amber (#dfb464), klikatelné odkazy = klidná Verdigris-Teal (#75c2c0, 8.5:1+) */
-    --s-blue: #dfb464;
-    --s-lav: #eed093;
-    --s-link: #75c2c0;
-    --s-link-hover: #9ad6d4;
-    --s-mauve: #ededef;
-    --s-red: #f0686c;
+    /* Výchozí Graphite Mono: neutrální bílý UI akcent + pískově zlaté odkazy bez barevného střetu */
+    --s-blue: #ededef;
+    --s-lav: #ffffff;
+    --s-link: #dfb464;
+    --s-link-hover: #eed093;
+    --s-mauve: var(--s-blue);
+    --s-red: #ff8086;
     --s-green: #52c48c;
     --s-yellow: #e5c158;
     --s-peach: #e88d52;
     --s-teal: #56b6ad;
-    /* Klidné tónované plochy rozvrhu bez křiklavé modré */
+    /* Klidné tónované plochy rozvrhu */
     --s-gl: #1c2026;
     --s-glb: #172222;
     --s-gs: #18231d;
@@ -69,7 +99,11 @@
     --bs-card-color: var(--s-txt) !important;
     --bs-border-color: var(--s-s0) !important;
     --bs-link-color: var(--s-link) !important;
-    --bs-primary-rgb: 223, 180, 100 !important;
+    --s-primary-rgb: 237, 237, 239;
+    --bs-primary-rgb: var(--s-primary-rgb) !important;
+    /*[[palette]]*/
+    /*[[accentColor]]*/
+    /*[[linkColor]]*/
 }
 
 *,
@@ -259,11 +293,21 @@ a[class*="xg_stag_a_"],
 a.stag_S,
 .b a {
     color: var(--s-link) !important;
+    text-decoration: none !important;
+    transition: color var(--s-tr), text-decoration-color var(--s-tr) !important;
+}
+
+/* WCAG 1.4.1: Podtržení jen u odkazů v souvislém textu, tabulky a navigace zůstávají čisté */
+p a:not([class*="btn"]):not(.newButton):not([class*="xg_ro_"]):not(.xg_stag_a_titulka),
+div[id^="cpa_"] > div > a:not([class*="btn"]):not(.newButton):not([class*="xg_ro_"]):not(.xg_stag_a_titulka),
+div[id^="cpa_"] div > a:not([class*="btn"]):not(.newButton):not([class*="xg_ro_"]):not([class*="xg_stag_a_rozvrhToolB"]):not(.xg_stag_a_titulka):not([class*="xg_stag_a_ent"]):not([class*="xg_stag_a_det"]),
+td > a.xg_stag_a_ent:not(:only-child),
+a[href=""],
+h4 > a:not([class*="btn"]) {
     text-decoration: underline !important;
     text-underline-offset: 3px !important;
     text-decoration-thickness: 1px !important;
-    text-decoration-color: color-mix(in oklab, var(--s-link) 45%, transparent) !important;
-    transition: color var(--s-tr), text-decoration-color var(--s-tr) !important;
+    text-decoration-color: color-mix(in oklab, var(--s-link) 55%, transparent) !important;
 }
 
 /* Navigace, tlačítka, záložky a karty odkazů bez rušivého podtržení, čistý chrom */
@@ -307,6 +351,8 @@ ul.prohlizeniEntitaSubdetailTabRow li.current a[class*="xg_stag_a_"] {
 a:hover,
 .b a:hover {
     color: var(--s-link-hover) !important;
+    text-decoration: underline !important;
+    text-underline-offset: 3px !important;
     text-decoration-color: var(--s-link-hover) !important;
 }
 
@@ -440,7 +486,7 @@ span.dGreen {
 *[style*="rgb(255,160,122)"],
 *[style*="rgb(255, 240, 245)"],
 *[style*="rgb(255,240,245)"] {
-    background-color: rgba(243, 139, 168, 0.16) !important;
+    background-color: rgba(240, 104, 108, 0.12) !important;
     color: var(--s-red) !important;
     padding: 1px 6px !important;
     border-radius: var(--s-r-xs) !important;
@@ -464,7 +510,12 @@ span.dGreen {
 *[style*="rgb(51,51,51)"],
 *[style*="#333333" i],
 *[style*="color: #333" i],
-*[style*="color:#333" i] {
+*[style*="color:#333" i],
+*[style*="color: gray" i],
+*[style*="color:gray" i],
+*[style*="color: #808080" i],
+*[style*="color:#808080" i],
+.rozcestnikPredmetyHeader td {
     color: var(--s-sub0) !important;
 }
 
@@ -1387,16 +1438,24 @@ a.xg_stag_a_titulka[href*="S2FsZW5kYXJTdGF0ZQ"] { --s-ico: url("data:image/svg+x
     padding: 8px 12px !important;
 }
 
+/* Zjemnění vnořených obalů portletů – zůstává jen jedna čistá vnější karta (.app_portlet_frame_in) */
 div[class^="xg_portletCoat"],
 .ng_portletContentCoat,
 .ng_portletCoat,
-.cy_portletCoat,
+.cy_portletCoat {
+    background: transparent !important;
+    border: none !important;
+    border-radius: 0 !important;
+    color: var(--s-txt) !important;
+    padding: 0 !important;
+}
+
 fieldset {
     background: var(--s-mantle) !important;
-    border: 1px solid var(--s-s0) !important;
-    border-radius: var(--s-r-lg) !important;
+    border: 1px solid var(--s-sub) !important;
+    border-radius: var(--s-r-md) !important;
     color: var(--s-txt) !important;
-    padding: 14px 16px !important;
+    padding: 12px 16px !important;
 }
 
 legend {
@@ -3573,18 +3632,28 @@ ul.lightbox {
 @-moz-document url-prefix("https://portal.ujep.cz/") {
 /* === 8. FORMULÁŘE, VSTUPY, TLAČÍTKA, ZÁLOŽKY A STRÁNKOVÁNÍ === */
 .prohlizeniEntitaFormMain,
+.xg_pane,
+.cy_pane {
+    background: transparent !important;
+    background-image: none !important;
+    border: none !important;
+    border-bottom: 1px solid var(--s-sub) !important;
+    border-radius: 0 !important;
+    padding: 4px 0 12px !important;
+    margin-bottom: 12px !important;
+    color: var(--s-txt) !important;
+}
+
 .prohlizeniEntitaFormExt,
 .praxeSearchForm,
-.xg_pane,
-.cy_pane,
 table.reminder_filtr_form,
 div.ng_wizard_block {
     background: var(--s-mantle) !important;
     background-image: none !important;
-    border: 1px solid var(--s-s0) !important;
-    border-radius: var(--s-r-lg) !important;
+    border: 1px solid var(--s-sub) !important;
+    border-radius: var(--s-r-md) !important;
     padding: 12px 16px !important;
-    margin-bottom: 14px !important;
+    margin-bottom: 12px !important;
     color: var(--s-txt) !important;
 }
 
@@ -4095,10 +4164,10 @@ span.prohlizeniEntitaSubdetailTabSelected {
 .prohlizeniEntitaSearchedCoat,
 .prohlizeniEntitaSearched,
 .stag_tab_page_content {
-    background: var(--s-mantle) !important;
-    border: 1px solid var(--s-s0) !important;
-    border-radius: 0 0 var(--s-r-lg) var(--s-r-lg) !important;
-    padding: 14px !important;
+    background: transparent !important;
+    border: none !important;
+    border-radius: 0 !important;
+    padding: 12px 0 0 !important;
     color: var(--s-txt) !important;
     height: auto !important;
     overflow: visible !important;
@@ -4748,13 +4817,7 @@ ul.ui-menu,
     .app_portlet_coat,
     section.portlet,
     .text-bg-light.portlet,
-    .portlet-content-with-top-nav,
-    div[class^="xg_portletCoat"],
-    .ng_portletContentCoat,
-    .ng_portletCoat,
-    .cy_portletCoat,
-    .prohlizeniEntitaSubdetailCoat,
-    .prohlizeniEntitaSubdetailPanesCoat {
+    .portlet-content-with-top-nav {
         padding: 10px 12px !important;
     }
 

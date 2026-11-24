@@ -21,19 +21,21 @@ Detailní rozbor architektury, CSS proměnných, selektorů a oprav pro portál 
 
 ## 1. Proměnné, reset, typografie a globální přepisy
 
-První sekce definuje design systém v `:root` (Graphite + Warm Amber, WCAG 2.1 AA, Modern Web Guidance), sjednocuje `rem` typografii, klávesnicový `:focus-visible`, sjednocené `appearance: none` checkboxy/radiobuttony a přepisuje nativní inline styly generované přímo do atributů `style="..."`.
+První sekce definuje `@preprocessor uso` **Theme Picker** (`@var select palette`, `accentColor`, `linkColor`) a výchozí design systém v `:root` (Graphite Mono, WCAG 2.1 AA, Modern Web Guidance). Sjednocuje `rem` typografii, klávesnicový `:focus-visible`, sjednocené `appearance: none` checkboxy/radiobuttony a přepisuje nativní inline styly generované přímo do atributů `style="..."`.
 
-### Design tokeny (`:root`)
+### Design tokeny (`:root`) a Theme Picker
 
-| Kategorie | Proměnné | Hodnoty / Popis |
+Styl obsahuje 6 připravených tmavých palet (`Graphite Mono*`, `Warm Obsidian`, `Graphite Sage`, `Nord Slate`, `Catppuccin Mocha v2`, `Tokyo Night`) a samostatné přepisy akcentu i odkazů injektované přes `/*[[palette]]*/`, `/*[[accentColor]]*/`, `/*[[linkColor]]*/` na konci bloku `:root`.
+
+| Kategorie | Proměnné | Výchozí hodnoty (Graphite Mono) |
 | :--- | :--- | :--- |
 | **Pozadí (Graphite)** | `--s-crust`, `--s-mantle`, `--s-base`, `--s-alt`, `--s-dis` | Neutrální škála od `#0f0f11` (hlavičky, vstupy) přes `#141416` (pozadí) po `#19191c` (karty) a `#121214` (neaktivní buňky). |
 | **Povrchy a hrany** | `--s-s0`, `--s-s1`, `--s-sub`, `--s-alt2` | Zvýšené povrchy `#2a2a2e`–`#34343a`, jemné linky `rgba(237,237,239,0.08)` a okraje vstupů `#64646d` (kontrast ≥ 3.2 : 1). |
 | **Text (3 role)** | `--s-txt`, `--s-sub1`, `--s-ov` | Primární `#ededef`, sekundární `#a8a8b2` a meta text `#90909a` (vše ≥ 4.5 : 1). |
-| **Akcenty a odkazy** | `--s-blue`, `--s-link`, `--s-green`, `--s-yellow`, `--s-red`, `--s-peach`, `--s-teal` | Oddělený UI akcent `#dfb464` (aktivní stavy, vstupy, `:focus-visible`) a samostatná barva odkazů `#75c2c0` (8.5 : 1+); tlumené sémantické stavy. |
-| **Povrchy rozvrhu** | `--s-gl`, `--s-glb`, `--s-gs`, `--s-ge` | Klidné tónované plochy (`#1c2026`, `#172222`, `#18231d`, `#241d16`) doplněné 3px levým proužkem a prefixem typu výuky (`P·`/`C·`/`S·`/`Z·`). |
+| **Akcenty a odkazy** | `--s-blue`, `--s-link`, `--s-green`, `--s-yellow`, `--s-red`, `--s-peach`, `--s-teal` | Oddělený monochromatický UI akcent `#ededef` (aktivní stavy, vstupy, `:focus-visible`) a samostatná písková barva odkazů `#dfb464`; podtržení jen u odkazů v souvislém textu (WCAG 1.4.1). |
+| **Povrchy rozvrhu** | `--s-gl`, `--s-glb`, `--s-gs`, `--s-ge` | Klidné tónované plochy (`#1c2026`, `#172222`, `#18231d`, `#241d16`) doplněné 3px levým proužkem, prefixem typu výuky (`P·`/`C·`/`S·`/`Z·`) a pevně ukotvenou patičkou vyučujících. |
 | **Rozměry a zaoblení** | `--s-r-xs` až `--s-r-xl`, `--s-sw`, `--s-gap`, `--s-mw` | 4px mřížka (`4px`–`16px`), boční panel `240px`, mezera `20px`, max. šířka `1600px`. |
-| **Bootstrap 5 přepisy** | `--bs-body-bg`, `--bs-body-color`, `--bs-card-bg`, `--bs-border-color`, `--bs-link-color` | Přímé napojení proměnných z nové šablony STAGu (Zebra / BS5) na lokální paletu. |
+| **Bootstrap 5 přepisy** | `--bs-body-bg`, `--bs-body-color`, `--bs-card-bg`, `--bs-border-color`, `--bs-link-color`, `--bs-primary-rgb` | Přímé napojení proměnných z nové šablony STAGu (Zebra / BS5) na aktivní paletu přes `--s-primary-rgb`. |
 
 ### De-tabulkování hlavních obalů
 STAG obaluje stránku i portlety do vnořených tabulek (`table.app_portlet_frame_out`, `table.render_container`, `tbody.column`). Tyto prvky jsou převedeny na `display: block !important; width: 100% !important;`, čímž se odstraní fixní šířky a umožní responsivní chování.
@@ -70,7 +72,7 @@ Starší moduly STAGu vkládají barvy natvrdo přes atribut `style`. Styl využ
 Definuje vzhled jednotlivých oken (portletů) a opravuje přetékání širokých tabulek.
 
 * **Hlavní obsah (`.app_page_content`, `.portlet-container`):** Nastaveno `flex: 1 1 0%; min-width: 0;`. Vlastnost `min-width: 0` je klíčová pro Flexbox – zabraňuje tomu, aby široká tabulka uvnitř portletu roztáhla kontejner mimo obrazovku.
-* **Karty portletů (`.app_portlet_frame_in`, `section.portlet`):** Zaoblené rohy (`--s-r-xl`), pozadí `--s-base` a hlavička (`.app_portlet_head_title`, `.portlet-header`) v barvě `--s-crust`.
+* **Karty portletů (`.app_portlet_frame_in`, `section.portlet`):** Zaoblené rohy (`--s-r-xl`), pozadí `--s-base` a hlavička (`.app_portlet_head_title`, `.portlet-header`) v barvě `--s-crust`. Vnořené vnitřní obaly (`xg_portletCoat`, `ng_portletContentCoat`, `prohlizeniEntitaSubdetailCoat`, `prohlizeniEntitaSubdetailPanesCoat`) jsou zploštěny bez rámečků a odsazení, takže každý portlet tvoří jednu čistou kartu.
 * **Oprava portletu Praxe (`S088`):** Kontejnery `#seznamPraxiStudenta` a `.pxTabResizer` měly natvrdo nastavenou nízkou výšku s posuvníkem. Přepsáno na `height: auto !important; max-height: none !important;` a zastaralá uchopovací lišta `.resizeGrippie` je skryta.
 * **Hlavička v Prohlížení (`.prohlizeniEntitaHead`):** Převedena z absolutního/float pozicování na `display: flex; justify-content: space-between; align-items: center;`.
 
