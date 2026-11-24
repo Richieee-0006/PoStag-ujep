@@ -21,17 +21,17 @@ Detailní rozbor architektury, CSS proměnných, selektorů a oprav pro portál 
 
 ## 1. Proměnné, reset, typografie a globální přepisy
 
-První sekce definuje design systém v `:root` (Graphite + Cobalt, WCAG 2.1 AA), sjednocuje vykreslování písma, klávesnicový `:focus-visible` a přepisuje nativní inline styly generované přímo do atributů `style="..."`.
+První sekce definuje design systém v `:root` (Graphite + Warm Amber, WCAG 2.1 AA, Modern Web Guidance), sjednocuje `rem` typografii, klávesnicový `:focus-visible`, sjednocené `appearance: none` checkboxy/radiobuttony a přepisuje nativní inline styly generované přímo do atributů `style="..."`.
 
 ### Design tokeny (`:root`)
 
 | Kategorie | Proměnné | Hodnoty / Popis |
 | :--- | :--- | :--- |
 | **Pozadí (Graphite)** | `--s-crust`, `--s-mantle`, `--s-base`, `--s-alt`, `--s-dis` | Neutrální škála od `#0f0f11` (hlavičky, vstupy) přes `#141416` (pozadí) po `#19191c` (karty) a `#121214` (neaktivní buňky). |
-| **Povrchy a hrany** | `--s-s0`, `--s-s1`, `--s-sub`, `--s-alt2` | Zvýšené povrchy `#2a2a2e`–`#34343a`, jemné linky `rgba(237,237,239,0.08)` a okraje vstupů `#52525b` (kontrast ≥ 3 : 1). |
-| **Text (3 role)** | `--s-txt`, `--s-sub1`, `--s-ov` | Primární `#ededef`, sekundární `#a1a1aa` a meta text `#94949e` (vše ≥ 4.5 : 1). |
-| **Akcenty** | `--s-blue`, `--s-green`, `--s-yellow`, `--s-red`, `--s-peach`, `--s-teal` | Kobaltový akcent `#5b9bf8` a tlumené sémantické barvy pro stavy a notifikace. |
-| **Povrchy rozvrhu** | `--s-gl`, `--s-glb`, `--s-gs`, `--s-ge` | Klidné tónované plochy (`#1b2230`, `#172427`, `#18251e`, `#281f17`) doplněné 3px levým proužkem a prefixem typu výuky. |
+| **Povrchy a hrany** | `--s-s0`, `--s-s1`, `--s-sub`, `--s-alt2` | Zvýšené povrchy `#2a2a2e`–`#34343a`, jemné linky `rgba(237,237,239,0.08)` a okraje vstupů `#64646d` (kontrast ≥ 3.2 : 1). |
+| **Text (3 role)** | `--s-txt`, `--s-sub1`, `--s-ov` | Primární `#ededef`, sekundární `#a8a8b2` a meta text `#90909a` (vše ≥ 4.5 : 1). |
+| **Akcenty** | `--s-blue`, `--s-green`, `--s-yellow`, `--s-red`, `--s-peach`, `--s-teal` | Teplý jantarový akcent `#dfb464` (odkazy > 9 : 1) a tlumené sémantické barvy pro stavy a notifikace. |
+| **Povrchy rozvrhu** | `--s-gl`, `--s-glb`, `--s-gs`, `--s-ge` | Klidné tónované plochy (`#1c2026`, `#172222`, `#18231d`, `#241d16`) doplněné 3px levým proužkem a prefixem typu výuky (`P·`/`C·`/`S·`/`Z·`). |
 | **Rozměry a zaoblení** | `--s-r-xs` až `--s-r-xl`, `--s-sw`, `--s-gap`, `--s-mw` | 4px mřížka (`4px`–`16px`), boční panel `240px`, mezera `20px`, max. šířka `1600px`. |
 | **Bootstrap 5 přepisy** | `--bs-body-bg`, `--bs-body-color`, `--bs-card-bg`, `--bs-border-color`, `--bs-link-color` | Přímé napojení proměnných z nové šablony STAGu (Zebra / BS5) na lokální paletu. |
 

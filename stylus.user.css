@@ -4,8 +4,8 @@
 @homepageURL    https://github.com/Richieee-0006/PoStag-ujep
 @supportURL     https://github.com/Richieee-0006/PoStag-ujep/issues
 @updateURL      https://raw.githubusercontent.com/Richieee-0006/PoStag-ujep/main/stylus.user.css
-@version        2.0.1
-@description    Klidný tmavý userstyle (Graphite + Cobalt, WCAG 2.1 AA) a modernizace rozhraní pro portál IS/STAG na UJEP (portal.ujep.cz)
+@version        2.1.0
+@description    Klidný tmavý userstyle (Graphite + Warm Amber, WCAG 2.1 AA, Modern Web Guidance) pro portál IS/STAG na UJEP (portal.ujep.cz)
 @author         Richieee-0006
 @license        MIT
 ==/UserStyle== */
@@ -14,32 +14,39 @@
 /* === 1. PROMĚNNÉ, RESET, TYPOGRAFIE A GLOBÁLNÍ PŘEPISY === */
 :root {
     color-scheme: dark !important;
+    accent-color: var(--s-blue);
+    scrollbar-color: var(--s-s1) var(--s-crust);
     --s-crust: #0f0f11;
     --s-mantle: #141416;
     --s-base: #19191c;
     --s-alt: #1f1f23;
     --s-s0: #2a2a2e;
-    --s-s1: #52525b;
+    --s-s1: #64646d;
     --s-sub: rgba(237, 237, 239, 0.08);
     --s-alt2: #34343a;
     --s-dis: #121214;
     --s-txt: #ededef;
-    --s-sub1: #a1a1aa;
-    --s-sub0: #a1a1aa;
-    --s-ov: #94949e;
-    --s-blue: #5b9bf8;
-    --s-lav: #7cb0fa;
-    --s-mauve: #5b9bf8;
-    --s-red: #f26469;
-    --s-green: #4cc38a;
-    --s-yellow: #f0c451;
-    --s-peach: #eb8e52;
-    --s-teal: #45b8ac;
-    --s-gl: #1b2230;
-    --s-glb: #172427;
-    --s-gs: #18251e;
-    --s-ge: #281f17;
+    --s-sub1: #a8a8b2;
+    --s-sub0: #a8a8b2;
+    --s-ov: #90909a;
+    /* Warm Champagne Amber akcent: bez modrého oslnění, 9.1:1 kontrast na kartách, vyhrazený primárně odkazům a aktivním stavům */
+    --s-blue: #dfb464;
+    --s-lav: #eed093;
+    --s-mauve: #ededef;
+    --s-red: #f0686c;
+    --s-green: #52c48c;
+    --s-yellow: #e5c158;
+    --s-peach: #e88d52;
+    --s-teal: #56b6ad;
+    /* Klidné tónované plochy rozvrhu bez křiklavé modré */
+    --s-gl: #1c2026;
+    --s-glb: #172222;
+    --s-gs: #18231d;
+    --s-ge: #241d16;
+    --s-lec-bar: #8ca4bd;
     --s-rep: #2b1a22;
+    --s-icon-check: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='3.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='20 6 9 17 4 12'/%3E%3C/svg%3E");
+    --s-icon-dash: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='4' stroke-linecap='round' stroke-linejoin='round'%3E%3Cline x1='5' y1='12' x2='19' y2='12'/%3E%3C/svg%3E");
     --s-fs: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
     --s-fm: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
     --s-r-xs: 4px;
@@ -60,20 +67,30 @@
     --bs-card-color: var(--s-txt) !important;
     --bs-border-color: var(--s-s0) !important;
     --bs-link-color: var(--s-blue) !important;
-    --bs-primary-rgb: 91, 155, 248 !important;
+    --bs-primary-rgb: 223, 180, 100 !important;
 }
 
 *,
 *::before,
 *::after {
     box-sizing: border-box;
-    scrollbar-width: thin;
-    scrollbar-color: var(--s-s1) var(--s-crust);
 }
 
 ::selection {
-    background: rgba(91, 155, 248, 0.28) !important;
+    background: rgba(223, 180, 100, 0.28) !important;
     color: #fff !important;
+}
+
+.a11y_hidden {
+    position: absolute !important;
+    clip-path: inset(50%) !important;
+    overflow: hidden !important;
+    width: 1px !important;
+    height: 1px !important;
+    margin: -1px !important;
+    padding: 0 !important;
+    border: 0 !important;
+    white-space: nowrap !important;
 }
 
 :where(a:any-link, button, input, select, textarea, summary, [tabindex]:not([tabindex="-1"])):focus-visible {
@@ -107,14 +124,27 @@ div.gpv_rozvrh_coat:focus-visible,
     }
 }
 
-html,
-body {
+html {
     color-scheme: dark !important;
-    font-size: 14px !important;
+    font-size: 87.5% !important;
     line-height: 1.5 !important;
     text-rendering: optimizeLegibility !important;
     -webkit-font-smoothing: antialiased !important;
     -moz-osx-font-smoothing: grayscale !important;
+}
+
+body {
+    color-scheme: dark !important;
+    font-size: 1rem !important;
+    line-height: 1.5 !important;
+}
+
+p {
+    text-wrap: pretty;
+}
+
+h1, h2, h3 {
+    text-wrap: balance;
 }
 
 html,
@@ -206,22 +236,20 @@ tbody.column > tr > td {
     width: 100% !important;
 }
 
-::-webkit-scrollbar {
-    width: 8px !important;
-    height: 8px !important;
-}
+@supports not (scrollbar-color: auto) {
+    ::-webkit-scrollbar {
+        width: 10px !important;
+        height: 10px !important;
+    }
 
-::-webkit-scrollbar-track {
-    background: var(--s-crust) !important;
-}
+    ::-webkit-scrollbar-track {
+        background: var(--s-crust) !important;
+    }
 
-::-webkit-scrollbar-thumb {
-    background: var(--s-s0) !important;
-    border-radius: var(--s-r-sm) !important;
-}
-
-::-webkit-scrollbar-thumb:hover {
-    background: var(--s-s1) !important;
+    ::-webkit-scrollbar-thumb {
+        background: var(--s-s1) !important;
+        border-radius: var(--s-r-sm) !important;
+    }
 }
 
 a,
@@ -229,26 +257,55 @@ a[class*="xg_stag_a_"],
 a.stag_S,
 .b a {
     color: var(--s-blue) !important;
-    text-decoration: none !important;
-    transition: color var(--s-tr) !important;
-}
-
-/* WCAG 1.4.1: Odkazy uvnitř souvislého textu a smíšených buněk nesmí spoléhat pouze na barvu */
-p a:not([class*="btn"]):not(.newButton):not([class*="xg_ro_"]),
-div[id^="cpa_"] div > a:not([class*="btn"]):not(.newButton):not([class*="xg_ro_"]):not([class*="xg_stag_a_rozvrhToolB"]),
-td > a.xg_stag_a_ent,
-a[href=""],
-h4 > a:not([class*="btn"]) {
     text-decoration: underline !important;
     text-underline-offset: 3px !important;
     text-decoration-thickness: 1px !important;
-    text-decoration-color: color-mix(in oklab, var(--s-blue) 65%, transparent) !important;
+    text-decoration-color: color-mix(in oklab, var(--s-blue) 42%, transparent) !important;
+    transition: color var(--s-tr), text-decoration-color var(--s-tr) !important;
+}
+
+/* Navigace, tlačítka, záložky a karty odkazů bez rušivého podtržení, čistý chrom */
+.app_header a,
+.app_menubar a,
+.portal-top-navbar-nav a,
+.app_page_menu a,
+aside.side-nav a,
+.prohlizeni_nav_wrapper a,
+.nav-tabs a,
+div.prohlizeniEntitaSubdetailTab a,
+div.prohlizeniEntitaSubdetailTab a[class*="xg_stag_a_"],
+div.prohlizeniEntitaSubdetailTabSelected a,
+div.prohlizeniEntitaSubdetailTabSelected a[class*="xg_stag_a_"],
+ul.prohlizeniEntitaSubdetailTabRow li a,
+ul.prohlizeniEntitaSubdetailTabRow li a[class*="xg_stag_a_"],
+a.btn,
+a.newButton,
+a[class*="xg_ro_"],
+a.xg_stag_a_titulka,
+.str_coat a,
+.pagination a {
+    text-decoration: none !important;
+}
+
+div.prohlizeniEntitaSubdetailTab a,
+div.prohlizeniEntitaSubdetailTab a[class*="xg_stag_a_"],
+ul.prohlizeniEntitaSubdetailTabRow li a,
+ul.prohlizeniEntitaSubdetailTabRow li a[class*="xg_stag_a_"] {
+    color: var(--s-sub1) !important;
+}
+
+div.prohlizeniEntitaSubdetailTab a:hover,
+div.prohlizeniEntitaSubdetailTabSelected a,
+div.prohlizeniEntitaSubdetailTabSelected a[class*="xg_stag_a_"],
+ul.prohlizeniEntitaSubdetailTabRow li.current a,
+ul.prohlizeniEntitaSubdetailTabRow li.current a[class*="xg_stag_a_"] {
+    color: var(--s-txt) !important;
 }
 
 a:hover,
 .b a:hover {
     color: var(--s-lav) !important;
-    text-decoration: underline !important;
+    text-decoration-color: var(--s-lav) !important;
 }
 
 a.nolink {
@@ -447,11 +504,19 @@ div.app_header_center,
 .app_portlet_head_icons a img,
 img[src*="help_24.png"] {
     border: none !important;
-    filter: invert(0.92) hue-rotate(180deg) brightness(1.08) !important;
+    filter: invert(0.92) grayscale(1) brightness(1.05) !important;
     mix-blend-mode: lighten !important;
     border-radius: var(--s-r-xs) !important;
-    opacity: 0.82 !important;
+    opacity: 0.72 !important;
     transition: opacity var(--s-tr) !important;
+}
+
+img.xgt_icon_legend {
+    filter: invert(0.92) hue-rotate(180deg) brightness(1.06) !important;
+    mix-blend-mode: lighten !important;
+    border-radius: var(--s-r-xs) !important;
+    vertical-align: middle !important;
+    margin-right: 4px !important;
 }
 
 .app_portlet_head_icons a:hover img,
@@ -738,8 +803,9 @@ header {
     color: var(--s-txt) !important;
     border: 1px solid var(--s-s1) !important;
     border-radius: var(--s-r-md) !important;
-    height: 36px !important;
-    font-size: 0.88rem !important;
+    min-block-size: 2.5rem !important;
+    height: auto !important;
+    font-size: 0.93rem !important;
     width: 100% !important;
     min-width: 190px !important;
     box-shadow: none !important;
@@ -1094,15 +1160,14 @@ h3.newHeader,
 .pageHeader {
     background: transparent !important;
     background-image: none !important;
-    color: var(--s-mauve) !important;
+    color: var(--s-txt) !important;
     border: none !important;
     border-bottom: 1px solid var(--s-s0) !important;
-    border-left: 3px solid var(--s-mauve) !important;
+    border-left: 3px solid var(--s-s1) !important;
     padding: 4px 0 6px 10px !important;
     margin: 16px 0 12px !important;
     font-size: 1.04rem !important;
-    font-weight: 650 !important;
-    letter-spacing: 0.01em !important;
+    font-weight: 500 !important;
     display: block !important;
     clear: both !important;
 }
@@ -1144,9 +1209,9 @@ h3.newHeader,
     float: none !important;
     margin: 0 !important;
     border-radius: var(--s-r-xs) !important;
-    filter: invert(0.9) hue-rotate(180deg) !important;
+    filter: invert(0.9) grayscale(1) brightness(1.06) !important;
     mix-blend-mode: lighten !important;
-    opacity: 0.85 !important;
+    opacity: 0.78 !important;
     transition: opacity var(--s-tr) !important;
 }
 
@@ -1157,13 +1222,13 @@ h3.newHeader,
 
 .prohlizeniEntitaHead_exp {
     color: var(--s-sub0) !important;
-    font-size: 0.85rem !important;
+    font-size: 0.86rem !important;
     margin-right: 4px !important;
 }
 
 .prohlizeniEntitaHead_left h3,
 .prohlizeniEntitaHead_left h2,
-.prohlizeniEntitaHead_left span,
+.prohlizeniEntitaHead_left span:not(.a11y_hidden),
 .prohlizeni_portlet .prohlizeniEntitaHead_left h3,
 .prohlizeni_portlet .prohlizeniEntitaHead_left h2 {
     margin: 0 !important;
@@ -1171,27 +1236,145 @@ h3.newHeader,
     border: none !important;
     background: transparent !important;
     font-size: 1.05rem !important;
-    color: var(--s-mauve) !important;
+    font-weight: 500 !important;
+    color: var(--s-txt) !important;
 }
 
-/* Úvodní rozcestník Prohlížení IS/STAG */
-.prohlizeni_start_page .row,
+/* Úvodní rozcestník Prohlížení IS/STAG – odstranění prázdných bílých čtverců titulkaIcoBack.png a náhrada za 18px Lucide ikony */
+.prohlizeni_start_page .row {
+    background: transparent !important;
+    margin: 0 -6px !important;
+}
+
+.prohlizeni_start_page .row > div {
+    padding: 0 6px 8px !important;
+}
+
+.prohlizeni_start_page .row > div:empty {
+    display: none !important;
+}
+
 .prohlizeni_start_page .row > div > div,
+.prohlizeni_start_page .row > div.right > div,
 table.xg_titulka td.left,
 table.xg_titulka td.right {
-    background-color: var(--s-base) !important;
+    background: transparent !important;
+    background-image: none !important;
+    padding: 0 !important;
+    text-align: left !important;
     color: var(--s-sub0) !important;
+}
+
+a.xg_stag_a_titulka,
+.b a.xg_stag_a_titulka {
+    --s-ico: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23a1a1aa' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M20 20a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.9a2 2 0 0 1-1.69-.9L9.6 3.9A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2Z'/%3E%3C/svg%3E");
+    display: block !important;
+    position: relative !important;
+    min-height: 60px !important;
+    padding: 12px 14px 12px 60px !important;
+    background: var(--s-base) !important;
+    border: 1px solid var(--s-s0) !important;
     border-radius: var(--s-r-md) !important;
+    color: var(--s-sub1) !important;
+    font-size: 0.86rem !important;
+    line-height: 1.4 !important;
+    text-decoration: none !important;
+    text-align: left !important;
+    transition: background-color var(--s-tr), border-color var(--s-tr) !important;
+}
+
+a.xg_stag_a_titulka > br:first-of-type {
+    display: none !important;
+}
+
+a.xg_stag_a_titulka::before {
+    content: "" !important;
+    position: absolute !important;
+    left: 12px !important;
+    top: 12px !important;
+    width: 36px !important;
+    height: 36px !important;
+    border-radius: var(--s-r-md) !important;
+    background-color: var(--s-s0) !important;
+    border: 1px solid var(--s-s1) !important;
+    background-image: var(--s-ico) !important;
+    background-repeat: no-repeat !important;
+    background-position: center !important;
+    background-size: 18px 18px !important;
+    transition: background-color var(--s-tr), border-color var(--s-tr) !important;
+}
+
+a.xg_stag_a_titulka:hover,
+.b a.xg_stag_a_titulka:hover {
+    background: var(--s-s0) !important;
+    border-color: var(--s-s1) !important;
+    color: var(--s-txt) !important;
+    text-decoration: none !important;
+}
+
+a.xg_stag_a_titulka:hover::before {
+    background-color: var(--s-alt2) !important;
+    border-color: var(--s-blue) !important;
 }
 
 span.span_titulka {
+    display: block !important;
+    color: var(--s-txt) !important;
+    font-size: 0.96rem !important;
+    font-weight: 500 !important;
+    line-height: 1.3 !important;
+    margin-bottom: 2px !important;
+}
+
+a.xg_stag_a_titulka:hover span.span_titulka {
     color: var(--s-blue) !important;
 }
+
+/* Lucide 1.5px ikony pro všech 13 sekcí Prohlížení (podle mřížky + Base64 stateClass v href) */
+.prohlizeni_start_page .row:nth-child(1) > div:nth-child(1) a.xg_stag_a_titulka,
+a.xg_stag_a_titulka[href*="LkJyb3dzZXJTdGF0ZQ"] { --s-ico: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23a1a1aa' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M21.42 10.922a1 1 0 0 0-.019-1.838L12.83 5.18a2 2 0 0 0-1.66 0L2.6 9.08a1 1 0 0 0 0 1.832l8.57 3.908a2 2 0 0 0 1.66 0z'/%3E%3Cpath d='M22 10v6'/%3E%3Cpath d='M6 12.5V16a6 3 0 0 0 12 0v-3.5'/%3E%3C/svg%3E"); }
+
+.prohlizeni_start_page .row:nth-child(1) > div:nth-child(2) a.xg_stag_a_titulka,
+a.xg_stag_a_titulka[href*="UHJlZG1ldFN0YXRl"] { --s-ico: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23a1a1aa' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M12 7v14'/%3E%3Cpath d='M3 18a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h5a4 4 0 0 1 4 4 4 4 0 0 1 4-4h5a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1h-6a3 3 0 0 0-3 3 3 3 0 0 0-3-3z'/%3E%3C/svg%3E"); }
+
+.prohlizeni_start_page .row:nth-child(2) > div:nth-child(1) a.xg_stag_a_titulka,
+a.xg_stag_a_titulka[href*="LYXRlZHJhU3RhdGU"] { --s-ico: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23a1a1aa' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 22V4a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v18Z'/%3E%3Cpath d='M6 12H4a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h2'/%3E%3Cpath d='M18 9h2a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2h-2'/%3E%3Cpath d='M10 6h4'/%3E%3Cpath d='M10 10h4'/%3E%3Cpath d='M10 14h4'/%3E%3Cpath d='M10 18h4'/%3E%3C/svg%3E"); }
+
+.prohlizeni_start_page .row:nth-child(2) > div:nth-child(2) a.xg_stag_a_titulka,
+a.xg_stag_a_titulka[href*="VWNpdGVsU3RhdGU"] { --s-ico: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23a1a1aa' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2'/%3E%3Ccircle cx='9' cy='7' r='4'/%3E%3Cpolyline points='16 11 18 13 22 9'/%3E%3C/svg%3E"); }
+
+.prohlizeni_start_page .row:nth-child(3) > div:nth-child(1) a.xg_stag_a_titulka,
+a.xg_stag_a_titulka[href*="TdHVkZW50U3RhdGU"] { --s-ico: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23a1a1aa' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2'/%3E%3Ccircle cx='9' cy='7' r='4'/%3E%3Cpath d='M22 21v-2a4 4 0 0 0-3-3.87'/%3E%3Cpath d='M16 3.13a4 4 0 0 1 0 7.75'/%3E%3C/svg%3E"); }
+
+.prohlizeni_start_page .row:nth-child(3) > div:nth-child(2) a.xg_stag_a_titulka,
+a.xg_stag_a_titulka[href*="VGVybWluU3RhdGU"] { --s-ico: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23a1a1aa' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Crect width='8' height='4' x='8' y='2' rx='1' ry='1'/%3E%3Cpath d='M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2'/%3E%3Cpath d='m9 14 2 2 4-4'/%3E%3C/svg%3E"); }
+
+.prohlizeni_start_page .row:nth-child(4) > div:nth-child(1) a.xg_stag_a_titulka,
+a.xg_stag_a_titulka[href*="Sb3p2cmhBa2NlU3RhdGU"] { --s-ico: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23a1a1aa' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='12' cy='12' r='10'/%3E%3Cpolyline points='12 6 12 12 16 14'/%3E%3C/svg%3E"); }
+
+.prohlizeni_start_page .row:nth-child(4) > div:nth-child(2) a.xg_stag_a_titulka,
+a.xg_stag_a_titulka[href*="QcmFjZVN0YXRl"] { --s-ico: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23a1a1aa' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z'/%3E%3Cpath d='M14 2v4a2 2 0 0 0 2 2h4'/%3E%3Cpath d='M10 9H8'/%3E%3Cpath d='M16 13H8'/%3E%3Cpath d='M16 17H8'/%3E%3C/svg%3E"); }
+
+.prohlizeni_start_page .row:nth-child(5) > div:nth-child(1) a.xg_stag_a_titulka,
+a.xg_stag_a_titulka[href*="Lcm91emVrU3RhdGU"] { --s-ico: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23a1a1aa' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Crect width='7' height='7' x='3' y='3' rx='1'/%3E%3Crect width='7' height='7' x='14' y='3' rx='1'/%3E%3Crect width='7' height='7' x='14' y='14' rx='1'/%3E%3Crect width='7' height='7' x='3' y='14' rx='1'/%3E%3C/svg%3E"); }
+
+.prohlizeni_start_page .row:nth-child(5) > div:nth-child(2) a.xg_stag_a_titulka,
+a.xg_stag_a_titulka[href*="TWlzdG5vc3RTdGF0ZQ"] { --s-ico: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23a1a1aa' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M13 4h3a2 2 0 0 1 2 2v14'/%3E%3Cpath d='M2 20h3'/%3E%3Cpath d='M13 20h9'/%3E%3Cpath d='M10 12h.01'/%3E%3Cpath d='M13 4.562v16.157a1 1 0 0 1-1.242.97L5 20V5.562a2 2 0 0 1 1.515-1.94l4-1A2 2 0 0 1 13 4.561Z'/%3E%3C/svg%3E"); }
+
+.prohlizeni_start_page .row:nth-child(6) > div:nth-child(1) a.xg_stag_a_titulka,
+a.xg_stag_a_titulka[href*="U2VtZXN0clN0YXRl"] { --s-ico: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23a1a1aa' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M21 12V6a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h7.5'/%3E%3Cpath d='M16 2v4'/%3E%3Cpath d='M8 2v4'/%3E%3Cpath d='M3 10h18'/%3E%3Ccircle cx='18' cy='18' r='3'/%3E%3Cpath d='m22 22-1.5-1.5'/%3E%3C/svg%3E"); }
+
+.prohlizeni_start_page .row:nth-child(6) > div:nth-child(2) a.xg_stag_a_titulka,
+a.xg_stag_a_titulka[href*="Um9rU3RhdGU"] { --s-ico: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23a1a1aa' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Crect width='18' height='18' x='3' y='4' rx='2'/%3E%3Cpath d='M16 2v4'/%3E%3Cpath d='M3 10h18'/%3E%3Cpath d='M8 2v4'/%3E%3Cpath d='M17 14h-6'/%3E%3Cpath d='M13 18H7'/%3E%3Cpath d='M7 14h.01'/%3E%3Cpath d='M17 18h.01'/%3E%3C/svg%3E"); }
+
+.prohlizeni_start_page .row:nth-child(7) > div:nth-child(1) a.xg_stag_a_titulka,
+a.xg_stag_a_titulka[href*="S2FsZW5kYXJTdGF0ZQ"] { --s-ico: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23a1a1aa' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M8 2v4'/%3E%3Cpath d='M16 2v4'/%3E%3Crect width='18' height='18' x='3' y='4' rx='2'/%3E%3Cpath d='M3 10h18'/%3E%3Cpath d='M8 14h.01'/%3E%3Cpath d='M12 14h.01'/%3E%3Cpath d='M16 14h.01'/%3E%3Cpath d='M8 18h.01'/%3E%3Cpath d='M12 18h.01'/%3E%3Cpath d='M16 18h.01'/%3E%3C/svg%3E"); }
 
 .prohlizeni_start_page .itemHiddentrue {
     background-color: var(--s-alt) !important;
     color: var(--s-sub0) !important;
     border-radius: var(--s-r-sm) !important;
+    padding: 8px 12px !important;
 }
 
 div[class^="xg_portletCoat"],
@@ -1315,7 +1498,8 @@ table.StudentInfoSubTab th {
     display: inline-flex !important;
     align-items: center !important;
     gap: 8px !important;
-    height: 32px !important;
+    min-block-size: 2.28rem !important;
+    height: auto !important;
     transition: background var(--s-tr), border-color var(--s-tr) !important;
 }
 
@@ -1339,7 +1523,7 @@ table.StudentInfoSubTab th {
     font-family: var(--s-fm) !important;
     font-variant-numeric: tabular-nums !important;
     font-weight: 600 !important;
-    font-size: 11px !important;
+    font-size: 0.8rem !important;
     padding: 2px 6px !important;
     border-radius: var(--s-r-xs) !important;
     line-height: 1.2 !important;
@@ -1704,46 +1888,52 @@ table.gpv_rozvrhMainTable thead tr:first-child th:first-child,
 table.gpv_rozvrhMainTable tr:first-child > th:first-child,
 td.rozvrhLeftHeadingDenName,
 table.gpv_rozvrhMainTable td.rozvrhLeftHeadingDenName {
-	width: 80px !important;
-	min-width: 80px !important;
-	max-width: 80px !important;
+	width: 84px !important;
+	min-width: 84px !important;
+	max-width: 84px !important;
 	background: var(--s-crust) !important;
-	color: var(--s-txt) !important;
+	color: var(--s-sub1) !important;
 	border: 1px solid var(--s-s0) !important;
 	font-weight: 500 !important;
-	font-size: 12px !important;
-	line-height: 1.3 !important;
-	padding: 8px 6px !important;
+	font-size: 0.86rem !important;
+	line-height: 1.35 !important;
+	padding: 8px !important;
 	text-align: left !important;
 	vertical-align: middle !important;
 	position: sticky !important;
 	left: 0 !important;
 	z-index: 3 !important;
-	box-shadow: 1px 0 0 var(--s-s0) !important;
+	box-shadow: 2px 0 0 var(--s-s0) !important;
+}
+
+table.rozvrhMainTable thead tr:first-child th:first-child,
+table.gpv_rozvrhMainTable thead tr:first-child th:first-child {
+	z-index: 5 !important;
 }
 
 /* Explicitní šířky přímo na prvním řádku hlavičky (table-layout: fixed počítá šířky výhradně z row[0]) */
 table.rozvrhMainTable thead tr:first-child th.rozvrhCasRadaHodina,
 table.gpv_rozvrhMainTable thead tr:first-child th.rozvrhCasRadaHodina {
-	width: calc((100% - 80px) * 10 / 182) !important;
+	width: calc((100% - 84px) * 10 / 182) !important;
 }
 
 table.rozvrhMainTable thead tr:first-child th.rozvrhCasRadaPrestavka[colspan="2"],
 table.rozvrhMainTable thead tr:first-child td.rozvrhCasRadaEnding,
 table.gpv_rozvrhMainTable thead tr:first-child th.rozvrhCasRadaPrestavka[colspan="2"],
 table.gpv_rozvrhMainTable thead tr:first-child td.rozvrhCasRadaEnding {
-	width: calc((100% - 80px) * 2 / 182) !important;
+	width: calc((100% - 84px) * 2 / 182) !important;
 }
 
-/* Zvýraznění aktuálního dne (#fffbb5) */
+/* Zvýraznění aktuálního dne (#fffbb5) – neutrální text, teplý levý proužek (nevypadá jako odkaz) */
 td.rozvrhLeftHeadingDenName[style *= "fffbb5" i] {
-	background: color-mix(in oklab, var(--s-blue) 14%, var(--s-crust)) !important;
-	color: var(--s-blue) !important;
+	background: color-mix(in oklab, var(--s-blue) 12%, var(--s-crust)) !important;
+	color: var(--s-txt) !important;
+	font-weight: 600 !important;
 	border-left: 3px solid var(--s-blue) !important;
 }
 
 td.rozvrhVolno[style *= "fffbb5" i] {
-	background: rgba(91, 155, 248, 0.03) !important;
+	background: rgba(223, 180, 100, 0.025) !important;
 }
 
 .rozvrhCasRadaHodina,
@@ -1754,17 +1944,18 @@ table.gpv_rozvrhMainTable th.rozvrhCasRadaPrestavka {
 	background: var(--s-crust) !important;
 	color: var(--s-sub1) !important;
 	border: 1px solid var(--s-s0) !important;
-	padding: 4px 4px !important;
+	padding: 6px 6px !important;
 	vertical-align: middle !important;
 	overflow: hidden !important;
 }
 
+/* Sjednocená hlavička hodin: číslo hodiny + čitelné rozpětí Od–Do v jedné konzistentní stupnici */
 .rozvrhCasRadaZacatek,
 .rozvrhCasRadaKonec,
 .rozvrhCasRadaCisHodiny {
 	background: transparent !important;
 	border: none !important;
-	padding: 0 2px !important;
+	padding: 0 !important;
 	float: none !important;
 	clear: both !important;
 	display: block !important;
@@ -1773,26 +1964,26 @@ table.gpv_rozvrhMainTable th.rozvrhCasRadaPrestavka {
 }
 
 .rozvrhCasRadaZacatek {
-	font-size: 11px !important;
+	font-size: 0.79rem !important;
 	color: var(--s-ov) !important;
 	text-align: left !important;
-	line-height: 1.15 !important;
+	line-height: 1.2 !important;
 }
 
 .rozvrhCasRadaCisHodiny {
-	font-size: 12px !important;
+	font-size: 0.86rem !important;
 	color: var(--s-txt) !important;
-	font-weight: 500 !important;
-	text-align: center !important;
-	margin: 2px 0 !important;
-	line-height: 1.15 !important;
+	font-weight: 600 !important;
+	text-align: left !important;
+	margin: 1px 0 !important;
+	line-height: 1.2 !important;
 }
 
 .rozvrhCasRadaKonec {
-	font-size: 11px !important;
+	font-size: 0.79rem !important;
 	color: var(--s-ov) !important;
-	text-align: right !important;
-	line-height: 1.15 !important;
+	text-align: left !important;
+	line-height: 1.2 !important;
 }
 
 td.rozvrhVolno,
@@ -1803,7 +1994,7 @@ table.gpv_rozvrhMainTable td.rozvrhVolno {
 }
 
 td[class *= "rozvrhRoakSkin_"] {
-	padding: 0 !important;
+	padding: 0 0 6px !important;
 	vertical-align: top !important;
 	border-radius: var(--s-r-xs) !important;
 	overflow: hidden !important;
@@ -1812,21 +2003,21 @@ td[class *= "rozvrhRoakSkin_"] {
 }
 
 td[class *= "rozvrhRoakSkin_"]:hover {
-	filter: brightness(1.08) !important;
+	filter: brightness(1.06) !important;
 }
 
 td.rozvrhRoakSkin_prednaska,
 .scss-pred {
 	background: var(--s-gl) !important;
-	border: 1px solid rgba(91, 155, 248, 0.24) !important;
-	border-left: 3px solid var(--s-blue) !important;
+	border: 1px solid rgba(140, 164, 189, 0.24) !important;
+	border-left: 3px solid var(--s-lec-bar) !important;
 	color: var(--s-txt) !important;
 }
 
 td.rozvrhRoakSkin_cviceni,
 .scss-cvic {
 	background: var(--s-glb) !important;
-	border: 1px solid rgba(69, 184, 172, 0.24) !important;
+	border: 1px solid rgba(86, 182, 173, 0.24) !important;
 	border-left: 3px solid var(--s-teal) !important;
 	color: var(--s-txt) !important;
 }
@@ -1834,7 +2025,7 @@ td.rozvrhRoakSkin_cviceni,
 td.rozvrhRoakSkin_seminar,
 .scss-sem {
 	background: var(--s-gs) !important;
-	border: 1px solid rgba(76, 195, 138, 0.24) !important;
+	border: 1px solid rgba(82, 196, 140, 0.24) !important;
 	border-left: 3px solid var(--s-green) !important;
 	color: var(--s-txt) !important;
 }
@@ -1844,33 +2035,47 @@ td.rozvrhRoakSkin_zkouska,
 td.rozvrhRoakSkin_blokace_zkouska,
 td.rozvrhRoakSkin_vyuk_jedakce {
 	background: var(--s-ge) !important;
-	border: 1px solid rgba(235, 142, 82, 0.28) !important;
+	border: 1px solid rgba(232, 141, 82, 0.28) !important;
 	border-left: 3px solid var(--s-peach) !important;
 	color: var(--s-txt) !important;
 }
 
-/* Legenda pod rozvrhem – čitelný světlý text */
-div[class *= "rozvrhRoakOdDoDSpacer_"],
+/* Sjednocení VŠECH vnitřních řádků rozvrhové karty do jedné levé osy a typografické škály */
+td[class *= "rozvrhRoakSkin_"] div[class *= "rozvrhRoakOdDoDSpacer_"]:not(:has(> span.rozvrhLegenda)) {
+	color: var(--s-ov) !important;
+	font-family: var(--s-fm) !important;
+	font-variant-numeric: tabular-nums !important;
+	font-size: 0.79rem !important;
+	font-weight: 400 !important;
+	line-height: 1.35 !important;
+	text-align: left !important;
+	padding: 1px 6px !important;
+}
+
+/* Legenda pod rozvrhem */
 span.rozvrhLegenda {
 	color: var(--s-txt) !important;
-	font-size: 12px !important;
+	font-family: var(--s-fs) !important;
+	font-size: 0.86rem !important;
 	font-weight: 500 !important;
 }
 
 td[class *= "rozvrhRoakSkin_"] > div[class *= "rozvrhRoakOdDoDSpacer_"]:has(> span.rozvrhLegenda) {
 	padding: 4px 12px !important;
+	text-align: center !important;
 }
 
+/* Řádek 1 karty: sjednocený časový štítek P·13:00–14:50 vlevo nahoře */
 .rozvrhRoakOdDoHSpacer {
 	display: flex !important;
-	justify-content: space-between !important;
+	justify-content: flex-start !important;
 	align-items: center !important;
-	gap: 4px !important;
-	background: rgba(0, 0, 0, 0.26) !important;
-	padding: 2px 4px !important;
+	gap: 2px !important;
+	background: rgba(0, 0, 0, 0.22) !important;
+	padding: 3px 6px !important;
 	border-bottom: 1px solid var(--s-sub) !important;
 	height: auto !important;
-	min-height: 18px !important;
+	min-block-size: 1.45rem !important;
 }
 
 [class *= "rozvrhRoakZacatek_"],
@@ -1878,35 +2083,52 @@ td[class *= "rozvrhRoakSkin_"] > div[class *= "rozvrhRoakOdDoDSpacer_"]:has(> sp
 	float: none !important;
 	background: transparent !important;
 	padding: 0 !important;
-	color: var(--s-sub1) !important;
+	color: var(--s-ov) !important;
 	font-family: var(--s-fm) !important;
 	font-variant-numeric: tabular-nums !important;
 	font-weight: 400 !important;
-	font-size: 11px !important;
+	font-size: 0.79rem !important;
+}
+
+[class *= "rozvrhRoakKonec_"]::before {
+	content: "–";
+	margin-inline: 1px;
 }
 
 /* WCAG 1.4.1: Nebarevné rozlišení typu výuky (Přednáška / Cvičení / Seminář / Zkouška) */
-.rozvrhRoakZacatek_prednaska::before { content: "P·"; color: var(--s-blue); font-weight: 500; }
-.rozvrhRoakZacatek_cviceni::before { content: "C·"; color: var(--s-teal); font-weight: 500; }
-.rozvrhRoakZacatek_seminar::before { content: "S·"; color: var(--s-green); font-weight: 500; }
+.rozvrhRoakZacatek_prednaska::before { content: "P·"; color: var(--s-lec-bar); font-weight: 600; margin-right: 2px; }
+.rozvrhRoakZacatek_cviceni::before { content: "C·"; color: var(--s-teal); font-weight: 600; margin-right: 2px; }
+.rozvrhRoakZacatek_seminar::before { content: "S·"; color: var(--s-green); font-weight: 600; margin-right: 2px; }
 .rozvrhRoakZacatek_zkouska::before,
-.rozvrhRoakZacatek_blokova::before { content: "Z·"; color: var(--s-peach); font-weight: 500; }
+.rozvrhRoakZacatek_blokova::before { content: "Z·"; color: var(--s-peach); font-weight: 600; margin-right: 2px; }
 
+/* Řádek 2 karty: Kód předmětu (hlavní odkaz karty) + skrytí duplicitních rastrových odznaků [ZK] */
 .rozvrhRoakPredmSpacer {
-	padding: 4px 4px 2px !important;
+	padding: 5px 6px 2px !important;
 	text-align: left !important;
-	line-height: 1.2 !important;
+	line-height: 1.25 !important;
+}
+
+.rozvrhRoakPredmSpacer img {
+	display: none !important;
 }
 
 .rozvrhRoakPredmSpacer a.xg_stag_a_ent_S {
-	font-size: 12px !important;
+	font-size: 0.9rem !important;
 	font-weight: 600 !important;
 	color: var(--s-txt) !important;
 	text-shadow: none !important;
+	text-decoration-color: color-mix(in oklab, var(--s-txt) 32%, transparent) !important;
 }
 
+.rozvrhRoakPredmSpacer a.xg_stag_a_ent_S:hover {
+	color: var(--s-blue) !important;
+	text-decoration-color: var(--s-blue) !important;
+}
+
+/* Řádek 3 karty: Učebna jako čistý akcentový odkaz ve stejném levém sloupci (bez těžké krabičky) */
 .rozvrhRoakMistnostSpacer {
-	padding: 2px 4px !important;
+	padding: 1px 6px !important;
 	text-align: left !important;
 }
 
@@ -1916,50 +2138,52 @@ td[colspan="10"] [class *= "rozvrhRoakKonec_"] {
 }
 
 .rozvrhRoakMistnostSpacer a {
-	background: var(--s-crust) !important;
-	color: var(--s-sub1) !important;
-	border: 1px solid var(--s-s0) !important;
-	border-radius: var(--s-r-xs) !important;
-	padding: 2px 5px !important;
+	background: transparent !important;
+	color: var(--s-blue) !important;
+	border: none !important;
+	padding: 0 !important;
 	font-family: var(--s-fm) !important;
 	font-variant-numeric: tabular-nums !important;
-	font-size: 11px !important;
+	font-size: 0.8rem !important;
 	font-weight: 500 !important;
 	white-space: nowrap !important;
 	display: inline-block !important;
 }
 
+/* Řádek 4–5 karty: Obsazenost a vyučující ve stejné levé ose bez plovoucího černého pruhu */
 .rozvrhItemLineObsazeni {
 	color: var(--s-ov) !important;
 	font-family: var(--s-fm) !important;
 	font-variant-numeric: tabular-nums !important;
-	font-size: 11px !important;
+	font-size: 0.79rem !important;
 	font-weight: 400 !important;
 	text-align: left !important;
-	padding: 2px 4px !important;
+	padding: 1px 6px !important;
 }
 
 .rozvrhItemLineUcitel {
-	background: rgba(0, 0, 0, 0.2) !important;
+	background: transparent !important;
 	color: var(--s-sub1) !important;
-	font-size: 11px !important;
-	font-weight: 500 !important;
+	font-family: var(--s-fs) !important;
+	font-size: 0.82rem !important;
+	font-weight: 400 !important;
 	text-align: left !important;
-	padding: 2px 4px !important;
-	margin-top: 2px !important;
+	padding: 1px 6px !important;
+	margin-top: 1px !important;
 	white-space: nowrap !important;
 	overflow: hidden !important;
 	text-overflow: ellipsis !important;
 }
 
-/* Kompaktní upozornění změny / zrušení výuky – max 2 řádky místo 800px svislého pásu */
+/* Kompaktní upozornění změny / zrušení výuky – čistý levý akcent místo křiklavé krabice */
 div.rozvrhItemLineNekonaSe,
 div.rozvrhItemLineNekonaSe[style] {
-	background: rgba(242, 100, 105, 0.16) !important;
-	border: 1px solid rgba(242, 100, 105, 0.36) !important;
-	border-radius: var(--s-r-xs) !important;
-	padding: 2px 4px !important;
-	margin: 2px 4px !important;
+	background: rgba(240, 104, 108, 0.12) !important;
+	border: none !important;
+	border-left: 2px solid var(--s-red) !important;
+	border-radius: 2px !important;
+	padding: 3px 6px !important;
+	margin: 3px 6px !important;
 	text-align: left !important;
 	white-space: normal !important;
 	height: auto !important;
@@ -1969,8 +2193,9 @@ div.rozvrhItemLineNekonaSe[style] {
 
 div.rozvrhItemLineNekonaSe span {
 	color: #fecaca !important;
+	font-family: var(--s-fs) !important;
 	font-weight: 500 !important;
-	font-size: 11px !important;
+	font-size: 0.79rem !important;
 	line-height: 1.25 !important;
 	display: -webkit-box !important;
 	-webkit-line-clamp: 2 !important;
@@ -2041,10 +2266,11 @@ div.rozvrhItemLineNekonaSe a.xg_stag_a_rozvrhToolB[oldtitle]:not([oldtitle = ""]
 	display: -webkit-box !important;
 	-webkit-line-clamp: 2 !important;
 	-webkit-box-orient: vertical !important;
-	font-size: 11px !important;
+	font-size: 0.79rem !important;
 	font-weight: 400 !important;
 	line-height: 1.25 !important;
 	color: #fecaca !important;
+	font-family: var(--s-fs) !important;
 	white-space: normal !important;
 	overflow-wrap: break-word !important;
 	overflow: hidden !important;
@@ -3344,7 +3570,7 @@ div.prohlizeniEntitaFormMain,
     gap: 10px 16px !important;
 }
 
-/* Zploštění filtru nad rozvrhem – žádné vnořené krabičky v krabičkách */
+/* Zploštění a sjednocení všech popisků (labels) ve filtrech a formulářích (Modern Web Guidance: forms & browser-ui-theming) */
 .rozvrhFiltrForm.form-small-inline,
 .rozvrhFiltrForm.form-small-inline .prohlizeniEntitaFormMain > .pull-left {
     border: none !important;
@@ -3358,6 +3584,34 @@ div.prohlizeniEntitaFormMain,
     flex-wrap: wrap !important;
     align-items: center !important;
     gap: 8px 16px !important;
+}
+
+.prohlizeniEntitaFormMain .form-group:not([style*="display: none" i]):not([style*="display:none" i]) {
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 8px !important;
+    margin: 0 !important;
+    float: none !important;
+}
+
+.prohlizeniEntitaFormMain label,
+.rozvrhFiltrForm label,
+table.xg_stag_formTable label,
+.xg_pane label {
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 6px !important;
+    margin: 0 !important;
+    font-size: 0.9rem !important;
+    font-weight: 400 !important;
+    line-height: 1.4 !important;
+    color: var(--s-sub1) !important;
+    cursor: pointer !important;
+}
+
+label:has(> input:checked) {
+    color: var(--s-txt) !important;
+    font-weight: 500 !important;
 }
 
 .form-vertical input[type="submit"] {
@@ -3465,13 +3719,23 @@ input.chosen-search-input {
     padding: 6px 12px !important;
     font-size: 0.93rem !important;
     height: auto !important;
-    min-height: 36px !important;
+    min-block-size: 2.45rem !important;
     line-height: 1.4 !important;
     box-shadow: none !important;
     transition: border-color var(--s-tr), background-color var(--s-tr) !important;
 }
 
-/* Checkboxy a radiobuttony – kompaktní čtverečky/kolečka */
+textarea {
+    resize: vertical !important;
+}
+
+input:not([type="range"]):user-invalid,
+select:user-invalid,
+textarea:user-invalid {
+    border-color: var(--s-red) !important;
+}
+
+/* Sjednocené checkboxy a radiobuttony přes appearance: none (Modern Web Guidance: checkbox & browser-ui-theming) */
 input[type="checkbox"],
 input[type="radio"],
 input.text[type="checkbox"],
@@ -3481,22 +3745,74 @@ input.pv_input_as_chosen[type="radio"],
 table.ng_form_tab td input[type="checkbox"],
 table.ng_form_tab td input[type="radio"],
 .form-check-input {
-    accent-color: var(--s-blue) !important;
-    width: 16px !important;
-    height: 16px !important;
-    min-height: 0 !important;
+    appearance: none !important;
+    -webkit-appearance: none !important;
+    display: inline-grid !important;
+    place-content: center !important;
+    inline-size: 1.15rem !important;
+    block-size: 1.15rem !important;
+    min-block-size: 0 !important;
+    flex: 0 0 1.15rem !important;
     padding: 0 !important;
-    margin: 0 5px 0 4px !important;
+    margin: 0 !important;
     vertical-align: middle !important;
     background-color: var(--s-crust) !important;
-    border: 1px solid var(--s-s1) !important;
+    background-image: none !important;
+    border: 1.5px solid var(--s-s1) !important;
     border-radius: var(--s-r-xs) !important;
     cursor: pointer !important;
-    display: inline-block !important;
+    transition: background-color var(--s-tr), border-color var(--s-tr) !important;
 }
 
-input[type="radio"] {
+input[type="radio"],
+input.text[type="radio"],
+.form-check-input[type="radio"] {
     border-radius: 50% !important;
+}
+
+input[type="checkbox"]::before,
+input[type="radio"]::before {
+    content: "" !important;
+    inline-size: 0.7rem !important;
+    block-size: 0.7rem !important;
+    scale: 0;
+    transition: scale var(--s-tr);
+}
+
+input[type="checkbox"]::before {
+    background-color: var(--s-crust) !important;
+    mask: var(--s-icon-check) no-repeat center / contain;
+    -webkit-mask: var(--s-icon-check) no-repeat center / contain;
+}
+
+input[type="checkbox"]:indeterminate::before {
+    mask: var(--s-icon-dash) no-repeat center / contain;
+    -webkit-mask: var(--s-icon-dash) no-repeat center / contain;
+}
+
+input[type="radio"]::before {
+    inline-size: 0.52rem !important;
+    block-size: 0.52rem !important;
+    border-radius: 50% !important;
+    background-color: var(--s-crust) !important;
+}
+
+input[type="checkbox"]:is(:checked, :indeterminate),
+input[type="radio"]:checked {
+    background-color: var(--s-blue) !important;
+    border-color: var(--s-blue) !important;
+}
+
+input[type="checkbox"]:is(:checked, :indeterminate)::before,
+input[type="radio"]:checked::before {
+    scale: 1;
+}
+
+@media (forced-colors: active) {
+    input[type="checkbox"]::before,
+    input[type="radio"]::before {
+        background-color: CanvasText !important;
+    }
 }
 
 /* File input (Soubory studenta S091) */
@@ -3614,7 +3930,9 @@ button,
     border: 1px solid var(--s-s1) !important;
     border-radius: var(--s-r-md) !important;
     padding: 6px 16px !important;
-    min-height: 36px !important;
+    min-block-size: 2.45rem !important;
+    height: auto !important;
+    width: auto !important;
     font-size: 0.93rem !important;
     font-weight: 500 !important;
     cursor: pointer !important;
@@ -3626,8 +3944,9 @@ button,
     transition: background var(--s-tr), border-color var(--s-tr), color var(--s-tr) !important;
 }
 
-#dCExtendedForm_id_img {
-    background: transparent !important;
+#dCExtendedForm_id_img,
+#dCExtendedForm_id_h img {
+    display: none !important;
 }
 
 button:hover,
