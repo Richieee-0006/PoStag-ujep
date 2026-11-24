@@ -4,8 +4,8 @@
 @homepageURL    https://github.com/Richieee-0006/PoStag-ujep
 @supportURL     https://github.com/Richieee-0006/PoStag-ujep/issues
 @updateURL      https://raw.githubusercontent.com/Richieee-0006/PoStag-ujep/main/stylus.user.css
-@version        2.1.0
-@description    Klidný tmavý userstyle (Graphite + Warm Amber, WCAG 2.1 AA, Modern Web Guidance) pro portál IS/STAG na UJEP (portal.ujep.cz)
+@version        2.2.0
+@description    Klidný tmavý userstyle (Graphite + Warm Amber accent + Verdigris links, WCAG 2.1 AA, Modern Web Guidance) pro portál IS/STAG na UJEP (portal.ujep.cz)
 @author         Richieee-0006
 @license        MIT
 ==/UserStyle== */
@@ -29,9 +29,11 @@
     --s-sub1: #a8a8b2;
     --s-sub0: #a8a8b2;
     --s-ov: #90909a;
-    /* Warm Champagne Amber akcent: bez modrého oslnění, 9.1:1 kontrast na kartách, vyhrazený primárně odkazům a aktivním stavům */
+    /* Oddělené tokeny: UI akcent = Warm Amber (#dfb464), klikatelné odkazy = klidná Verdigris-Teal (#75c2c0, 8.5:1+) */
     --s-blue: #dfb464;
     --s-lav: #eed093;
+    --s-link: #75c2c0;
+    --s-link-hover: #9ad6d4;
     --s-mauve: #ededef;
     --s-red: #f0686c;
     --s-green: #52c48c;
@@ -66,7 +68,7 @@
     --bs-card-bg: var(--s-base) !important;
     --bs-card-color: var(--s-txt) !important;
     --bs-border-color: var(--s-s0) !important;
-    --bs-link-color: var(--s-blue) !important;
+    --bs-link-color: var(--s-link) !important;
     --bs-primary-rgb: 223, 180, 100 !important;
 }
 
@@ -256,11 +258,11 @@ a,
 a[class*="xg_stag_a_"],
 a.stag_S,
 .b a {
-    color: var(--s-blue) !important;
+    color: var(--s-link) !important;
     text-decoration: underline !important;
     text-underline-offset: 3px !important;
     text-decoration-thickness: 1px !important;
-    text-decoration-color: color-mix(in oklab, var(--s-blue) 42%, transparent) !important;
+    text-decoration-color: color-mix(in oklab, var(--s-link) 45%, transparent) !important;
     transition: color var(--s-tr), text-decoration-color var(--s-tr) !important;
 }
 
@@ -304,8 +306,8 @@ ul.prohlizeniEntitaSubdetailTabRow li.current a[class*="xg_stag_a_"] {
 
 a:hover,
 .b a:hover {
-    color: var(--s-lav) !important;
-    text-decoration-color: var(--s-lav) !important;
+    color: var(--s-link-hover) !important;
+    text-decoration-color: var(--s-link-hover) !important;
 }
 
 a.nolink {
@@ -476,7 +478,7 @@ span.dGreen {
 *[style*="rgb(7,130,193)"],
 *[style*="color: blue" i],
 *[style*="color:blue" i] {
-    color: var(--s-blue) !important;
+    color: var(--s-link) !important;
 }
 
 span[style*="#D975BC" i] {
@@ -1123,10 +1125,9 @@ div.resizeGrippie,
 
 .app_portlet_head_title h2,
 .portlet-header .h6 {
-    color: var(--s-blue) !important;
-    font-size: 1.08rem !important;
-    font-weight: 650 !important;
-    letter-spacing: 0.01em !important;
+    color: var(--s-txt) !important;
+    font-size: 1.04rem !important;
+    font-weight: 500 !important;
     margin: 0 !important;
     padding: 0 !important;
 }
@@ -1184,6 +1185,15 @@ h3.newHeader,
     margin-bottom: 12px !important;
     box-shadow: none !important;
     position: relative !important;
+}
+
+/* Odstranění Bootstrap 3 .clearfix pseudo-prvků, které jinak ve flexboxu odsouvají nadpis Student doprostřed */
+.prohlizeniEntitaHead::before,
+.prohlizeniEntitaHead::after,
+.prohlizeniEntitaFormMain::before,
+.prohlizeniEntitaFormMain::after {
+    display: none !important;
+    content: none !important;
 }
 
 .prohlizeniEntitaHead_left,
@@ -1327,7 +1337,7 @@ span.span_titulka {
 }
 
 a.xg_stag_a_titulka:hover span.span_titulka {
-    color: var(--s-blue) !important;
+    color: var(--s-link) !important;
 }
 
 /* Lucide 1.5px ikony pro všech 13 sekcí Prohlížení (podle mřížky + Base64 stateClass v href) */
@@ -1994,12 +2004,18 @@ table.gpv_rozvrhMainTable td.rozvrhVolno {
 }
 
 td[class *= "rozvrhRoakSkin_"] {
-	padding: 0 0 6px !important;
+	position: relative !important;
+	padding: 0 0 1.9rem !important;
 	vertical-align: top !important;
 	border-radius: var(--s-r-xs) !important;
 	overflow: hidden !important;
 	box-shadow: none !important;
 	transition: background-color var(--s-tr), border-color var(--s-tr) !important;
+}
+
+td[class *= "rozvrhRoakSkin_"]:has(span.rozvrhLegenda) {
+	padding: 0 !important;
+	vertical-align: middle !important;
 }
 
 td[class *= "rozvrhRoakSkin_"]:hover {
@@ -2118,15 +2134,15 @@ td[class *= "rozvrhRoakSkin_"] > div[class *= "rozvrhRoakOdDoDSpacer_"]:has(> sp
 	font-weight: 600 !important;
 	color: var(--s-txt) !important;
 	text-shadow: none !important;
-	text-decoration-color: color-mix(in oklab, var(--s-txt) 32%, transparent) !important;
+	text-decoration-color: color-mix(in oklab, var(--s-link) 45%, transparent) !important;
 }
 
 .rozvrhRoakPredmSpacer a.xg_stag_a_ent_S:hover {
-	color: var(--s-blue) !important;
-	text-decoration-color: var(--s-blue) !important;
+	color: var(--s-link-hover) !important;
+	text-decoration-color: var(--s-link-hover) !important;
 }
 
-/* Řádek 3 karty: Učebna jako čistý akcentový odkaz ve stejném levém sloupci (bez těžké krabičky) */
+/* Řádek 3 karty: Učebna jako zřetelný odkaz (--s-link) ve stejném levém sloupci */
 .rozvrhRoakMistnostSpacer {
 	padding: 1px 6px !important;
 	text-align: left !important;
@@ -2139,7 +2155,7 @@ td[colspan="10"] [class *= "rozvrhRoakKonec_"] {
 
 .rozvrhRoakMistnostSpacer a {
 	background: transparent !important;
-	color: var(--s-blue) !important;
+	color: var(--s-link) !important;
 	border: none !important;
 	padding: 0 !important;
 	font-family: var(--s-fm) !important;
@@ -2150,7 +2166,11 @@ td[colspan="10"] [class *= "rozvrhRoakKonec_"] {
 	display: inline-block !important;
 }
 
-/* Řádek 4–5 karty: Obsazenost a vyučující ve stejné levé ose bez plovoucího černého pruhu */
+.rozvrhRoakMistnostSpacer a:hover {
+	color: var(--s-link-hover) !important;
+}
+
+/* Řádek 4 karty: Obsazenost ve stejné levé ose */
 .rozvrhItemLineObsazeni {
 	color: var(--s-ov) !important;
 	font-family: var(--s-fm) !important;
@@ -2161,15 +2181,21 @@ td[colspan="10"] [class *= "rozvrhRoakKonec_"] {
 	padding: 1px 6px !important;
 }
 
+/* Patička karty: Vyučující vždy přichycený ke spodní hraně buňky (jedna vodorovná linka přes celý řádek dne) */
 .rozvrhItemLineUcitel {
-	background: transparent !important;
+	position: absolute !important;
+	inset-inline: 0 !important;
+	inset-block-end: 0 !important;
+	background: rgba(0, 0, 0, 0.16) !important;
+	border-top: 1px solid var(--s-sub) !important;
 	color: var(--s-sub1) !important;
 	font-family: var(--s-fs) !important;
-	font-size: 0.82rem !important;
+	font-size: 0.8rem !important;
 	font-weight: 400 !important;
+	line-height: 1.35 !important;
 	text-align: left !important;
-	padding: 1px 6px !important;
-	margin-top: 1px !important;
+	padding: 3px 6px !important;
+	margin: 0 !important;
 	white-space: nowrap !important;
 	overflow: hidden !important;
 	text-overflow: ellipsis !important;
