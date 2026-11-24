@@ -1,36 +1,39 @@
 # PoStag-ujep
 
 [![Target](https://img.shields.io/badge/target-portal.ujep.cz-dfb464?style=flat-square)](https://portal.ujep.cz/)
-[![Palette](https://img.shields.io/badge/palette-Graphite_%2B_Warm_Amber_v2.1-19191c?style=flat-square)](#barevná-paleta)
+[![Palette](https://img.shields.io/badge/palettes-6_Themes_%2B_Custom_Picker-19191c?style=flat-square)](#přepínač-palet-theme-picker)
 [![WCAG](https://img.shields.io/badge/a11y-WCAG_2.1_AA-52c48c?style=flat-square)](#přehled-úprav)
 [![Stylus](https://img.shields.io/badge/extension-Stylus-a8a8b2?style=flat-square)](https://add0n.com/stylus.html)
 
-Klidný tmavý userstyle (Graphite + Warm Amber, WCAG 2.1 AA, Modern Web Guidance) a modernizace rozhraní pro portál **IS/STAG na UJEP** (`portal.ujep.cz`).
+Klidný tmavý userstyle (Unslop, WCAG 2.1 AA, Modern Web Guidance) s vestavěným **Stylus Theme Pickerem** (6 palet + samostatná volba barvy UI akcentu a odkazů) pro portál **IS/STAG na UJEP** (`portal.ujep.cz`).
 
 ## Přehled úprav
 
 | Oblast | Změny |
 | :--- | :--- |
-| **Vzhled (Unslop v2.2)** | Neutrální grafitová škála, oddělený teplý jantarový UI akcent (`#dfb464`) pro aktivní prvky a klidná tyrkysová (`#75c2c0`) výhradně pro odkazy. |
-| **Přístupnost & Modern Web** | Kontrasty textu ≥ 4.5 : 1 (odkazy 8.5 : 1+), okraje vstupů ≥ 3.2 : 1, `rem` typografie, `min-block-size`, sjednocené `appearance: none` radio/checkbox prvky, `:focus-visible`, `forced-colors` a `prefers-reduced-motion`. |
-| **Layout & Prohlížení** | Flexbox / CSS Grid, sticky boční panel (240 px), 4px mřížka a sada 13 vektorových Lucide ikon v rozcestníku Prohlížení místo prázdných bílých dlaždic. |
+| **Přepínač palet (v2.3)** | 6 připravených tmavých palet (`Graphite Mono`, `Warm Obsidian`, `Graphite Sage`, `Nord Slate`, `Catppuccin Mocha v2`, `Tokyo Night`) + nezávislý výběr barvy UI akcentu a barvy odkazů přímo v okně Stylus (`⚙️`). |
+| **Přístupnost & Modern Web** | Kontrasty textu ≥ 4.5 : 1, okraje vstupů ≥ 3.2 : 1, `rem` typografie, `min-block-size`, sjednocené `appearance: none` radio/checkbox prvky, `:focus-visible`, `forced-colors` a `prefers-reduced-motion`. |
+| **Layout & Prohlížení** | Odstraněné vnořené rámečky portletů (jen 1 čistá karta), čisté tabulky bez podtrhávání kódů předmětů a 13 vektorových Lucide ikon v rozcestníku Prohlížení. |
 | **Rozvrh** | Opravený výpočet šířek v režimu *Combined*, pevně ukotvená patička vyučujících na spodní hraně každé buňky a sjednocená levá hierarchie štítků (`P·`/`C·`/`S·`/`Z·`) s `tabular-nums`. |
 | **Předzápis & Tabulky** | 16barevná paleta akcí, zebra řádkování, stavy plateb, výsledků studia, žádostí (`S048`) a konzultací (`S110`). |
 | **Responzivita** | Přizpůsobení pro menší monitory (`< 1200px`) a transformace tabulek na karty pro mobily (`< 768px`). |
 
-## Barevná paleta
+## Přepínač palet (Theme Picker)
 
-Styl využívá nativní CSS proměnné definované v `:root`:
+V rozšíření **Stylus** klikni u `PoStag-ujep` na ikonu ozubeného kola (**⚙️ Configure**) a živě přepínej:
+- **Barevná paleta:** `Graphite Mono*` (bílý akcent + pískové odkazy), `Warm Obsidian` (terakota + šampaňské odkazy), `Graphite Sage` (šalvěj + ledové odkazy), `Nord Slate`, `Catppuccin Mocha v2`, `Tokyo Night`.
+- **Vlastní barva akcentu (UI prvky):** nezávislý přepis aktivních záložek, menu, checkboxů a `:focus-visible`.
+- **Vlastní barva odkazů:** nezávislý přepis všech klikatelných odkazů napříč portálem.
 
-| Proměnná | Hex | Použití |
+| Proměnná (výchozí Graphite Mono) | Hex | Použití |
 | :--- | :--- | :--- |
 | `--s-crust` | `#0f0f11` | Hlavička, záhlaví tabulek a portletů, vstupy |
 | `--s-mantle` | `#141416` | Hlavní pozadí stránky a kontejnerů |
 | `--s-base` | `#19191c` | Pozadí portletů, karet a modálních oken |
 | `--s-s0` / `--s-s1` | `#2a2a2e` / `#64646d` | Zvýšené povrchy, jemné linky a 3.2:1 okraje vstupů |
 | `--s-txt` / `--s-sub1` / `--s-ov` | `#ededef` / `#a8a8b2` / `#90909a` | Tři úrovně textu (primární, sekundární, meta) |
-| `--s-blue` / `--s-link` | `#dfb464` / `#75c2c0` | Oddělený UI akcent (aktivní stavy, `:focus-visible`) a samostatná barva klikatelných odkazů |
-| `--s-green` / `--s-yellow` / `--s-red` | `#52c48c` / `#e5c158` / `#f0686c` | Tlumené sémantické barvy pro stavy, notifikace a platby |
+| `--s-blue` / `--s-link` | `#ededef` / `#dfb464` | Oddělený UI akcent a samostatná barva klikatelných odkazů |
+| `--s-green` / `--s-yellow` / `--s-red` | `#52c48c` / `#e5c158` / `#ff8086` | Tlumené sémantické barvy pro stavy, notifikace a platby |
 
 ## Instalace
 
